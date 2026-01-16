@@ -12,6 +12,19 @@
   --font-body: 'DM Sans', system-ui, sans-serif;
 }
 
+/* Fallback utilities for browsers that ignore Tailwind cascade layers. */
+:root {
+  --color-bg: #0C1525;
+  --color-surface: #0F1C2E;
+  --color-border: #1A3050;
+  --color-fg: #EDE9E3;
+  --color-muted: #ADA9A4;
+  --color-secondary: #9B9893;
+  --color-accent: #4A9EFF;
+  --font-display: 'Syne', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}
+
 /* ── Light theme ─────────────────────────────────────────────── */
 [data-theme="light"] {
   --color-bg: #D6E4F7;
@@ -61,19 +74,6 @@
     background: var(--color-accent);
     color: var(--color-bg);
   }
-}
-
-/* Fallback utilities for browsers that ignore Tailwind cascade layers. */
-:root {
-  --color-bg: #0C1525;
-  --color-surface: #0F1C2E;
-  --color-border: #1A3050;
-  --color-fg: #EDE9E3;
-  --color-muted: #ADA9A4;
-  --color-secondary: #9B9893;
-  --color-accent: #4A9EFF;
-  --font-display: 'Syne', system-ui, sans-serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
 }
 
 *,
