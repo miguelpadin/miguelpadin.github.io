@@ -1,0 +1,494 @@
+---
+import { useTranslations } from '../i18n';
+import packageJson from '../../package.json';
+
+const t = useTranslations('en');
+const year = new Date().getFullYear();
+const version = packageJson.version;
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const route = (path: string) => `${basePath}${path}`;
+const heroLinks = [
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/miguelpadin' },
+  { label: 'GitHub', href: 'https://github.com/miguelpadin' },
+  { label: 'Email', href: 'mailto:miguel.padin.dominguez@gmail.com' },
+  { label: 'WhatsApp', href: 'https://wa.me/34639476354' },
+  { label: 'Telegram', href: 'https://t.me/+34639476354' },
+] as const;
+const contactLinks = [
+  { label: 'miguel.padin.dominguez@gmail.com', href: 'mailto:miguel.padin.dominguez@gmail.com' },
+  { label: 'WhatsApp', href: 'https://wa.me/34639476354' },
+  { label: 'Telegram', href: 'https://t.me/+34639476354' },
+] as const;
+---
+
+<main class="dv dv-quiet">
+  <nav class="quiet-nav" aria-label="Test design navigation">
+    <a href={route('/')}>Current site</a>
+    <span>Minimal version</span>
+    <a href="#contact">{t.contact.label}</a>
+  </nav>
+
+  <section class="quiet-hero" aria-labelledby="quiet-title">
+    <div class="quiet-copy">
+      <p class="quiet-kicker">{t.hero.label} / Las Palmas de Gran Canaria</p>
+      <h1 id="quiet-title">
+        <span>Miguel</span>
+        <span>Padín</span>
+        <span>Domínguez</span>
+      </h1>
+      <p class="quiet-bio">{t.hero.bio}</p>
+      <div class="quiet-actions" aria-label="Profile links">
+        {heroLinks.map((link) => (
+          <a
+            href={link.href}
+            target={link.href.startsWith('http') ? '_blank' : undefined}
+            rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
+    <div class="quiet-specimen" aria-label="Minimal profile composition">
+      <span>MPD</span>
+      <div class="quiet-rule one"></div>
+      <div class="quiet-rule two"></div>
+      <div class="quiet-rule three"></div>
+    </div>
+  </section>
+
+  <section class="quiet-facts" aria-label="Profile facts">
+    <div>
+      <span>10+</span>
+      <p>years building enterprise systems and modern web applications.</p>
+    </div>
+    <div>
+      <span>Vue 3 + TypeScript</span>
+      <p>Focused on scalable architecture, code quality and developer experience.</p>
+    </div>
+    <div>
+      <span>Full-stack</span>
+      <p>Complex PMS features, Odoo core work, REST APIs and automatic OpenAPI documentation.</p>
+    </div>
+  </section>
+
+  <section class="quiet-section" aria-labelledby="quiet-experience">
+    <p id="quiet-experience" class="quiet-label">{t.experience.label}</p>
+    <div class="quiet-work-list">
+      {t.experience.jobs.map((job) => (
+        <article>
+          <div class="quiet-job-head">
+            <div>
+              <h2>
+                {job.url ? (
+                  <a href={job.url} target="_blank" rel="noopener noreferrer">{job.company}</a>
+                ) : job.company}
+              </h2>
+              <p>{job.role}</p>
+            </div>
+            <div class="quiet-job-meta">
+              {job.current && <strong>{t.experience.current}</strong>}
+              <span>{job.period}</span>
+              <span>{job.location}</span>
+            </div>
+          </div>
+          <ul>
+            {job.highlights.map((highlight) => (
+              <li>{highlight}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="quiet-section quiet-skills" aria-labelledby="quiet-skills">
+    <p id="quiet-skills" class="quiet-label">{t.skills.label}</p>
+    <div class="quiet-skill-groups">
+      {t.skills.groups.map((group) => (
+        <section aria-label={group.label}>
+          <h2>{group.label}</h2>
+          <div>
+            {group.items.map((item) => <span>{item}</span>)}
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
+
+  <section class="quiet-section quiet-languages" aria-labelledby="quiet-languages">
+    <p id="quiet-languages" class="quiet-label">{t.skills.languagesLabel}</p>
+    <div>
+      <article>
+        <h2>{t.skills.spanish.label}</h2>
+        <p>{t.skills.spanish.level}</p>
+      </article>
+      <article>
+        <h2>{t.skills.galician.label}</h2>
+        <p>{t.skills.galician.level}</p>
+      </article>
+      <article>
+        <h2>{t.skills.english.label}</h2>
+        <p>{t.skills.english.level}</p>
+      </article>
+    </div>
+  </section>
+
+  <footer id="contact" class="quiet-footer">
+    <div>
+      <p class="quiet-label">{t.contact.label}</p>
+      <h2>{t.contact.heading[0]}<br />{t.contact.heading[1]}</h2>
+      <p>{t.contact.subtext}</p>
+      <p class="quiet-version">© {year} Miguel Padín Domínguez / v.{version}</p>
+    </div>
+    <div class="quiet-contact-links">
+      {contactLinks.map((link) => (
+        <a
+          href={link.href}
+          target={link.href.startsWith('http') ? '_blank' : undefined}
+          rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </footer>
+</main>
+
+<style>
+  .dv {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .dv a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.24em;
+  }
+
+  .dv-quiet {
+    --paper: #f7f3ea;
+    --ink: #171613;
+    --muted: #676057;
+    --line: rgba(23, 22, 19, 0.16);
+    --wash: #e8dfd0;
+    background:
+      linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), var(--line) calc(100% - 1px)),
+      linear-gradient(var(--line) 1px, transparent 1px),
+      var(--paper);
+    background-size: 25vw 100%, 100% 4.25rem;
+    color: var(--ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    padding: clamp(1.1rem, 3vw, 2rem);
+  }
+
+  .quiet-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 3rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.73rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .quiet-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(14rem, 26rem);
+    gap: clamp(2rem, 8vw, 7rem);
+    align-items: end;
+    min-height: min(42rem, calc(100vh - 5rem));
+    padding: 7vh 0 5vh;
+  }
+
+  .quiet-kicker,
+  .quiet-label {
+    margin: 0 0 1.2rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .quiet-hero h1 {
+    max-width: 11ch;
+    margin: 0;
+    font-size: clamp(3.8rem, 10vw, 8.8rem);
+    line-height: 0.88;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+  }
+
+  .quiet-hero h1 span {
+    display: block;
+  }
+
+  .quiet-bio {
+    max-width: 43rem;
+    margin: 2rem 0 0;
+    font-size: clamp(1.1rem, 2.2vw, 1.65rem);
+    line-height: 1.42;
+    color: var(--muted);
+  }
+
+  .quiet-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.3rem;
+    margin-top: 2.6rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.82rem;
+  }
+
+  .quiet-specimen {
+    position: relative;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 5;
+    min-height: 24rem;
+    border: 1px solid var(--line);
+    background: color-mix(in srgb, var(--wash) 58%, transparent);
+    overflow: hidden;
+  }
+
+  .quiet-specimen span {
+    position: relative;
+    z-index: 1;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: clamp(2.6rem, 8vw, 6rem);
+    letter-spacing: -0.12em;
+  }
+
+  .quiet-rule {
+    position: absolute;
+    height: 1px;
+    width: 130%;
+    background: var(--ink);
+    opacity: 0.28;
+    transform-origin: center;
+  }
+
+  .quiet-rule.one { transform: rotate(-18deg) translateY(-4rem); }
+  .quiet-rule.two { transform: rotate(34deg); }
+  .quiet-rule.three { transform: rotate(-62deg) translateY(6rem); }
+
+  .quiet-facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-block: 1px solid var(--line);
+  }
+
+  .quiet-facts div {
+    min-height: 12rem;
+    padding: clamp(1rem, 3vw, 2rem);
+    border-right: 1px solid var(--line);
+  }
+
+  .quiet-facts div:last-child {
+    border-right: 0;
+  }
+
+  .quiet-facts span {
+    display: block;
+    margin-bottom: 1.2rem;
+    font-size: clamp(1.25rem, 2.5vw, 2rem);
+  }
+
+  .quiet-facts p,
+  .quiet-work-list p,
+  .quiet-footer p,
+  .quiet-work-list li {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .quiet-section {
+    padding: clamp(4rem, 10vw, 8rem) 0;
+  }
+
+  .quiet-work-list {
+    border-top: 1px solid var(--line);
+  }
+
+  .quiet-work-list article {
+    padding: clamp(1.6rem, 3vw, 2.4rem) 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .quiet-job-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(10rem, auto);
+    gap: 1rem;
+    margin-bottom: 1.3rem;
+  }
+
+  .quiet-work-list h2,
+  .quiet-languages h2 {
+    margin: 0 0 0.25rem;
+    font-size: clamp(1.35rem, 3vw, 2.4rem);
+    font-weight: 500;
+  }
+
+  .quiet-job-meta {
+    display: grid;
+    justify-items: end;
+    gap: 0.28rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  .quiet-job-meta strong {
+    color: var(--ink);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .quiet-work-list ul {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 58rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .quiet-work-list li {
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .quiet-work-list li::before {
+    content: '';
+    position: absolute;
+    top: 0.67em;
+    left: 0;
+    width: 0.32rem;
+    height: 0.32rem;
+    border-radius: 50%;
+    background: var(--ink);
+    opacity: 0.45;
+  }
+
+  .quiet-skill-groups {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  .quiet-skill-groups section {
+    border-top: 1px solid var(--line);
+    padding-top: 1rem;
+  }
+
+  .quiet-skill-groups h2 {
+    margin: 0 0 1rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .quiet-skill-groups div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .quiet-skill-groups span {
+    border: 1px solid var(--line);
+    padding: 0.42rem 0.7rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.76rem;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .quiet-languages > div {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-block: 1px solid var(--line);
+  }
+
+  .quiet-languages article {
+    padding: clamp(1rem, 3vw, 2rem);
+    border-right: 1px solid var(--line);
+  }
+
+  .quiet-languages article:last-child {
+    border-right: 0;
+  }
+
+  .quiet-footer {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 26rem);
+    gap: 2rem;
+    padding: clamp(3rem, 7vw, 5rem) 0 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .quiet-footer h2 {
+    margin: 0 0 1rem;
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    font-weight: 500;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+  }
+
+  .quiet-version {
+    margin-top: 2rem !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .quiet-contact-links {
+    display: grid;
+    align-content: end;
+    justify-items: end;
+    gap: 0.75rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.86rem;
+  }
+
+  @media (max-width: 820px) {
+    .quiet-nav {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .quiet-hero,
+    .quiet-job-head,
+    .quiet-footer {
+      grid-template-columns: 1fr;
+    }
+
+    .quiet-specimen {
+      min-height: 18rem;
+    }
+
+    .quiet-facts,
+    .quiet-skill-groups,
+    .quiet-languages > div {
+      grid-template-columns: 1fr;
+    }
+
+    .quiet-facts div,
+    .quiet-languages article {
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .quiet-job-meta,
+    .quiet-contact-links {
+      justify-items: start;
+    }
+  }
+</style>
