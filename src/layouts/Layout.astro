@@ -1,7 +1,7 @@
 ---
 import { execSync } from 'node:child_process';
 import '../styles/global.css';
-import type { Lang } from '../i18n';
+import { useTranslations, type Lang } from '../i18n';
 import CookieBanner from '../components/CookieBanner.astro';
 
 interface Props {
@@ -12,9 +12,10 @@ interface Props {
 
 const {
   title = 'Miguel Padín Domínguez — Software Engineer',
-  description = 'Software engineer with 9+ years of experience. Focused on Vue 3, TypeScript and modern web architecture.',
   lang = 'en',
 } = Astro.props;
+
+const description = Astro.props.description ?? useTranslations(lang).hero.description;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteBase = 'https://miguelpadin.github.io/miguelpadin';
