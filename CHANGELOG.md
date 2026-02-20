@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.1.0...v0.1.1) (2026-05-15)
+
+
+### Bug Fixes
+
+* clarify release deployment in README ([f9da280](https://github.com/miguelpadin/miguelpadin.github.io/commit/f9da280df0949925291c92b10359728fb9c5a89f))
+
 ## [0.1.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.0.1...v0.1.0) (2026-05-15)
 
 
