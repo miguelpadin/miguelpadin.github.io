@@ -151,10 +151,11 @@ const ui = {
     skills: {
       label: 'Skills',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA', 'ESLint', 'Prettier'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
-        { label: 'Tooling & Process', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'CodeRabbit', 'Ollama', 'LM Studio', 'SonarQube', 'Continue', 'Husky', 'Scrum', 'npm', 'pnpm'] },
+        { label: 'Tooling & Process', items: ['GitHub Actions', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Scrum', 'npm', 'pnpm'] },
+        { label: 'AI', items: ['Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'CodeRabbit', 'Ollama', 'LM Studio', 'Continue'] },
         { label: 'Architecture', items: ['Hexagonal Architecture', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS', 'Monorepo', 'API Gateway', 'SPA', 'SSR'] },
       ],
       languagesLabel: 'Languages',
@@ -229,10 +230,11 @@ const ui = {
     skills: {
       label: 'Habilidades',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA', 'ESLint', 'Prettier'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
-        { label: 'Herramientas y proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'CodeRabbit', 'Ollama', 'LM Studio', 'SonarQube', 'Continue', 'Husky', 'Scrum', 'npm', 'pnpm'] },
+        { label: 'Herramientas y proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Scrum', 'npm', 'pnpm'] },
+        { label: 'IA', items: ['Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'CodeRabbit', 'Ollama', 'LM Studio', 'Continue'] },
         { label: 'Arquitectura', items: ['Arquitectura Hexagonal', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS'] },
       ],
       languagesLabel: 'Idiomas',
@@ -307,10 +309,11 @@ const ui = {
     skills: {
       label: 'Habilidades',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA', 'ESLint', 'Prettier'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
-        { label: 'Ferramentas e proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'CodeRabbit', 'Ollama', 'LM Studio', 'SonarQube', 'Continue', 'Husky', 'Scrum', 'npm', 'pnpm'] },
+        { label: 'Ferramentas e proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Scrum', 'npm', 'pnpm'] },
+        { label: 'IA', items: ['Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'CodeRabbit', 'Ollama', 'LM Studio', 'Continue'] },
         { label: 'Arquitectura', items: ['Arquitectura Hexagonal', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS'] },
       ],
       languagesLabel: 'Idiomas',
