@@ -2,26 +2,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
 
 @theme {
-  --color-bg: #0B0B0D;
-  --color-surface: #111115;
-  --color-border: #1E1E24;
+  --color-bg: #0C1525;
+  --color-surface: #0F1C2E;
+  --color-border: #1A3050;
   --color-fg: #EDE9E3;
   --color-muted: #5C5A57;
   --color-secondary: #9B9893;
-  --color-accent: #E8914A;
+  --color-accent: #4A9EFF;
   --font-display: 'Syne', system-ui, sans-serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
 }
 
 /* ── Light theme ─────────────────────────────────────────────── */
 [data-theme="light"] {
-  --color-bg: #E2DDD6;
-  --color-surface: #D8D3CB;
-  --color-border: #C2BDB5;
+  --color-bg: #D6E4F7;
+  --color-surface: #C5D8F0;
+  --color-border: #A8C4E8;
   --color-fg: #1A1917;
   --color-muted: #7A7672;
   --color-secondary: #4A4642;
-  --color-accent: #C97A35;
+  --color-accent: #2563EB;
 }
 
 @layer base {
