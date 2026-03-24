@@ -54,6 +54,12 @@ export const skillUrls: Record<string, string> = {
   'Warp':                  'https://www.warp.dev',
   'Claude Code':           'https://claude.ai/code',
   'Codex':                 'https://openai.com/index/openai-codex/',
+  'OpenCode':              'https://opencode.ai',
+  'Prettier':              'https://prettier.io',
+  'ESLint':                'https://eslint.org',
+  'Figma':                 'https://www.figma.com',
+  'Accessibility':         'https://www.w3.org/WAI/fundamentals/accessibility-intro/',
+  'PWA':                   'https://web.dev/progressive-web-apps/',
   // Architecture
   'Hexagonal Architecture':     'https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)',
   'Arquitectura Hexagonal':     'https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)',
@@ -62,6 +68,15 @@ export const skillUrls: Record<string, string> = {
   'SOLID':                      'https://en.wikipedia.org/wiki/SOLID',
   'REST':                       'https://restfulapi.net',
   'MVC':                        'https://developer.mozilla.org/docs/Glossary/MVC',
+  'Event-Driven':               'https://martinfowler.com/articles/201701-event-driven.html',
+  'Microservices':              'https://martinfowler.com/articles/microservices.html',
+  'CQRS':                       'https://martinfowler.com/bliki/CQRS.html',
+  'Monorepo':                   'https://monorepo.tools',
+  'API Gateway':                'https://microservices.io/patterns/apigateway.html',
+  'Scrum':                      'https://www.scrum.org/resources/what-scrum-module',
+  'npm':                        'https://www.npmjs.com',
+  'SPA':                        'https://developer.mozilla.org/docs/Glossary/SPA',
+  'SSR':                        'https://nuxt.com/docs/guide/concepts/rendering#server-side-rendering',
   'Java':                       'https://www.java.com',
 };
 
@@ -130,11 +145,11 @@ const ui = {
     skills: {
       label: 'Skills',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
-        { label: 'Tooling & Process', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex'] },
-        { label: 'Architecture', items: ['Hexagonal Architecture', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC'] },
+        { label: 'Tooling & Process', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'Prettier', 'ESLint', 'Figma', 'Scrum', 'npm'] },
+        { label: 'Architecture', items: ['Hexagonal Architecture', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS', 'Monorepo', 'API Gateway', 'SPA', 'SSR'] },
       ],
       languagesLabel: 'Languages',
       spanish: { label: 'Spanish', level: 'Native' },
@@ -208,11 +223,11 @@ const ui = {
     skills: {
       label: 'Habilidades',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
-        { label: 'Herramientas y proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex'] },
-        { label: 'Arquitectura', items: ['Arquitectura Hexagonal', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC'] },
+        { label: 'Herramientas y proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'Prettier', 'ESLint', 'Figma', 'Scrum', 'npm'] },
+        { label: 'Arquitectura', items: ['Arquitectura Hexagonal', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS'] },
       ],
       languagesLabel: 'Idiomas',
       spanish: { label: 'Español', level: 'Nativo' },
@@ -286,11 +301,11 @@ const ui = {
     skills: {
       label: 'Habilidades',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
-        { label: 'Ferramentas e proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex'] },
-        { label: 'Arquitectura', items: ['Arquitectura Hexagonal', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC'] },
+        { label: 'Ferramentas e proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'Prettier', 'ESLint', 'Figma', 'Scrum', 'npm'] },
+        { label: 'Arquitectura', items: ['Arquitectura Hexagonal', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS'] },
       ],
       languagesLabel: 'Idiomas',
       spanish: { label: 'Español', level: 'Nativo' },
