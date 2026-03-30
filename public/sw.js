@@ -1,5 +1,5 @@
 const CACHE = 'mpd-v1';
-const URLS  = ['/miguelpadin/', '/miguelpadin/es/', '/miguelpadin/gl/'];
+const URLS  = ['/miguelpadin-webcv/', '/miguelpadin-webcv/es/', '/miguelpadin-webcv/gl/'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(URLS)));
