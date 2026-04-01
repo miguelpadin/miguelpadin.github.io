@@ -11,10 +11,10 @@ const { lang, t } = Astro.props;
 
 <header
   id="site-header"
-  class="fixed top-0 inset-x-0 z-50 transition-all duration-300"
+  class="fixed top-0 inset-x-0 z-50 px-8 transition-all duration-300"
   style="background: transparent;"
 >
-  <div class="max-w-5xl mx-auto px-8 flex items-center justify-between h-16">
+  <div class="max-w-5xl mx-auto flex items-center justify-between h-16">
     <a
       href={getLangUrl(lang)}
       class="flex items-center gap-3 transition-opacity duration-200 hover:opacity-80"
