@@ -36,6 +36,15 @@
     background-color: var(--color-bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    cursor: default;
+  }
+
+  * {
+    cursor: inherit;
+  }
+
+  a, button, [role="button"], label, select, [tabindex] {
+    cursor: pointer;
   }
 
   /* Grain texture overlay */
