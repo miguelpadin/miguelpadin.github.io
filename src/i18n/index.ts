@@ -87,6 +87,7 @@ const ui = {
       jobs: [
         {
           company: 'Roomdoo',
+          url: 'https://roomdoo.com',
           role: 'Full-stack Developer',
           period: '2020 — Present',
           location: 'Remote',
@@ -164,6 +165,7 @@ const ui = {
       jobs: [
         {
           company: 'Roomdoo',
+          url: 'https://roomdoo.com',
           role: 'Desarrollador Full-stack',
           period: '2020 — Presente',
           location: 'Remoto',
@@ -241,6 +243,7 @@ const ui = {
       jobs: [
         {
           company: 'Roomdoo',
+          url: 'https://roomdoo.com',
           role: 'Desenvolvedor Full-stack',
           period: '2020 — Presente',
           location: 'Remoto',
