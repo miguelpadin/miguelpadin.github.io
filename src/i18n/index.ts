@@ -101,7 +101,7 @@ const ui = {
         },
         {
           company: 'Adoita IT Solutions',
-          url: 'https://www.adoitaitsolutions.com',
+          url: 'https://adoitait.solutions/',
           role: 'Full-stack Developer',
           period: '2016 — 2019',
           location: 'Pontevedra, Spain',
@@ -178,7 +178,7 @@ const ui = {
         },
         {
           company: 'Adoita IT Solutions',
-          url: 'https://www.adoitaitsolutions.com',
+          url: 'https://adoitait.solutions/',
           role: 'Desarrollador Full-stack',
           period: '2016 — 2019',
           location: 'Pontevedra, España',
@@ -255,7 +255,7 @@ const ui = {
         },
         {
           company: 'Adoita IT Solutions',
-          url: 'https://www.adoitaitsolutions.com',
+          url: 'https://adoitait.solutions/',
           role: 'Desenvolvedor Full-stack',
           period: '2016 — 2019',
           location: 'Pontevedra, España',
