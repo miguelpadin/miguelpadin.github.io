@@ -45,7 +45,17 @@ const { t } = Astro.props;
                     letter-spacing: -0.01em;
                   "
                 >
-                  {job.company}
+                  {job.url ? (
+                    <a
+                      href={job.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style="color: inherit; text-decoration: none;"
+                      class="company-link"
+                    >
+                      {job.company}
+                    </a>
+                  ) : job.company}
                 </h3>
                 {job.current && (
                   <span
@@ -92,6 +102,13 @@ const { t } = Astro.props;
     </div>
   </div>
 </section>
+
+<style>
+  .company-link:hover {
+    color: var(--color-accent) !important;
+    transition: color 0.2s ease;
+  }
+</style>
 
 <script>
   const isTouch = window.matchMedia('(pointer: coarse)').matches;

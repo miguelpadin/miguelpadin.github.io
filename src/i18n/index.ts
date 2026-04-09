@@ -101,6 +101,7 @@ const ui = {
         },
         {
           company: 'Adoita IT Solutions',
+          url: 'https://www.adoitaitsolutions.com',
           role: 'Full-stack Developer',
           period: '2016 — 2019',
           location: 'Pontevedra, Spain',
@@ -113,6 +114,7 @@ const ui = {
         },
         {
           company: 'Edisa Sistemas de Información',
+          url: 'https://www.edisa.com',
           role: 'PL/SQL Developer',
           period: '2010 — 2012',
           location: 'Vigo, Spain',
@@ -176,6 +178,7 @@ const ui = {
         },
         {
           company: 'Adoita IT Solutions',
+          url: 'https://www.adoitaitsolutions.com',
           role: 'Desarrollador Full-stack',
           period: '2016 — 2019',
           location: 'Pontevedra, España',
@@ -188,6 +191,7 @@ const ui = {
         },
         {
           company: 'Edisa Sistemas de Información',
+          url: 'https://www.edisa.com',
           role: 'Desarrollador PL/SQL',
           period: '2010 — 2012',
           location: 'Vigo, España',
@@ -251,6 +255,7 @@ const ui = {
         },
         {
           company: 'Adoita IT Solutions',
+          url: 'https://www.adoitaitsolutions.com',
           role: 'Desenvolvedor Full-stack',
           period: '2016 — 2019',
           location: 'Pontevedra, España',
@@ -263,6 +268,7 @@ const ui = {
         },
         {
           company: 'Edisa Sistemas de Información',
+          url: 'https://www.edisa.com',
           role: 'Desenvolvedor PL/SQL',
           period: '2010 — 2012',
           location: 'Vigo, España',
