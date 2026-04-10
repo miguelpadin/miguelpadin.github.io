@@ -22,6 +22,7 @@ const { lang, t } = Astro.props;
       <Logo size={28} />
       <span
         class="text-xs font-semibold tracking-[0.1em] hidden sm:block"
+        id="header-name"
         style="color: var(--color-secondary); font-family: var(--font-display);"
       >
         Miguel Padín Domínguez
@@ -39,9 +40,9 @@ const { lang, t } = Astro.props;
           <a
             href={href}
             class="text-xs uppercase tracking-[0.15em] transition-colors duration-200"
-            style="color: var(--color-muted); font-family: var(--font-display);"
+            style="color: var(--color-secondary); font-family: var(--font-display);"
             onmouseover="this.style.color='var(--color-fg)'"
-            onmouseout="this.style.color='var(--color-muted)'"
+            onmouseout="this.style.color='var(--color-secondary)'"
           >
             {label}
           </a>
@@ -52,7 +53,7 @@ const { lang, t } = Astro.props;
       <button
         id="theme-toggle"
         class="transition-colors duration-200"
-        style="color: var(--color-muted); background: none; border: none; padding: 0.25rem; display: flex; align-items: center;"
+        style="color: var(--color-secondary); background: none; border: none; padding: 0.25rem; display: flex; align-items: center;"
         aria-label="Toggle theme"
       >
         <!-- Sun (shown in dark mode) -->
@@ -106,15 +107,20 @@ const { lang, t } = Astro.props;
   });
 
   const header = document.getElementById('site-header');
-  window.addEventListener('scroll', () => {
+  const headerName = document.getElementById('header-name') as HTMLElement | null;
+
+  function updateHeaderBg() {
     if (window.scrollY > 60) {
       header!.style.background = 'rgba(11,11,13,0.85)';
       header!.style.backdropFilter = 'blur(12px)';
       header!.style.borderBottom = '1px solid var(--color-border)';
+      if (headerName) headerName.style.color = '#ffffff';
     } else {
       header!.style.background = 'transparent';
       header!.style.backdropFilter = 'none';
       header!.style.borderBottom = 'none';
+      if (headerName) headerName.style.color = 'var(--color-secondary)';
     }
-  }, { passive: true });
+  }
+  window.addEventListener('scroll', updateHeaderBg, { passive: true });
 </script>
