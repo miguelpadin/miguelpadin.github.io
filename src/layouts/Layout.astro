@@ -126,27 +126,6 @@ const jsonLd = {
       }, { threshold: 0.5 });
       document.querySelectorAll('[data-split]').forEach(el => splitObs.observe(el));
 
-      // ── Scroll velocity skew ──────────────────────────────────────
-      let scrollVel = 0, currentSkew = 0, lastScrollY = window.scrollY;
-      const mainEl = document.querySelector('main') as HTMLElement | null;
-
-      window.addEventListener('scroll', () => {
-        scrollVel = window.scrollY - lastScrollY;
-        lastScrollY = window.scrollY;
-      }, { passive: true });
-
-      if (mainEl && !isTouch) {
-        (function skewTick() {
-          const target = Math.max(-2.5, Math.min(2.5, scrollVel * 0.055));
-          currentSkew += (target - currentSkew) * 0.1;
-          scrollVel *= 0.8;
-          mainEl!.style.transform = Math.abs(currentSkew) > 0.005
-            ? `skewY(${currentSkew.toFixed(4)}deg)`
-            : '';
-          requestAnimationFrame(skewTick);
-        })();
-      }
-
       // ── Dot grid spotlight ────────────────────────────────────────
       const grid = document.getElementById('grid-spotlight')!;
       window.addEventListener('mousemove', (e) => {
@@ -200,54 +179,16 @@ const jsonLd = {
 
       // ── Tab title visibility easter egg ───────────────────────────
       const staticTitle = document.title;
+      const awayMsg: Record<string, string> = {
+        es: '👋 ¡Hasta pronto!',
+        gl: '👋 Ata logo!',
+        en: '👋 See you soon!',
+      };
       document.addEventListener('visibilitychange', () => {
-        document.title = document.hidden ? '👋 ¡Hasta pronto!' : staticTitle;
+        const lang = document.documentElement.lang || 'en';
+        document.title = document.hidden ? (awayMsg[lang] ?? awayMsg.en) : staticTitle;
       });
 
-      // ── Animated favicon ──────────────────────────────────────────
-      const fLink = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
-      if (fLink) {
-        const fc = document.createElement('canvas');
-        fc.width = 32; fc.height = 32;
-        const fx = fc.getContext('2d')!;
-        let fPhase = 0;
-
-        setInterval(() => {
-          fPhase += 0.07;
-          fx.clearRect(0, 0, 32, 32);
-
-          fx.fillStyle = '#0B0B0D';
-          fx.beginPath();
-          fx.roundRect(0, 0, 32, 32, 6);
-          fx.fill();
-
-          const pulse = 0.25 + Math.sin(fPhase) * 0.2;
-          fx.strokeStyle = `rgba(232,145,74,${pulse})`;
-          fx.lineWidth = 1;
-          fx.beginPath();
-          fx.arc(16, 16, 14, 0, Math.PI * 2);
-          fx.stroke();
-
-          fx.save();
-          fx.translate(16, 16);
-          fx.rotate(fPhase * 0.6);
-          fx.strokeStyle = 'rgba(232,145,74,0.9)';
-          fx.lineWidth = 2.5;
-          fx.lineCap = 'round';
-          fx.beginPath();
-          fx.arc(0, 0, 11, -0.3, Math.PI * 0.65);
-          fx.stroke();
-          fx.restore();
-
-          fx.fillStyle = '#EDE9E3';
-          fx.font = 'bold 10px sans-serif';
-          fx.textAlign = 'center';
-          fx.textBaseline = 'middle';
-          fx.fillText('MP', 16, 16.5);
-
-          fLink.href = fc.toDataURL();
-        }, 50);
-      }
 
       // ── Cursor particle trail ─────────────────────────────────────
       if (!isTouch) {

@@ -129,33 +129,11 @@
   to   { transform: translate(4vw, -7vh) scale(1.12); }
 }
 
-/* ── Glitch on hero name ─────────────────────────────────────── */
-@keyframes glitch {
-  0%, 82%, 100% {
-    clip-path: none;
-    transform: none;
-    filter: none;
-  }
-  83% {
-    clip-path: polygon(0 15%, 100% 15%, 100% 45%, 0 45%);
-    transform: translate(-4px, 0) skewX(-2deg);
-    filter: hue-rotate(80deg) brightness(1.4);
-  }
-  84% {
-    clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%);
-    transform: translate(4px, 0) skewX(1deg);
-    filter: none;
-  }
-  85% {
-    clip-path: none;
-    transform: translate(-2px, 0);
-    filter: brightness(1.2);
-  }
-  86% { clip-path: none; transform: none; filter: none; }
-}
 
-.hero-name {
-  animation: glitch 9s infinite;
+/* ── Hero name: never moves ──────────────────────────────────── */
+#hero-name, #para-0, #para-1, #para-2 {
+  transform: none !important;
+  transition: none !important;
 }
 
 /* ── Magnetic transition ─────────────────────────────────────── */
@@ -169,27 +147,6 @@
   transition: transform 0.08s linear;
 }
 
-/* ── Hero name shimmer (added via JS after scramble) ────────── */
-@keyframes name-shimmer {
-  0%   { background-position: 200% center; }
-  100% { background-position: -200% center; }
-}
-
-.name-shimmer {
-  background: linear-gradient(
-    90deg,
-    var(--color-fg) 0%,
-    var(--color-fg) 35%,
-    var(--color-accent) 50%,
-    var(--color-fg) 65%,
-    var(--color-fg) 100%
-  );
-  background-size: 250% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: name-shimmer 4s linear infinite;
-}
 
 /* ── Company name glow on hover ──────────────────────────────── */
 .company-name {
@@ -259,11 +216,6 @@
   transform: none;
 }
 
-/* ── Scroll skew ─────────────────────────────────────────────── */
-main {
-  will-change: transform;
-  transition: transform 0s;
-}
 
 /* ── Skill pill shimmer ──────────────────────────────────────── */
 .skill-pill {

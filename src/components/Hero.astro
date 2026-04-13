@@ -7,12 +7,14 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<section id="hero-section" class="relative min-h-screen flex flex-col justify-center px-8 pt-16 overflow-hidden">
+<section id="hero-section" class="relative min-h-screen flex flex-col justify-center px-8 pt-16">
 
   <!-- Aurora blobs -->
-  <div class="hero-blob blob-1"></div>
-  <div class="hero-blob blob-2"></div>
-  <div class="hero-blob blob-3"></div>
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="hero-blob blob-1"></div>
+    <div class="hero-blob blob-2"></div>
+    <div class="hero-blob blob-3"></div>
+  </div>
 
   <!-- Particle network canvas -->
   <canvas id="hero-canvas" style="position:absolute;inset:0;pointer-events:none;z-index:0;opacity:0.55;"></canvas>
@@ -150,47 +152,9 @@ const { t } = Astro.props;
     scramble(el, 300 + i * 180);
   });
 
-  // Activate glitch + shimmer after entrance animation completes
-  setTimeout(() => {
-    const heroName = document.getElementById('hero-name');
-    if (heroName) {
-      heroName.style.opacity = '1';
-      heroName.classList.add('hero-name');
-    }
-    // Shimmer on first + third line only (second is muted color)
-    document.getElementById('para-0')?.classList.add('name-shimmer');
-    document.getElementById('para-2')?.classList.add('name-shimmer');
-  }, 2000);
-
-  // ── Mouse parallax on name ─────────────────────────────────────
-  const heroSection = document.getElementById('hero-section')!;
-  const paraLayers = [
-    { el: document.getElementById('para-0'), depth: 0.010 },
-    { el: document.getElementById('para-1'), depth: 0.018 },
-    { el: document.getElementById('para-2'), depth: 0.007 },
-  ];
 
   const isTouch = window.matchMedia('(pointer: coarse)').matches;
   if (!isTouch) {
-    heroSection.addEventListener('mousemove', (e) => {
-      const rect = heroSection.getBoundingClientRect();
-      const dx = e.clientX - rect.left - rect.width / 2;
-      const dy = e.clientY - rect.top  - rect.height / 2;
-      paraLayers.forEach(({ el, depth }) => {
-        if (el) el.style.transform = `translate(${dx * depth}px, ${dy * depth}px)`;
-      });
-    });
-
-    heroSection.addEventListener('mouseleave', () => {
-      paraLayers.forEach(({ el }) => {
-        if (el) {
-          el.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-          el.style.transform = 'translate(0, 0)';
-          setTimeout(() => { if (el) el.style.transition = ''; }, 800);
-        }
-      });
-    });
-
     // ── Magnetic links ─────────────────────────────────────────
     document.querySelectorAll<HTMLElement>('.magnetic').forEach(el => {
       el.addEventListener('mousemove', (e) => {
