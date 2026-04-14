@@ -29,16 +29,16 @@ const icons: Record<string, IconDef> = {
   'Bulma':                { type: 'si', slug: 'bulma' },
   'SASS':                 { type: 'si', slug: 'sass' },
   'Vite':                 { type: 'si', slug: 'vite' },
-  'Flexbox':              { type: 'devicon', name: 'css3' },
-  'CSS Grid':             { type: 'devicon', name: 'css3' },
+  'Flexbox':              { type: 'si', slug: 'css3' },
+  'CSS Grid':             { type: 'si', slug: 'css3' },
   // Backend
   'Python':               { type: 'si', slug: 'python' },
   'Node.js':              { type: 'si', slug: 'nodedotjs' },
   'Java':                 { type: 'devicon', name: 'java' },
   'PostgreSQL':           { type: 'si', slug: 'postgresql' },
-  'SQL':                  { type: 'si', slug: 'postgresql' },
-  'Oracle':               { type: 'devicon', name: 'oracle' },
-  'PL/SQL':               { type: 'devicon', name: 'oracle' },
+  'SQL':                  { type: 'si', slug: 'sqlite' },
+  'Oracle':               { type: 'si', slug: 'oracle' },
+  'PL/SQL':               { type: 'si', slug: 'oracle' },
   'Odoo':                 { type: 'si', slug: 'odoo' },
   'OpenAPI':              { type: 'si', slug: 'openapiinitiative' },
   'REST APIs':            { type: 'svg', stroke: true, d: 'M4 6h16M4 10h16M4 14h16M4 18h16' },
@@ -66,7 +66,7 @@ const icons: Record<string, IconDef> = {
   'Bash':                 { type: 'si', slug: 'gnubash' },
   'Warp':                 { type: 'si', slug: 'warp' },
   'Claude Code':          { type: 'si', slug: 'claude' },
-  'Codex':                { type: 'svg', stroke: true, d: 'M20.5 16H7Q3 16 3 12t4-4h.3Q8.5 4 13 4q5.5 0 5.5 4H19q3 0 3 3.5T20.5 16M8 12l3-2.5L8 7M13 12h3' },
+  'Codex':                { type: 'si', slug: 'openai' },
   'Antigravity':          { type: 'svg', stroke: true, d: 'M2 22C5 22 7 4 12 4C17 4 19 22 22 22' },
   // Architecture
   'Hexagonal Architecture':  { type: 'svg', stroke: true, d: 'M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z' },
@@ -120,7 +120,7 @@ const icons: Record<string, IconDef> = {
                 >
                   {icon?.type === 'si' && (
                     <img
-                      src={`https://cdn.simpleicons.org/${icon.slug}`}
+                      src={`https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${icon.slug}.svg`}
                       alt={item}
                       width="18"
                       height="18"
