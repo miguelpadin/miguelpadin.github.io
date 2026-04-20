@@ -16,7 +16,6 @@ export const skillUrls: Record<string, string> = {
   'Bootstrap':             'https://getbootstrap.com',
   'Bulma':                 'https://bulma.io',
   'SASS':                  'https://sass-lang.com',
-  'SCSS':                  'https://sass-lang.com',
   'Flexbox':               'https://developer.mozilla.org/docs/Web/CSS/CSS_flexible_box_layout',
   'CSS Grid':              'https://developer.mozilla.org/docs/Web/CSS/CSS_grid_layout',
   'Vite':                  'https://vitejs.dev',
@@ -128,7 +127,7 @@ const ui = {
     skills: {
       label: 'Skills',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'Tooling & Process', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex'] },
@@ -203,7 +202,7 @@ const ui = {
     skills: {
       label: 'Habilidades',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'Herramientas y proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex'] },
@@ -278,7 +277,7 @@ const ui = {
     skills: {
       label: 'Habilidades',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'Ferramentas e proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex'] },
