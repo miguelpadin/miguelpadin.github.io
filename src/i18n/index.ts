@@ -63,9 +63,9 @@ const ui = {
     skills: {
       label: 'Skills',
       groups: [
-        { label: 'Frontend', items: ['Vue 3', 'TypeScript', 'Pinia', 'PrimeVue', 'SCSS', 'Vite'] },
+        { label: 'Frontend', items: ['Vue', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Tailwind', 'Sass', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'OpenAPI', 'Odoo', 'SQL', 'Node.js'] },
-        { label: 'Testing', items: ['Vitest', 'Testing Library', 'pytest', 'TDD'] },
+        { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD'] },
         { label: 'Tooling & Process', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review'] },
       ],
       languagesLabel: 'Languages',
@@ -136,9 +136,9 @@ const ui = {
     skills: {
       label: 'Habilidades',
       groups: [
-        { label: 'Frontend', items: ['Vue 3', 'TypeScript', 'Pinia', 'PrimeVue', 'SCSS', 'Vite'] },
+        { label: 'Frontend', items: ['Vue', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Tailwind', 'Sass', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'OpenAPI', 'Odoo', 'SQL', 'Node.js'] },
-        { label: 'Testing', items: ['Vitest', 'Testing Library', 'pytest', 'TDD'] },
+        { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD'] },
         { label: 'Herramientas y proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review'] },
       ],
       languagesLabel: 'Idiomas',
@@ -209,9 +209,9 @@ const ui = {
     skills: {
       label: 'Habilidades',
       groups: [
-        { label: 'Frontend', items: ['Vue 3', 'TypeScript', 'Pinia', 'PrimeVue', 'SCSS', 'Vite'] },
+        { label: 'Frontend', items: ['Vue', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Tailwind', 'Sass', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'OpenAPI', 'Odoo', 'SQL', 'Node.js'] },
-        { label: 'Testing', items: ['Vitest', 'Testing Library', 'pytest', 'TDD'] },
+        { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD'] },
         { label: 'Ferramentas e proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review'] },
       ],
       languagesLabel: 'Idiomas',
