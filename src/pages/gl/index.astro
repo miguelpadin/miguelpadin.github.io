@@ -6,6 +6,7 @@ import Experience from '../../components/Experience.astro';
 import Skills from '../../components/Skills.astro';
 import Contact from '../../components/Contact.astro';
 import Footer from '../../components/Footer.astro';
+import Marquee from '../../components/Marquee.astro';
 import { useTranslations } from '../../i18n';
 
 const lang = 'gl';
@@ -19,6 +20,7 @@ const t = useTranslations(lang);
   <Header lang={lang} t={t} />
   <main>
     <Hero t={t} />
+    <Marquee />
     <Experience t={t} />
     <Skills t={t} />
     <Contact t={t} />
