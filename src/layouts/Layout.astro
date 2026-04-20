@@ -24,7 +24,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen" style="cursor: crosshair;">
+  <body class="min-h-screen">
+    <!-- Custom cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
     <!-- Dot grid spotlight -->
     <div id="grid-spotlight" style="
       position: fixed; inset: 0; pointer-events: none; z-index: 2;
@@ -45,6 +49,73 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <slot />
 
     <script>
+      // ── Custom cursor ─────────────────────────────────────────────
+      const cursorDot  = document.getElementById('cursor-dot')  as HTMLElement | null;
+      const cursorRing = document.getElementById('cursor-ring') as HTMLElement | null;
+      const isTouch = window.matchMedia('(pointer: coarse)').matches;
+
+      if (cursorDot && cursorRing && !isTouch) {
+        let rx = -300, ry = -300, mx = -300, my = -300;
+
+        document.addEventListener('mousemove', (e) => {
+          mx = e.clientX; my = e.clientY;
+          cursorDot!.style.left = mx + 'px';
+          cursorDot!.style.top  = my + 'px';
+        });
+
+        (function ringTick() {
+          rx += (mx - rx) * 0.12;
+          ry += (my - ry) * 0.12;
+          cursorRing!.style.left = rx + 'px';
+          cursorRing!.style.top  = ry + 'px';
+          requestAnimationFrame(ringTick);
+        })();
+
+        document.querySelectorAll('a, button, .skill-pill, .job-entry').forEach(el => {
+          el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+          el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+        });
+      }
+
+      // ── Split text reveal ─────────────────────────────────────────
+      document.querySelectorAll<HTMLElement>('[data-split]').forEach(el => {
+        const text = el.textContent || '';
+        el.innerHTML = [...text].map((char, i) =>
+          `<span class="split-char" style="transition-delay:${(i * 0.045).toFixed(3)}s">${char === ' ' ? '&nbsp;' : char}</span>`
+        ).join('');
+      });
+
+      const splitObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-split-visible');
+            splitObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('[data-split]').forEach(el => splitObs.observe(el));
+
+      // ── Scroll velocity skew ──────────────────────────────────────
+      let scrollVel = 0, currentSkew = 0, lastScrollY = window.scrollY;
+      const mainEl = document.querySelector('main') as HTMLElement | null;
+
+      window.addEventListener('scroll', () => {
+        scrollVel = window.scrollY - lastScrollY;
+        lastScrollY = window.scrollY;
+      }, { passive: true });
+
+      if (mainEl && !isTouch) {
+        (function skewTick() {
+          const target = Math.max(-2.5, Math.min(2.5, scrollVel * 0.055));
+          currentSkew += (target - currentSkew) * 0.1;
+          scrollVel *= 0.8;
+          mainEl!.style.transform = Math.abs(currentSkew) > 0.005
+            ? `skewY(${currentSkew.toFixed(4)}deg)`
+            : '';
+          requestAnimationFrame(skewTick);
+        })();
+      }
+
       // ── Dot grid spotlight ────────────────────────────────────────
       const grid = document.getElementById('grid-spotlight')!;
       window.addEventListener('mousemove', (e) => {
@@ -95,6 +166,133 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         const el = document.getElementById(id);
         if (el) sectionObserver.observe(el);
       });
+
+      // ── Animated tab title ────────────────────────────────────────
+      const titleFrames = [
+        'Miguel Padín Domínguez',
+        'Software Engineer',
+        'Vue · TypeScript · Python',
+        '9+ Years of Experience',
+        'Available for new projects',
+      ];
+      let tIdx = 0, tChar = 0, tDeleting = false, tTimer = 0;
+
+      function typeTitle() {
+        const cur = titleFrames[tIdx];
+        if (!tDeleting) {
+          tChar++;
+          document.title = cur.slice(0, tChar) + (tChar < cur.length ? '▋' : '');
+          if (tChar >= cur.length) {
+            tTimer = window.setTimeout(() => { tDeleting = true; typeTitle(); }, 2800);
+            return;
+          }
+          tTimer = window.setTimeout(typeTitle, 75);
+        } else {
+          tChar--;
+          document.title = cur.slice(0, tChar) + (tChar > 0 ? '▋' : '');
+          if (tChar <= 0) {
+            tDeleting = false;
+            tIdx = (tIdx + 1) % titleFrames.length;
+            tTimer = window.setTimeout(typeTitle, 350);
+            return;
+          }
+          tTimer = window.setTimeout(typeTitle, 38);
+        }
+      }
+      window.setTimeout(typeTitle, 1800);
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          clearTimeout(tTimer);
+          document.title = '👋 ¡Hasta pronto!';
+        } else {
+          tTimer = window.setTimeout(typeTitle, 600);
+        }
+      });
+
+      // ── Animated favicon ──────────────────────────────────────────
+      const fLink = document.querySelector<HTMLLinkElement>('link[rel="icon"]');
+      if (fLink) {
+        const fc = document.createElement('canvas');
+        fc.width = 32; fc.height = 32;
+        const fx = fc.getContext('2d')!;
+        let fPhase = 0;
+
+        setInterval(() => {
+          fPhase += 0.07;
+          fx.clearRect(0, 0, 32, 32);
+
+          fx.fillStyle = '#0B0B0D';
+          fx.beginPath();
+          fx.roundRect(0, 0, 32, 32, 6);
+          fx.fill();
+
+          const pulse = 0.25 + Math.sin(fPhase) * 0.2;
+          fx.strokeStyle = `rgba(232,145,74,${pulse})`;
+          fx.lineWidth = 1;
+          fx.beginPath();
+          fx.arc(16, 16, 14, 0, Math.PI * 2);
+          fx.stroke();
+
+          fx.save();
+          fx.translate(16, 16);
+          fx.rotate(fPhase * 0.6);
+          fx.strokeStyle = 'rgba(232,145,74,0.9)';
+          fx.lineWidth = 2.5;
+          fx.lineCap = 'round';
+          fx.beginPath();
+          fx.arc(0, 0, 11, -0.3, Math.PI * 0.65);
+          fx.stroke();
+          fx.restore();
+
+          fx.fillStyle = '#EDE9E3';
+          fx.font = 'bold 10px sans-serif';
+          fx.textAlign = 'center';
+          fx.textBaseline = 'middle';
+          fx.fillText('MP', 16, 16.5);
+
+          fLink.href = fc.toDataURL();
+        }, 50);
+      }
+
+      // ── Cursor particle trail ─────────────────────────────────────
+      if (!isTouch) {
+        const trail = document.createElement('canvas');
+        trail.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:999990;';
+        document.body.appendChild(trail);
+        const tc = trail.getContext('2d')!;
+
+        function resizeTrail() {
+          trail.width  = window.innerWidth;
+          trail.height = window.innerHeight;
+        }
+        resizeTrail();
+        window.addEventListener('resize', resizeTrail, { passive: true });
+
+        type Particle = { x: number; y: number; life: number; size: number };
+        const particles: Particle[] = [];
+
+        document.addEventListener('mousemove', (e) => {
+          if (Math.random() > 0.4) return;
+          particles.push({ x: e.clientX, y: e.clientY, life: 1, size: Math.random() * 2.5 + 1 });
+        });
+
+        (function drawTrail() {
+          tc.clearRect(0, 0, trail.width, trail.height);
+          for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.life -= 0.045;
+            if (p.life <= 0) { particles.splice(i, 1); continue; }
+            tc.globalAlpha = p.life * 0.55;
+            tc.fillStyle = '#E8914A';
+            tc.beginPath();
+            tc.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+            tc.fill();
+          }
+          tc.globalAlpha = 1;
+          requestAnimationFrame(drawTrail);
+        })();
+      }
     </script>
   </body>
 </html>
