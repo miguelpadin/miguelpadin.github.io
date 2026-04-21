@@ -48,6 +48,23 @@ const { lang, t } = Astro.props;
         ))}
       </nav>
 
+      <!-- Theme toggle -->
+      <button
+        id="theme-toggle"
+        class="transition-colors duration-200"
+        style="color: var(--color-muted); background: none; border: none; padding: 0.25rem; display: flex; align-items: center;"
+        aria-label="Toggle theme"
+      >
+        <!-- Sun (shown in dark mode) -->
+        <svg id="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <!-- Moon (shown in light mode) -->
+        <svg id="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+        </svg>
+      </button>
+
       <!-- Language switcher -->
       <div class="flex items-center gap-1" style="border-left: 1px solid var(--color-border); padding-left: 1.5rem;">
         {(Object.keys(languages) as Lang[]).map((l) => (
@@ -71,6 +88,23 @@ const { lang, t } = Astro.props;
 </header>
 
 <script>
+  const toggle   = document.getElementById('theme-toggle')!;
+  const iconSun  = document.getElementById('icon-sun')  as HTMLElement;
+  const iconMoon = document.getElementById('icon-moon') as HTMLElement;
+
+  function applyTheme(theme: string) {
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('theme', theme);
+    iconSun.style.display  = theme === 'dark'  ? 'block' : 'none';
+    iconMoon.style.display = theme === 'light' ? 'block' : 'none';
+  }
+
+  applyTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+
+  toggle.addEventListener('click', () => {
+    applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
+  });
+
   const header = document.getElementById('site-header');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 60) {
