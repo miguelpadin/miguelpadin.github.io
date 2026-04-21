@@ -7,46 +7,73 @@ interface Props {
 }
 const { t } = Astro.props;
 
-// Simple Icons slugs — https://simpleicons.org
-const skillIcons: Record<string, string> = {
-  'Vue':                'vuedotjs',
-  'Nuxt':               'nuxtdotjs',
-  'TypeScript':         'typescript',
-  'Vuex':               'vuedotjs',
-  'Quasar':             'quasar',
-  'BootstrapVue':       'bootstrap',
-  'Tailwind':           'tailwindcss',
-  'Bootstrap':          'bootstrap',
-  'Bulma':              'bulma',
-  'SASS':               'sass',
-  'SCSS':               'sass',
-  'Vite':               'vite',
-  'Python':             'python',
-  'OpenAPI':            'openapiinitiative',
-  'Odoo':               'odoo',
-  'PostgreSQL':         'postgresql',
-  'Oracle':             'oracle',
-  'Node.js':            'nodedotjs',
-  'Java':               'java',
-  'Vitest':             'vitest',
-  'Jest':               'jest',
-  'Playwright':         'playwright',
-  'Cypress':            'cypress',
-  'Vue Test Utils':     'vuedotjs',
-  'Testing Library':    'testinglibrary',
-  'pytest':             'pytest',
-  'GitHub Actions':     'githubactions',
-  'Git':                'git',
-  'Linux':              'linux',
-  'Windows':            'windows11',
-  'macOS':              'apple',
-  'Bash':               'gnubash',
-  'Claude Code':        'anthropic',
-  'Codex':              'openai',
-  'Warp':               'warpdotdev',
-  'SQL':                'postgresql',
-  'REST APIs':          'openapiinitiative',
-  'RESTful':            'openapiinitiative',
+type IconDef =
+  | { type: 'si'; slug: string }
+  | { type: 'svg'; d: string; viewBox?: string; stroke?: boolean };
+
+const icons: Record<string, IconDef> = {
+  // Frontend
+  'Vue':                  { type: 'si', slug: 'vuedotjs' },
+  'Nuxt':                 { type: 'si', slug: 'nuxt' },
+  'TypeScript':           { type: 'si', slug: 'typescript' },
+  'Pinia':                { type: 'si', slug: 'vuedotjs' },
+  'Vuex':                 { type: 'si', slug: 'vuedotjs' },
+  'PrimeVue':             { type: 'si', slug: 'vuedotjs' },
+  'Quasar':               { type: 'si', slug: 'quasar' },
+  'BootstrapVue':         { type: 'si', slug: 'bootstrap' },
+  'Tailwind':             { type: 'si', slug: 'tailwindcss' },
+  'Bootstrap':            { type: 'si', slug: 'bootstrap' },
+  'Bulma':                { type: 'si', slug: 'bulma' },
+  'SASS':                 { type: 'si', slug: 'sass' },
+  'SCSS':                 { type: 'si', slug: 'sass' },
+  'Vite':                 { type: 'si', slug: 'vite' },
+  'Flexbox':              { type: 'si', slug: 'css3' },
+  'CSS Grid':             { type: 'si', slug: 'css3' },
+  // Backend
+  'Python':               { type: 'si', slug: 'python' },
+  'Node.js':              { type: 'si', slug: 'nodedotjs' },
+  'Java':                 { type: 'si', slug: 'java' },
+  'PostgreSQL':           { type: 'si', slug: 'postgresql' },
+  'SQL':                  { type: 'si', slug: 'postgresql' },
+  'Oracle':               { type: 'si', slug: 'oracle' },
+  'PL/SQL':               { type: 'si', slug: 'oracle' },
+  'Odoo':                 { type: 'si', slug: 'odoo' },
+  'OpenAPI':              { type: 'si', slug: 'openapiinitiative' },
+  'REST APIs':            { type: 'svg', stroke: true, d: 'M4 6h16M4 10h16M4 14h16M4 18h16' },
+  'RESTful':              { type: 'svg', stroke: true, d: 'M4 6h16M4 10h16M4 14h16M4 18h16' },
+  'HATEOAS':              { type: 'svg', stroke: true, d: 'M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71' },
+  // Testing
+  'Vitest':               { type: 'si', slug: 'vitest' },
+  'Jest':                 { type: 'si', slug: 'jest' },
+  'Playwright':           { type: 'si', slug: 'playwright' },
+  'Cypress':              { type: 'si', slug: 'cypress' },
+  'Vue Test Utils':       { type: 'si', slug: 'vuedotjs' },
+  'Testing Library':      { type: 'si', slug: 'testinglibrary' },
+  'pytest':               { type: 'si', slug: 'pytest' },
+  'TDD':                  { type: 'svg', stroke: true, d: 'M20 6L9 17l-5-5' },
+  'BDD':                  { type: 'si', slug: 'cucumber' },
+  // Tooling
+  'GitHub Actions':       { type: 'si', slug: 'githubactions' },
+  'Git':                  { type: 'si', slug: 'git' },
+  'CI/CD':                { type: 'svg', stroke: true, d: 'M4 12h16M4 12l4-4M4 12l4 4M20 12l-4-4M20 12l-4 4' },
+  'ESM':                  { type: 'si', slug: 'javascript' },
+  'Code Review':          { type: 'svg', stroke: true, d: 'M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.35-4.35' },
+  'Linux':                { type: 'si', slug: 'linux' },
+  'Windows':              { type: 'si', slug: 'windows11' },
+  'macOS':                { type: 'si', slug: 'apple' },
+  'Bash':                 { type: 'si', slug: 'gnubash' },
+  'Warp':                 { type: 'si', slug: 'warpdotdev' },
+  'Claude Code':          { type: 'si', slug: 'anthropic' },
+  'Codex':                { type: 'si', slug: 'openai' },
+  'Antigravity':          { type: 'svg', stroke: true, d: 'M12 2L8 8H4l4 4-1.5 5.5L12 15l5.5 2.5L16 12l4-4h-4L12 2z' },
+  // Architecture
+  'Hexagonal Architecture':  { type: 'svg', stroke: true, d: 'M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z' },
+  'Arquitectura Hexagonal':  { type: 'svg', stroke: true, d: 'M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z' },
+  'DDD':                  { type: 'svg', stroke: true, d: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z' },
+  'Clean Architecture':   { type: 'svg', stroke: true, d: 'M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zM12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z' },
+  'SOLID':                { type: 'svg', stroke: true, d: 'M4 4h4v4H4zM10 4h4v4h-4zM16 4h4v4h-4zM4 10h4v4H4zM10 10h4v4h-4zM16 10h4v4h-4z' },
+  'REST':                 { type: 'svg', stroke: true, d: 'M4 6h16M4 10h16M4 14h16M4 18h16' },
+  'MVC':                  { type: 'svg', stroke: true, d: 'M5 12a7 7 0 1 0 14 0A7 7 0 0 0 5 12zM12 5v2M12 17v2M5.6 8.6l1.4 1.4M16.9 15l1.5 1.5M3 12h2M19 12h2' },
 };
 ---
 
@@ -75,69 +102,50 @@ const skillIcons: Record<string, string> = {
           </p>
           <div class="flex flex-wrap gap-2">
             {group.items.map((item) => {
-              const url   = skillUrls[item];
-              const slug  = skillIcons[item];
-              const pill  = "skill-pill text-sm px-3 py-1.5 transition-colors duration-200 flex items-center gap-2";
-              const style = "color: var(--color-secondary); background: var(--color-bg); border: 1px solid var(--color-border); font-weight: 300;";
-              const inner = (
-                <>
-                  {slug && (
-                    <img
-                      src={`https://cdn.simpleicons.org/${slug}`}
-                      alt=""
-                      width="13"
-                      height="13"
-                      class="skill-logo shrink-0"
-                      loading="lazy"
-                      onerror="this.style.display='none'"
-                    />
-                  )}
-                  {item}
-                </>
-              );
-              return url ? (
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class={pill}
-                  style={style}
-                  onmouseover="this.style.borderColor='var(--color-accent)'; this.style.color='var(--color-fg)';"
-                  onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-secondary)';"
+              const url  = skillUrls[item];
+              const icon = icons[item];
+              const Tag  = url ? 'a' : 'span';
+              const extraProps = url
+                ? { href: url, target: '_blank', rel: 'noopener noreferrer' }
+                : {};
+              return (
+                <Tag
+                  {...extraProps}
+                  class="icon-pill"
+                  data-name={item}
+                  onmouseover="this.classList.add('hovered')"
+                  onmouseout="this.classList.remove('hovered')"
                 >
-                  {slug && (
+                  {icon?.type === 'si' && (
                     <img
-                      src={`https://cdn.simpleicons.org/${slug}`}
-                      alt=""
-                      width="13"
-                      height="13"
-                      class="skill-logo shrink-0"
+                      src={`https://cdn.simpleicons.org/${icon.slug}`}
+                      alt={item}
+                      width="18"
+                      height="18"
+                      class="skill-logo"
                       loading="lazy"
                       onerror="this.style.display='none'"
                     />
                   )}
-                  {item}
-                </a>
-              ) : (
-                <span
-                  class={pill}
-                  style={style}
-                  onmouseover="this.style.borderColor='var(--color-accent)'; this.style.color='var(--color-fg)';"
-                  onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-secondary)';"
-                >
-                  {slug && (
-                    <img
-                      src={`https://cdn.simpleicons.org/${slug}`}
-                      alt=""
-                      width="13"
-                      height="13"
-                      class="skill-logo shrink-0"
-                      loading="lazy"
-                      onerror="this.style.display='none'"
-                    />
+                  {icon?.type === 'svg' && (
+                    <svg
+                      viewBox="0 0 24 24"
+                      width="18"
+                      height="18"
+                      fill={icon.stroke ? 'none' : 'currentColor'}
+                      stroke={icon.stroke ? 'currentColor' : undefined}
+                      stroke-width={icon.stroke ? '2' : undefined}
+                      stroke-linecap={icon.stroke ? 'round' : undefined}
+                      stroke-linejoin={icon.stroke ? 'round' : undefined}
+                      class="skill-logo"
+                    >
+                      <path d={icon.d} />
+                    </svg>
                   )}
-                  {item}
-                </span>
+                  {!icon && (
+                    <span class="icon-fallback">{item.slice(0, 2).toUpperCase()}</span>
+                  )}
+                </Tag>
               );
             })}
           </div>
@@ -150,42 +158,94 @@ const skillIcons: Record<string, string> = {
       style="border-top: 1px solid var(--color-border);"
       data-reveal
     >
-      <div>
-        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display);">
-          {t.skills.spanish.label}
-        </p>
-        <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{t.skills.spanish.level}</p>
-      </div>
-      <div>
-        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display);">
-          {t.skills.galician.label}
-        </p>
-        <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{t.skills.galician.level}</p>
-      </div>
-      <div>
-        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display);">
-          {t.skills.english.label}
-        </p>
-        <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{t.skills.english.level}</p>
-      </div>
+      {[
+        { label: t.skills.spanish.label, level: t.skills.spanish.level },
+        { label: t.skills.galician.label, level: t.skills.galician.level },
+        { label: t.skills.english.label, level: t.skills.english.level },
+      ].map(({ label, level }) => (
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display);">{label}</p>
+          <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{level}</p>
+        </div>
+      ))}
     </div>
 
   </div>
 </section>
 
 <style>
-  /* Monochrome logos — dark mode: white */
+  .icon-pill {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-bg);
+    transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+    text-decoration: none;
+  }
+  a.icon-pill { cursor: pointer; }
+
+  .icon-pill:hover {
+    border-color: var(--color-accent);
+    background: rgba(232, 145, 74, 0.05);
+  }
+
+  /* Tooltip */
+  .icon-pill::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: calc(100% + 7px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: var(--color-fg);
+    color: var(--color-bg);
+    font-size: 10px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s, transform 0.15s;
+    z-index: 100;
+  }
+  .icon-pill:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Monochrome — dark mode */
   html:not([data-theme="light"]) .skill-logo {
     filter: brightness(0) invert(1);
     opacity: 0.75;
   }
-  /* Monochrome logos — light mode: near-black */
+  html:not([data-theme="light"]) .icon-pill:hover .skill-logo {
+    opacity: 1;
+  }
+
+  /* Monochrome — light mode */
   [data-theme="light"] .skill-logo {
     filter: brightness(0);
     opacity: 0.6;
   }
-  /* On hover, show with slight accent tint */
-  a:hover .skill-logo, span:hover .skill-logo {
-    opacity: 1;
+  [data-theme="light"] .icon-pill:hover .skill-logo {
+    opacity: 0.9;
+  }
+
+  /* Fallback text for skills without icon */
+  .icon-fallback {
+    font-size: 9px;
+    font-family: var(--font-display);
+    font-weight: 800;
+    color: var(--color-muted);
+    letter-spacing: 0.05em;
   }
 </style>
