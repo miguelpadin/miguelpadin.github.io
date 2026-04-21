@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://miguelpadin.github.io/miguelpadin/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://miguelpadin.github.io/miguelpadin/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://miguelpadin.github.io/miguelpadin/es/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://miguelpadin.github.io/miguelpadin/gl/"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://miguelpadin.github.io/miguelpadin/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://miguelpadin.github.io/miguelpadin/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://miguelpadin.github.io/miguelpadin/es/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://miguelpadin.github.io/miguelpadin/gl/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://miguelpadin.github.io/miguelpadin/gl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://miguelpadin.github.io/miguelpadin/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://miguelpadin.github.io/miguelpadin/es/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://miguelpadin.github.io/miguelpadin/gl/"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>
