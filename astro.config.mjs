@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://miguelpadin.github.io',
-  base: '/miguelpadin/',
+  base: '/miguelpadin-webcv/',
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es', 'gl'],
