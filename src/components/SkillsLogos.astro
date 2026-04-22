@@ -7,14 +7,12 @@ interface Props {
 }
 const { t } = Astro.props;
 
-// Simple Icons slugs — only skills that have a logo
+// Simple Icons slugs — https://simpleicons.org
 const skillIcons: Record<string, string> = {
   'Vue':                'vuedotjs',
   'Nuxt':               'nuxtdotjs',
   'TypeScript':         'typescript',
-  'Pinia':              'pinia',
   'Vuex':               'vuedotjs',
-  'PrimeVue':           'primevue',
   'Quasar':             'quasar',
   'BootstrapVue':       'bootstrap',
   'Tailwind':           'tailwindcss',
@@ -29,23 +27,26 @@ const skillIcons: Record<string, string> = {
   'PostgreSQL':         'postgresql',
   'Oracle':             'oracle',
   'Node.js':            'nodedotjs',
-  'Java':               'openjdk',
+  'Java':               'java',
   'Vitest':             'vitest',
   'Jest':               'jest',
   'Playwright':         'playwright',
   'Cypress':            'cypress',
+  'Vue Test Utils':     'vuedotjs',
   'Testing Library':    'testinglibrary',
   'pytest':             'pytest',
   'GitHub Actions':     'githubactions',
   'Git':                'git',
   'Linux':              'linux',
-  'Windows':            'windows',
+  'Windows':            'windows11',
   'macOS':              'apple',
   'Bash':               'gnubash',
   'Claude Code':        'anthropic',
   'Codex':              'openai',
-  'Warp':               'warp',
-  'DDD':                'ddd',
+  'Warp':               'warpdotdev',
+  'SQL':                'postgresql',
+  'REST APIs':          'openapiinitiative',
+  'RESTful':            'openapiinitiative',
 };
 ---
 
@@ -88,6 +89,7 @@ const skillIcons: Record<string, string> = {
                       height="13"
                       class="skill-logo shrink-0"
                       loading="lazy"
+                      onerror="this.style.display='none'"
                     />
                   )}
                   {item}
@@ -111,6 +113,7 @@ const skillIcons: Record<string, string> = {
                       height="13"
                       class="skill-logo shrink-0"
                       loading="lazy"
+                      onerror="this.style.display='none'"
                     />
                   )}
                   {item}
@@ -130,6 +133,7 @@ const skillIcons: Record<string, string> = {
                       height="13"
                       class="skill-logo shrink-0"
                       loading="lazy"
+                      onerror="this.style.display='none'"
                     />
                   )}
                   {item}
