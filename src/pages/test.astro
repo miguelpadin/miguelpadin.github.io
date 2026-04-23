@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Experience from '../components/Experience.astro';
+import SkillsLogos from '../components/SkillsLogos.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import Marquee from '../components/Marquee.astro';
+import { useTranslations } from '../i18n';
+
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<Layout
+  title="[TEST] Miguel Padín Domínguez — Skill Logos"
+  description="Test page for skill logos"
+  lang={lang}
+>
+  <Header lang={lang} t={t} />
+  <main>
+    <Hero t={t} />
+    <Marquee />
+    <Experience t={t} />
+    <SkillsLogos t={t} />
+    <Contact t={t} />
+  </main>
+  <Footer t={t} />
+</Layout>

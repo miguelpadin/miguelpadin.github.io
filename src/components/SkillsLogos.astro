@@ -1,0 +1,187 @@
+---
+import type { Translations } from '../i18n';
+import { skillUrls } from '../i18n';
+
+interface Props {
+  t: Translations;
+}
+const { t } = Astro.props;
+
+// Simple Icons slugs — only skills that have a logo
+const skillIcons: Record<string, string> = {
+  'Vue':                'vuedotjs',
+  'Nuxt':               'nuxtdotjs',
+  'TypeScript':         'typescript',
+  'Pinia':              'pinia',
+  'Vuex':               'vuedotjs',
+  'PrimeVue':           'primevue',
+  'Quasar':             'quasar',
+  'BootstrapVue':       'bootstrap',
+  'Tailwind':           'tailwindcss',
+  'Bootstrap':          'bootstrap',
+  'Bulma':              'bulma',
+  'SASS':               'sass',
+  'SCSS':               'sass',
+  'Vite':               'vite',
+  'Python':             'python',
+  'OpenAPI':            'openapiinitiative',
+  'Odoo':               'odoo',
+  'PostgreSQL':         'postgresql',
+  'Oracle':             'oracle',
+  'Node.js':            'nodedotjs',
+  'Java':               'openjdk',
+  'Vitest':             'vitest',
+  'Jest':               'jest',
+  'Playwright':         'playwright',
+  'Cypress':            'cypress',
+  'Testing Library':    'testinglibrary',
+  'pytest':             'pytest',
+  'GitHub Actions':     'githubactions',
+  'Git':                'git',
+  'Linux':              'linux',
+  'Windows':            'windows',
+  'macOS':              'apple',
+  'Bash':               'gnubash',
+  'Claude Code':        'anthropic',
+  'Codex':              'openai',
+  'Warp':               'warp',
+  'DDD':                'ddd',
+};
+---
+
+<section id="skills" class="px-8 py-32" style="background: var(--color-surface);">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="flex items-center gap-6 mb-20" data-reveal>
+      <span
+        class="text-xs uppercase tracking-[0.25em]"
+        style="color: var(--color-accent); font-family: var(--font-display); font-weight: 700;"
+        data-split
+      >
+        {t.skills.label}
+      </span>
+      <div class="divider-line"></div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-16">
+      {t.skills.groups.map((group, i) => (
+        <div data-reveal data-reveal-delay={String(i % 3)}>
+          <p
+            class="text-xs uppercase tracking-[0.2em] mb-6"
+            style="color: var(--color-muted); font-family: var(--font-display); font-weight: 700;"
+          >
+            {group.label}
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {group.items.map((item) => {
+              const url   = skillUrls[item];
+              const slug  = skillIcons[item];
+              const pill  = "skill-pill text-sm px-3 py-1.5 transition-colors duration-200 flex items-center gap-2";
+              const style = "color: var(--color-secondary); background: var(--color-bg); border: 1px solid var(--color-border); font-weight: 300;";
+              const inner = (
+                <>
+                  {slug && (
+                    <img
+                      src={`https://cdn.simpleicons.org/${slug}`}
+                      alt=""
+                      width="13"
+                      height="13"
+                      class="skill-logo shrink-0"
+                      loading="lazy"
+                    />
+                  )}
+                  {item}
+                </>
+              );
+              return url ? (
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class={pill}
+                  style={style}
+                  onmouseover="this.style.borderColor='var(--color-accent)'; this.style.color='var(--color-fg)';"
+                  onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-secondary)';"
+                >
+                  {slug && (
+                    <img
+                      src={`https://cdn.simpleicons.org/${slug}`}
+                      alt=""
+                      width="13"
+                      height="13"
+                      class="skill-logo shrink-0"
+                      loading="lazy"
+                    />
+                  )}
+                  {item}
+                </a>
+              ) : (
+                <span
+                  class={pill}
+                  style={style}
+                  onmouseover="this.style.borderColor='var(--color-accent)'; this.style.color='var(--color-fg)';"
+                  onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-secondary)';"
+                >
+                  {slug && (
+                    <img
+                      src={`https://cdn.simpleicons.org/${slug}`}
+                      alt=""
+                      width="13"
+                      height="13"
+                      class="skill-logo shrink-0"
+                      loading="lazy"
+                    />
+                  )}
+                  {item}
+                </span>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div
+      class="mt-20 pt-12 flex flex-wrap gap-10"
+      style="border-top: 1px solid var(--color-border);"
+      data-reveal
+    >
+      <div>
+        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display);">
+          {t.skills.spanish.label}
+        </p>
+        <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{t.skills.spanish.level}</p>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display);">
+          {t.skills.galician.label}
+        </p>
+        <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{t.skills.galician.level}</p>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display);">
+          {t.skills.english.label}
+        </p>
+        <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{t.skills.english.level}</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  /* Monochrome logos — dark mode: white */
+  html:not([data-theme="light"]) .skill-logo {
+    filter: brightness(0) invert(1);
+    opacity: 0.75;
+  }
+  /* Monochrome logos — light mode: near-black */
+  [data-theme="light"] .skill-logo {
+    filter: brightness(0);
+    opacity: 0.6;
+  }
+  /* On hover, show with slight accent tint */
+  a:hover .skill-logo, span:hover .skill-logo {
+    opacity: 1;
+  }
+</style>
