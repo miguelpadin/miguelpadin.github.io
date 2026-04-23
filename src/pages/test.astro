@@ -1,277 +1,224 @@
 ---
-const title = 'Test · Miguel Padín Domínguez';
-const description = 'Test page — blue theme variant.';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Experience from '../components/Experience.astro';
+import Skills from '../components/Skills.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import Marquee from '../components/Marquee.astro';
+import { useTranslations } from '../i18n';
+
+const lang = 'en';
+const t = useTranslations(lang);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
+    <meta name="description" content="Software engineer with 9+ years of experience. Focused on Vue 3, TypeScript and modern web architecture." />
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="theme-color" content="#0A1628" />
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" />
-    <title>{title}</title>
+    <meta name="theme-color" id="theme-color" content="#0C1525" />
+    <title>Miguel Padín Domínguez · Software Engineer · Blue Variant</title>
 
+    <!-- Blue theme override — replaces the orange/black palette from global.css -->
     <style is:global>
       :root {
-        --color-bg: #0A1628;
-        --color-surface: #0F1F3A;
-        --color-border: #1E3A5F;
-        --color-fg: #E6EEF9;
-        --color-muted: #6B7F9B;
-        --color-secondary: #9DB2CE;
+        --color-bg: #0C1525;
+        --color-surface: #0F1C2E;
+        --color-border: #1A3050;
         --color-accent: #4A9EFF;
-        --color-accent-deep: #2563EB;
-        --font-display: 'Syne', system-ui, sans-serif;
-        --font-body: 'DM Sans', system-ui, sans-serif;
       }
-
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-
-      html { scroll-behavior: smooth; background: var(--color-bg); }
-      body {
-        font-family: var(--font-body);
-        color: var(--color-fg);
-        background: var(--color-bg);
-        min-height: 100vh;
-        -webkit-font-smoothing: antialiased;
-        overflow-x: hidden;
+      [data-theme="light"] {
+        --color-bg: #D6E4F7;
+        --color-surface: #C5D8F0;
+        --color-border: #A8C4E8;
+        --color-accent: #2563EB;
       }
-
-      ::selection { background: var(--color-accent); color: var(--color-bg); }
-
-      /* Aurora blobs (blue) */
-      .blob {
-        position: fixed;
-        border-radius: 50%;
-        filter: blur(110px);
-        pointer-events: none;
-        z-index: 0;
+      /* Aurora blobs — recolored to blue */
+      .blob-1 {
+        background: radial-gradient(circle, rgba(74,158,255,0.12) 0%, transparent 65%) !important;
       }
-      .blob-a {
-        width: 55vw; height: 55vw;
-        background: radial-gradient(circle, rgba(74,158,255,0.22) 0%, transparent 65%);
-        top: -20%; left: -15%;
-        animation: float-a 16s ease-in-out infinite alternate;
+      .blob-2 {
+        background: radial-gradient(circle, rgba(37,99,235,0.09) 0%, transparent 65%) !important;
       }
-      .blob-b {
-        width: 45vw; height: 45vw;
-        background: radial-gradient(circle, rgba(37,99,235,0.20) 0%, transparent 65%);
-        bottom: -15%; right: -10%;
-        animation: float-b 20s ease-in-out infinite alternate;
-      }
-      .blob-c {
-        width: 35vw; height: 35vw;
-        background: radial-gradient(circle, rgba(125,191,255,0.14) 0%, transparent 65%);
-        top: 40%; left: 30%;
-        animation: float-c 24s ease-in-out infinite alternate;
-      }
-      @keyframes float-a {
-        from { transform: translate(0, 0) scale(1); }
-        to   { transform: translate(8vw, 6vh) scale(1.15); }
-      }
-      @keyframes float-b {
-        from { transform: translate(0, 0) scale(1.1); }
-        to   { transform: translate(-6vw, -8vh) scale(0.9); }
-      }
-      @keyframes float-c {
-        from { transform: translate(0, 0) scale(0.95); }
-        to   { transform: translate(5vw, -5vh) scale(1.1); }
-      }
-
-      /* Grid overlay */
-      .grid-bg {
-        position: fixed; inset: 0;
-        background-image:
-          linear-gradient(rgba(74,158,255,0.06) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(74,158,255,0.06) 1px, transparent 1px);
-        background-size: 48px 48px;
-        pointer-events: none;
-        z-index: 1;
-        mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-      }
-
-      main {
-        position: relative;
-        z-index: 2;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 4rem 2rem;
-        max-width: 64rem;
-        margin: 0 auto;
-      }
-
-      .eyebrow {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 2rem;
-        font-family: var(--font-display);
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.25em;
-        color: var(--color-accent);
-      }
-
-      .dot {
-        width: 8px; height: 8px;
-        border-radius: 50%;
-        background: var(--color-accent);
-        box-shadow: 0 0 12px var(--color-accent);
-        animation: pulse 2s ease-in-out infinite;
-      }
-      @keyframes pulse {
-        0%, 100% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.5; transform: scale(0.85); }
-      }
-
-      h1 {
-        font-family: var(--font-display);
-        font-weight: 800;
-        font-size: clamp(3rem, 9vw, 6.5rem);
-        line-height: 1;
-        letter-spacing: -0.02em;
-        margin-bottom: 2rem;
-        background: linear-gradient(135deg, var(--color-fg) 0%, var(--color-accent) 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      .accent-bar {
-        width: 4rem; height: 3px;
-        background: linear-gradient(90deg, var(--color-accent), var(--color-accent-deep));
-        margin-bottom: 2rem;
-        border-radius: 2px;
-      }
-
-      p.lead {
-        max-width: 36rem;
-        font-size: 1.1rem;
-        line-height: 1.75;
-        color: var(--color-secondary);
-        font-weight: 300;
-        margin-bottom: 3rem;
-      }
-
-      .cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 1.25rem;
-        margin-bottom: 3rem;
-      }
-
-      .card {
-        padding: 1.5rem;
-        border: 1px solid var(--color-border);
-        border-radius: 12px;
-        background: linear-gradient(135deg, rgba(15,31,58,0.6), rgba(10,22,40,0.4));
-        backdrop-filter: blur(8px);
-        transition: border-color 0.3s ease, transform 0.3s ease;
-      }
-      .card:hover {
-        border-color: var(--color-accent);
-        transform: translateY(-4px);
-      }
-      .card h3 {
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 1rem;
-        margin-bottom: 0.5rem;
-        color: var(--color-accent);
-      }
-      .card p {
-        font-size: 0.9rem;
-        color: var(--color-secondary);
-        line-height: 1.6;
-      }
-
-      .actions {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-      }
-
-      a.btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.75rem 1.5rem;
-        border-radius: 999px;
-        font-family: var(--font-display);
-        font-weight: 700;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        text-decoration: none;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-      a.btn.primary {
-        background: var(--color-accent);
-        color: var(--color-bg);
-        box-shadow: 0 4px 24px rgba(74,158,255,0.35);
-      }
-      a.btn.primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 32px rgba(74,158,255,0.5);
-      }
-      a.btn.ghost {
-        color: var(--color-accent);
-        border: 1px solid var(--color-border);
-      }
-      a.btn.ghost:hover {
-        border-color: var(--color-accent);
-        background: rgba(74,158,255,0.08);
+      .blob-3 {
+        background: radial-gradient(circle, rgba(125,191,255,0.07) 0%, transparent 65%) !important;
       }
     </style>
+
+    <script is:inline>
+      const t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.dataset.theme = t;
+      const tc = document.getElementById('theme-color');
+      if (tc) tc.setAttribute('content', t === 'light' ? '#D6E4F7' : '#0C1525');
+    </script>
   </head>
-  <body>
-    <div class="blob blob-a"></div>
-    <div class="blob blob-b"></div>
-    <div class="blob blob-c"></div>
-    <div class="grid-bg"></div>
+  <body class="min-h-screen">
+    <!-- Dot grid spotlight — blue -->
+    <div id="grid-spotlight" style="
+      position: fixed; inset: 0; pointer-events: none; z-index: 2;
+      background-image: radial-gradient(circle, rgba(74,158,255,0.13) 1px, transparent 1px);
+      background-size: 38px 38px;
+      -webkit-mask-image: radial-gradient(circle 220px at var(--mx, -500px) var(--my, -500px), black 0%, transparent 100%);
+      mask-image: radial-gradient(circle 220px at var(--mx, -500px) var(--my, -500px), black 0%, transparent 100%);
+    "></div>
 
+    <!-- Scroll progress bar -->
+    <div id="scroll-bar" style="
+      position: fixed; top: 0; left: 0; z-index: 100000;
+      height: 2px; width: 0%;
+      background: var(--color-accent);
+      pointer-events: none;
+    "></div>
+
+    <Header lang={lang} t={t} />
     <main>
-      <div class="eyebrow">
-        <span class="dot"></span>
-        <span>Test Route · Blue Variant</span>
-      </div>
-
-      <h1>Azul, no naranja.</h1>
-
-      <div class="accent-bar"></div>
-
-      <p class="lead">
-        Esta es una ruta de prueba con una paleta azul predominante, distinta de la página principal.
-        Mismos fundamentos tipográficos (Syne + DM Sans), nuevo sistema de color basado en azules fríos.
-      </p>
-
-      <div class="cards">
-        <div class="card">
-          <h3>Paleta</h3>
-          <p>Fondo azul profundo #0A1628 con acento #4A9EFF y un gradiente hacia #2563EB.</p>
-        </div>
-        <div class="card">
-          <h3>Efectos</h3>
-          <p>Aurora blobs en tonos azules, rejilla sutil con máscara radial y puntos con glow.</p>
-        </div>
-        <div class="card">
-          <h3>Componentes</h3>
-          <p>Tarjetas translúcidas con backdrop-filter y bordes que reaccionan al hover.</p>
-        </div>
-      </div>
-
-      <div class="actions">
-        <a href="/" class="btn primary">← Volver al inicio</a>
-        <a href="https://github.com/miguelpadin" target="_blank" rel="noopener noreferrer" class="btn ghost">GitHub</a>
-      </div>
+      <Hero t={t} />
+      <Marquee />
+      <Experience t={t} />
+      <Skills t={t} />
+      <Contact t={t} />
     </main>
+    <Footer t={t} />
+
+    <script>
+      const isTouch = window.matchMedia('(pointer: coarse)').matches;
+
+      // ── Split text reveal ─────────────────────────────────────────
+      document.querySelectorAll<HTMLElement>('[data-split]').forEach(el => {
+        const text = el.textContent || '';
+        el.innerHTML = [...text].map((char, i) =>
+          `<span class="split-char" style="transition-delay:${(i * 0.045).toFixed(3)}s">${char === ' ' ? '&nbsp;' : char}</span>`
+        ).join('');
+      });
+
+      const splitObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-split-visible');
+            splitObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      document.querySelectorAll('[data-split]').forEach(el => splitObs.observe(el));
+
+      // ── Dot grid spotlight ────────────────────────────────────────
+      const grid = document.getElementById('grid-spotlight')!;
+      window.addEventListener('mousemove', (e) => {
+        grid.style.setProperty('--mx', e.clientX + 'px');
+        grid.style.setProperty('--my', e.clientY + 'px');
+      }, { passive: true });
+
+      // ── Scroll reveal ──────────────────────────────────────────────
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+      document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+
+      // ── Scroll progress bar ────────────────────────────────────────
+      const scrollBar = document.getElementById('scroll-bar')!;
+      window.addEventListener('scroll', () => {
+        const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+        scrollBar.style.width = (pct * 100) + '%';
+      }, { passive: true });
+
+      // ── Active nav on scroll ───────────────────────────────────────
+      const sectionIds = ['experience', 'skills', 'contact'];
+      const navLinks = Object.fromEntries(
+        sectionIds.map(id => [id, document.querySelector<HTMLElement>(`a[href="#${id}"]`)])
+      );
+
+      const resetNav = () => sectionIds.forEach(id => {
+        if (navLinks[id]) navLinks[id]!.style.color = 'var(--color-muted)';
+      });
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = navLinks[entry.target.id];
+          if (!link) return;
+          link.style.color = entry.isIntersecting ? 'var(--color-accent)' : 'var(--color-muted)';
+        });
+      }, { threshold: 0.25 });
+
+      sectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) sectionObserver.observe(el);
+      });
+
+      // ── Tab title visibility easter egg ───────────────────────────
+      const staticTitle = document.title;
+      const awayMsg: Record<string, string> = {
+        es: '👋 ¡Hasta pronto!',
+        gl: '👋 Ata logo!',
+        en: '👋 See you soon!',
+      };
+      document.addEventListener('visibilitychange', () => {
+        const lang = document.documentElement.lang || 'en';
+        document.title = document.hidden ? (awayMsg[lang] ?? awayMsg.en) : staticTitle;
+      });
+
+      // ── Cursor particle trail — blue ──────────────────────────────
+      if (!isTouch) {
+        const trail = document.createElement('canvas');
+        trail.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:999990;';
+        document.body.appendChild(trail);
+        const tc = trail.getContext('2d')!;
+
+        function resizeTrail() {
+          trail.width  = window.innerWidth;
+          trail.height = window.innerHeight;
+        }
+        resizeTrail();
+        window.addEventListener('resize', resizeTrail, { passive: true });
+
+        type Particle = { x: number; y: number; life: number; size: number };
+        const particles: Particle[] = [];
+
+        document.addEventListener('mousemove', (e) => {
+          if (Math.random() > 0.4) return;
+          particles.push({ x: e.clientX, y: e.clientY, life: 1, size: Math.random() * 2.5 + 1 });
+        });
+
+        (function drawTrail() {
+          tc.clearRect(0, 0, trail.width, trail.height);
+          for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.life -= 0.045;
+            if (p.life <= 0) { particles.splice(i, 1); continue; }
+            tc.globalAlpha = p.life * 0.55;
+            tc.fillStyle = '#4A9EFF';
+            tc.beginPath();
+            tc.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+            tc.fill();
+          }
+          tc.globalAlpha = 1;
+          requestAnimationFrame(drawTrail);
+        })();
+      }
+
+      // ── Update theme-color on theme change ────────────────────────
+      const themeColorMeta = document.getElementById('theme-color') as HTMLMetaElement | null;
+      new MutationObserver(() => {
+        const dark = document.documentElement.dataset.theme !== 'light';
+        if (themeColorMeta) themeColorMeta.content = dark ? '#0C1525' : '#D6E4F7';
+      }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+      // ── Service worker ────────────────────────────────────────────
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`);
+      }
+    </script>
   </body>
 </html>
