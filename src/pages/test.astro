@@ -1,0 +1,277 @@
+---
+const title = 'Test · Miguel Padín Domínguez';
+const description = 'Test page — blue theme variant.';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0A1628" />
+    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" />
+    <title>{title}</title>
+
+    <style is:global>
+      :root {
+        --color-bg: #0A1628;
+        --color-surface: #0F1F3A;
+        --color-border: #1E3A5F;
+        --color-fg: #E6EEF9;
+        --color-muted: #6B7F9B;
+        --color-secondary: #9DB2CE;
+        --color-accent: #4A9EFF;
+        --color-accent-deep: #2563EB;
+        --font-display: 'Syne', system-ui, sans-serif;
+        --font-body: 'DM Sans', system-ui, sans-serif;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html { scroll-behavior: smooth; background: var(--color-bg); }
+      body {
+        font-family: var(--font-body);
+        color: var(--color-fg);
+        background: var(--color-bg);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      ::selection { background: var(--color-accent); color: var(--color-bg); }
+
+      /* Aurora blobs (blue) */
+      .blob {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(110px);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .blob-a {
+        width: 55vw; height: 55vw;
+        background: radial-gradient(circle, rgba(74,158,255,0.22) 0%, transparent 65%);
+        top: -20%; left: -15%;
+        animation: float-a 16s ease-in-out infinite alternate;
+      }
+      .blob-b {
+        width: 45vw; height: 45vw;
+        background: radial-gradient(circle, rgba(37,99,235,0.20) 0%, transparent 65%);
+        bottom: -15%; right: -10%;
+        animation: float-b 20s ease-in-out infinite alternate;
+      }
+      .blob-c {
+        width: 35vw; height: 35vw;
+        background: radial-gradient(circle, rgba(125,191,255,0.14) 0%, transparent 65%);
+        top: 40%; left: 30%;
+        animation: float-c 24s ease-in-out infinite alternate;
+      }
+      @keyframes float-a {
+        from { transform: translate(0, 0) scale(1); }
+        to   { transform: translate(8vw, 6vh) scale(1.15); }
+      }
+      @keyframes float-b {
+        from { transform: translate(0, 0) scale(1.1); }
+        to   { transform: translate(-6vw, -8vh) scale(0.9); }
+      }
+      @keyframes float-c {
+        from { transform: translate(0, 0) scale(0.95); }
+        to   { transform: translate(5vw, -5vh) scale(1.1); }
+      }
+
+      /* Grid overlay */
+      .grid-bg {
+        position: fixed; inset: 0;
+        background-image:
+          linear-gradient(rgba(74,158,255,0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(74,158,255,0.06) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+        z-index: 1;
+        mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+      }
+
+      main {
+        position: relative;
+        z-index: 2;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4rem 2rem;
+        max-width: 64rem;
+        margin: 0 auto;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+        font-family: var(--font-display);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.25em;
+        color: var(--color-accent);
+      }
+
+      .dot {
+        width: 8px; height: 8px;
+        border-radius: 50%;
+        background: var(--color-accent);
+        box-shadow: 0 0 12px var(--color-accent);
+        animation: pulse 2s ease-in-out infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.85); }
+      }
+
+      h1 {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(3rem, 9vw, 6.5rem);
+        line-height: 1;
+        letter-spacing: -0.02em;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, var(--color-fg) 0%, var(--color-accent) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .accent-bar {
+        width: 4rem; height: 3px;
+        background: linear-gradient(90deg, var(--color-accent), var(--color-accent-deep));
+        margin-bottom: 2rem;
+        border-radius: 2px;
+      }
+
+      p.lead {
+        max-width: 36rem;
+        font-size: 1.1rem;
+        line-height: 1.75;
+        color: var(--color-secondary);
+        font-weight: 300;
+        margin-bottom: 3rem;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.25rem;
+        margin-bottom: 3rem;
+      }
+
+      .card {
+        padding: 1.5rem;
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(15,31,58,0.6), rgba(10,22,40,0.4));
+        backdrop-filter: blur(8px);
+        transition: border-color 0.3s ease, transform 0.3s ease;
+      }
+      .card:hover {
+        border-color: var(--color-accent);
+        transform: translateY(-4px);
+      }
+      .card h3 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+        color: var(--color-accent);
+      }
+      .card p {
+        font-size: 0.9rem;
+        color: var(--color-secondary);
+        line-height: 1.6;
+      }
+
+      .actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      a.btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 999px;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      a.btn.primary {
+        background: var(--color-accent);
+        color: var(--color-bg);
+        box-shadow: 0 4px 24px rgba(74,158,255,0.35);
+      }
+      a.btn.primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(74,158,255,0.5);
+      }
+      a.btn.ghost {
+        color: var(--color-accent);
+        border: 1px solid var(--color-border);
+      }
+      a.btn.ghost:hover {
+        border-color: var(--color-accent);
+        background: rgba(74,158,255,0.08);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="blob blob-c"></div>
+    <div class="grid-bg"></div>
+
+    <main>
+      <div class="eyebrow">
+        <span class="dot"></span>
+        <span>Test Route · Blue Variant</span>
+      </div>
+
+      <h1>Azul, no naranja.</h1>
+
+      <div class="accent-bar"></div>
+
+      <p class="lead">
+        Esta es una ruta de prueba con una paleta azul predominante, distinta de la página principal.
+        Mismos fundamentos tipográficos (Syne + DM Sans), nuevo sistema de color basado en azules fríos.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>Paleta</h3>
+          <p>Fondo azul profundo #0A1628 con acento #4A9EFF y un gradiente hacia #2563EB.</p>
+        </div>
+        <div class="card">
+          <h3>Efectos</h3>
+          <p>Aurora blobs en tonos azules, rejilla sutil con máscara radial y puntos con glow.</p>
+        </div>
+        <div class="card">
+          <h3>Componentes</h3>
+          <p>Tarjetas translúcidas con backdrop-filter y bordes que reaccionan al hover.</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a href="/" class="btn primary">← Volver al inicio</a>
+        <a href="https://github.com/miguelpadin" target="_blank" rel="noopener noreferrer" class="btn ghost">GitHub</a>
+      </div>
+    </main>
+  </body>
+</html>
