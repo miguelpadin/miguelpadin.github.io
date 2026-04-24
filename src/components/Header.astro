@@ -99,7 +99,7 @@ const { lang, t } = Astro.props;
     iconMoon.style.display = theme === 'light' ? 'block' : 'none';
   }
 
-  applyTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'));
+  applyTheme(localStorage.getItem('theme') || 'dark');
 
   toggle.addEventListener('click', () => {
     applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
