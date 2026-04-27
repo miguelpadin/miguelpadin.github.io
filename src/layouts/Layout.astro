@@ -69,14 +69,20 @@ const jsonLd = {
     <link rel="canonical" href={canonicalURL} />
     <link rel="sitemap" href={`${import.meta.env.BASE_URL}sitemap.xml`} />
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
+    <link rel="manifest" href={`${import.meta.env.BASE_URL}manifest.webmanifest`} />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="MPD" />
+    <meta name="theme-color" id="theme-color" content="#0B0B0D" />
     <title>{title}</title>
 
     <!-- JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <script is:inline>
-      const t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      const t = localStorage.getItem('theme') || 'dark';
       document.documentElement.dataset.theme = t;
+      const tc = document.getElementById('theme-color');
+      if (tc) tc.setAttribute('content', t === 'light' ? '#E2DDD6' : '#0B0B0D');
     </script>
   </head>
   <body class="min-h-screen">
@@ -280,6 +286,18 @@ const jsonLd = {
           tc.globalAlpha = 1;
           requestAnimationFrame(drawTrail);
         })();
+      }
+
+      // ── Update theme-color on theme change ────────────────────────
+      const themeColorMeta = document.getElementById('theme-color') as HTMLMetaElement | null;
+      new MutationObserver(() => {
+        const dark = document.documentElement.dataset.theme !== 'light';
+        if (themeColorMeta) themeColorMeta.content = dark ? '#0B0B0D' : '#E2DDD6';
+      }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+      // ── Service worker ────────────────────────────────────────────
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`);
       }
     </script>
   </body>

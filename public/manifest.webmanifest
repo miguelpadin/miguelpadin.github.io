@@ -1,0 +1,19 @@
+{
+  "name": "Miguel Padín Domínguez",
+  "short_name": "MPD",
+  "description": "Software Engineer · Vue, TypeScript & Python",
+  "start_url": "/miguelpadin/",
+  "scope": "/miguelpadin/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B0B0D",
+  "theme_color": "#0B0B0D",
+  "icons": [
+    {
+      "src": "/miguelpadin/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
