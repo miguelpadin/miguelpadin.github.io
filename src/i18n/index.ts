@@ -57,7 +57,6 @@ export const skillUrls: Record<string, string> = {
   'OpenCode':              'https://opencode.ai',
   'Prettier':              'https://prettier.io',
   'ESLint':                'https://eslint.org',
-  'Figma':                 'https://www.figma.com',
   'Accessibility':         'https://www.w3.org/WAI/fundamentals/accessibility-intro/',
   'PWA':                   'https://web.dev/progressive-web-apps/',
   // Architecture
@@ -145,10 +144,10 @@ const ui = {
     skills: {
       label: 'Skills',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA', 'ESLint', 'Prettier'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
-        { label: 'Tooling & Process', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'Prettier', 'ESLint', 'Figma', 'Scrum', 'npm'] },
+        { label: 'Tooling & Process', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'Scrum', 'npm'] },
         { label: 'Architecture', items: ['Hexagonal Architecture', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS', 'Monorepo', 'API Gateway', 'SPA', 'SSR'] },
       ],
       languagesLabel: 'Languages',
@@ -223,10 +222,10 @@ const ui = {
     skills: {
       label: 'Habilidades',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA', 'ESLint', 'Prettier'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
-        { label: 'Herramientas y proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'Prettier', 'ESLint', 'Figma', 'Scrum', 'npm'] },
+        { label: 'Herramientas y proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'Scrum', 'npm'] },
         { label: 'Arquitectura', items: ['Arquitectura Hexagonal', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS'] },
       ],
       languagesLabel: 'Idiomas',
@@ -301,10 +300,10 @@ const ui = {
     skills: {
       label: 'Habilidades',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA', 'ESLint', 'Prettier'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
-        { label: 'Ferramentas e proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'Prettier', 'ESLint', 'Figma', 'Scrum', 'npm'] },
+        { label: 'Ferramentas e proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'Scrum', 'npm'] },
         { label: 'Arquitectura', items: ['Arquitectura Hexagonal', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS'] },
       ],
       languagesLabel: 'Idiomas',
