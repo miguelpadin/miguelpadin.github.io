@@ -1,6 +1,6 @@
-# miguelpadin.github.io/miguelpadin-webcv
+# miguelpadin.github.io
 
-Personal portfolio — [miguelpadin.github.io/miguelpadin-webcv](https://miguelpadin.github.io/miguelpadin-webcv/)
+Personal portfolio — [miguelpadin.github.io](https://miguelpadin.github.io/)
 
 ## Stack
 
