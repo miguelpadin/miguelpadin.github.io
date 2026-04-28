@@ -1,28 +1,79 @@
 ---
 import '../styles/global.css';
+import type { Lang } from '../i18n';
 
 interface Props {
   title?: string;
   description?: string;
+  lang?: Lang;
 }
 
 const {
   title = 'Miguel Padín Domínguez — Software Engineer',
   description = 'Software engineer with 9+ years of experience. Focused on Vue 3, TypeScript and modern web architecture.',
+  lang = 'en',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteBase = 'https://miguelpadin.github.io/miguelpadin';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Miguel Padín Domínguez',
+  jobTitle: lang === 'en' ? 'Software Engineer' : 'Ingeniero de Software',
+  url: siteBase + '/',
+  email: 'miguel.padin.dominguez@gmail.com',
+  sameAs: [
+    'https://linkedin.com/in/miguelpadin',
+    'https://github.com/miguelpadin',
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Las Palmas de Gran Canaria',
+    addressCountry: 'ES',
+  },
+  knowsAbout: ['Vue.js', 'Nuxt', 'TypeScript', 'Python', 'Odoo', 'PostgreSQL', 'Node.js', 'DDD', 'Clean Architecture', 'TDD'],
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Miguel Padín Domínguez" />
+    <meta name="keywords" content="software engineer, vue, typescript, python, full-stack, odoo, remote, Las Palmas" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Miguel Padín Domínguez" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : lang === 'es' ? 'es_ES' : 'gl_ES'} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="en" href={`${siteBase}/`} />
+    <link rel="alternate" hreflang="es" href={`${siteBase}/es/`} />
+    <link rel="alternate" hreflang="gl" href={`${siteBase}/gl/`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteBase}/`} />
+
     <link rel="canonical" href={canonicalURL} />
+    <link rel="sitemap" href={`${import.meta.env.BASE_URL}sitemap.xml`} />
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <title>{title}</title>
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
     <script is:inline>
       const t = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
       document.documentElement.dataset.theme = t;
