@@ -15,12 +15,12 @@
 
 /* ── Light theme ─────────────────────────────────────────────── */
 [data-theme="light"] {
-  --color-bg: #F5F3EE;
-  --color-surface: #ECEAE4;
-  --color-border: #D5D1C8;
+  --color-bg: #E2DDD6;
+  --color-surface: #D8D3CB;
+  --color-border: #C2BDB5;
   --color-fg: #1A1917;
-  --color-muted: #8C8984;
-  --color-secondary: #4A4844;
+  --color-muted: #7A7672;
+  --color-secondary: #4A4642;
   --color-accent: #C97A35;
 }
 
