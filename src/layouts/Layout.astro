@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import type { Lang } from '../i18n';
+import CookieBanner from '../components/CookieBanner.astro';
 
 interface Props {
   title?: string;
@@ -72,14 +73,17 @@ const jsonLd = {
     <link rel="manifest" href={`${import.meta.env.BASE_URL}manifest.webmanifest`} />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="MPD" />
-    <meta name="theme-color" id="theme-color" content="#0B0B0D" />
+    <meta name="theme-color" id="theme-color" content="#0C1525" />
     <title>{title}</title>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2R8M9VFJM9"></script>
+    <!-- Google tag (gtag.js) — consent denied by default until user accepts -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', { analytics_storage: 'denied' });
+    </script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-2R8M9VFJM9"></script>
+    <script is:inline>
       gtag('js', new Date());
       gtag('config', 'G-2R8M9VFJM9');
     </script>
@@ -91,14 +95,14 @@ const jsonLd = {
       const t = localStorage.getItem('theme') || 'dark';
       document.documentElement.dataset.theme = t;
       const tc = document.getElementById('theme-color');
-      if (tc) tc.setAttribute('content', t === 'light' ? '#E2DDD6' : '#0B0B0D');
+      if (tc) tc.setAttribute('content', t === 'light' ? '#D6E4F7' : '#0C1525');
     </script>
   </head>
   <body class="min-h-screen">
     <!-- Dot grid spotlight -->
     <div id="grid-spotlight" style="
       position: fixed; inset: 0; pointer-events: none; z-index: 2;
-      background-image: radial-gradient(circle, rgba(232,145,74,0.13) 1px, transparent 1px);
+      background-image: radial-gradient(circle, rgba(74,158,255,0.13) 1px, transparent 1px);
       background-size: 38px 38px;
       -webkit-mask-image: radial-gradient(circle 220px at var(--mx, -500px) var(--my, -500px), black 0%, transparent 100%);
       mask-image: radial-gradient(circle 220px at var(--mx, -500px) var(--my, -500px), black 0%, transparent 100%);
@@ -113,6 +117,8 @@ const jsonLd = {
     "></div>
 
     <slot />
+
+    <CookieBanner lang={lang} />
 
     <script>
       const isTouch = window.matchMedia('(pointer: coarse)').matches;
@@ -228,7 +234,7 @@ const jsonLd = {
             p.life -= 0.045;
             if (p.life <= 0) { particles.splice(i, 1); continue; }
             tc.globalAlpha = p.life * 0.55;
-            tc.fillStyle = '#E8914A';
+            tc.fillStyle = '#4A9EFF';
             tc.beginPath();
             tc.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
             tc.fill();
@@ -242,7 +248,7 @@ const jsonLd = {
       const themeColorMeta = document.getElementById('theme-color') as HTMLMetaElement | null;
       new MutationObserver(() => {
         const dark = document.documentElement.dataset.theme !== 'light';
-        if (themeColorMeta) themeColorMeta.content = dark ? '#0B0B0D' : '#E2DDD6';
+        if (themeColorMeta) themeColorMeta.content = dark ? '#0C1525' : '#D6E4F7';
       }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
       // ── Service worker ────────────────────────────────────────────

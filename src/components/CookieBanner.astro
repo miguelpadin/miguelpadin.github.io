@@ -1,0 +1,163 @@
+---
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'en' } = Astro.props;
+
+const copy = {
+  en: {
+    label: 'Cookies',
+    text: 'This site uses analytics cookies to understand how visitors interact with it.',
+    accept: 'Accept',
+    decline: 'Decline',
+  },
+  es: {
+    label: 'Cookies',
+    text: 'Este sitio usa cookies de analítica para entender cómo interactúan los visitantes con él.',
+    accept: 'Aceptar',
+    decline: 'Rechazar',
+  },
+  gl: {
+    label: 'Cookies',
+    text: 'Este sitio usa cookies de analítica para entender como interactúan os visitantes con el.',
+    accept: 'Aceptar',
+    decline: 'Rexeitar',
+  },
+} as const;
+
+const c = copy[lang];
+---
+
+<div
+  id="cookie-banner"
+  role="dialog"
+  aria-label={c.label}
+  aria-live="polite"
+  style="
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    transform: translateY(calc(100% + 2rem));
+    z-index: 99999;
+    width: min(calc(100vw - 3rem), 340px);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), opacity 0.5s cubic-bezier(0.16,1,0.3,1);
+  "
+>
+  <div>
+    <p style="
+      font-family: var(--font-display);
+      font-size: 0.625rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin: 0 0 0.5rem;
+    ">{c.label}</p>
+    <p style="
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      color: var(--color-muted);
+      margin: 0;
+      line-height: 1.6;
+    ">{c.text}</p>
+  </div>
+  <div style="display: flex; gap: 0.625rem; justify-content: flex-end;">
+    <button
+      id="cookie-decline"
+      style="
+        font-family: var(--font-display);
+        font-size: 0.625rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--color-muted);
+        background: transparent;
+        border: 1px solid var(--color-border);
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: color 0.2s, border-color 0.2s;
+      "
+      onmouseover="this.style.color='var(--color-fg)';this.style.borderColor='var(--color-muted)'"
+      onmouseout="this.style.color='var(--color-muted)';this.style.borderColor='var(--color-border)'"
+    >{c.decline}</button>
+    <button
+      id="cookie-accept"
+      style="
+        font-family: var(--font-display);
+        font-size: 0.625rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #111115;
+        background: var(--color-accent);
+        border: 1px solid transparent;
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      "
+      onmouseover="this.style.opacity='0.82'"
+      onmouseout="this.style.opacity='1'"
+    >{c.accept}</button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var banner = document.getElementById('cookie-banner');
+    if (!banner) return;
+
+    var stored = localStorage.getItem('cookie-consent');
+
+    function applyConsent(value) {
+      if (typeof gtag === 'function') {
+        gtag('consent', 'update', {
+          analytics_storage: value === 'granted' ? 'granted' : 'denied',
+        });
+      }
+    }
+
+    function hideBanner() {
+      banner.style.transform = 'translateY(calc(100% + 2rem))';
+      banner.style.opacity = '0';
+      banner.style.pointerEvents = 'none';
+    }
+
+    function showBanner() {
+      banner.style.transform = 'translateY(0)';
+      banner.style.opacity = '1';
+      banner.style.pointerEvents = 'auto';
+    }
+
+    if (stored === 'granted') {
+      applyConsent('granted');
+      return;
+    }
+    if (stored === 'denied') {
+      return;
+    }
+
+    setTimeout(showBanner, 900);
+
+    document.getElementById('cookie-accept').addEventListener('click', function () {
+      localStorage.setItem('cookie-consent', 'granted');
+      applyConsent('granted');
+      hideBanner();
+    });
+
+    document.getElementById('cookie-decline').addEventListener('click', function () {
+      localStorage.setItem('cookie-consent', 'denied');
+      hideBanner();
+    });
+  })();
+</script>
