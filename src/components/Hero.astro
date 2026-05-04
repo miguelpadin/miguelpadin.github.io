@@ -17,7 +17,7 @@ const { t } = Astro.props;
   <!-- Particle network canvas -->
   <canvas id="hero-canvas" style="position:absolute;inset:0;pointer-events:none;z-index:0;opacity:0.55;"></canvas>
 
-  <div class="max-w-5xl mx-auto w-full animate-hero" style="position:relative;z-index:1;">
+  <div class="max-w-5xl mx-auto w-full animate-hero relative">
 
     <div class="flex items-center gap-3 mb-8">
       <span class="pulse-dot"></span>
@@ -208,56 +208,56 @@ const { t } = Astro.props;
   }
 
   // ── Particle network ───────────────────────────────────────────
-  const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
-  const section = document.getElementById('hero-section')!;
-  const ctx = canvas.getContext('2d')!;
+  const cvs = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
+  const sec = document.getElementById('hero-section') as HTMLElement | null;
+  if (cvs && sec) {
+    const cx = cvs.getContext('2d')!;
 
-  function resizeCanvas() {
-    canvas.width  = section.offsetWidth;
-    canvas.height = section.offsetHeight;
-  }
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas, { passive: true });
-
-  type Pt = { x: number; y: number; vx: number; vy: number };
-  const pts: Pt[] = Array.from({ length: 55 }, () => ({
-    x:  Math.random() * canvas.width,
-    y:  Math.random() * canvas.height,
-    vx: (Math.random() - 0.5) * 0.35,
-    vy: (Math.random() - 0.5) * 0.35,
-  }));
-
-  function drawParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const isDark = document.documentElement.dataset.theme !== 'light';
-    const base = isDark ? '232,145,74' : '180,100,30';
-
-    pts.forEach(p => {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
-      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-    });
-
-    for (let i = 0; i < pts.length; i++) {
-      for (let j = i + 1; j < pts.length; j++) {
-        const dx = pts[i].x - pts[j].x;
-        const dy = pts[i].y - pts[j].y;
-        const d  = Math.sqrt(dx * dx + dy * dy);
-        if (d < 130) {
-          ctx.strokeStyle = `rgba(${base},${0.18 * (1 - d / 130)})`;
-          ctx.lineWidth = 0.6;
-          ctx.beginPath();
-          ctx.moveTo(pts[i].x, pts[i].y);
-          ctx.lineTo(pts[j].x, pts[j].y);
-          ctx.stroke();
-        }
-      }
-      ctx.fillStyle = `rgba(${base},0.45)`;
-      ctx.beginPath();
-      ctx.arc(pts[i].x, pts[i].y, 1.5, 0, Math.PI * 2);
-      ctx.fill();
+    function resizeCanvas() {
+      cvs!.width  = sec!.offsetWidth;
+      cvs!.height = sec!.offsetHeight;
     }
-    requestAnimationFrame(drawParticles);
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    type Pt = { x: number; y: number; vx: number; vy: number };
+    const pts: Pt[] = Array.from({ length: 55 }, () => ({
+      x:  Math.random() * cvs!.width,
+      y:  Math.random() * cvs!.height,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+    }));
+
+    (function drawParticles() {
+      cx.clearRect(0, 0, cvs!.width, cvs!.height);
+      const base = document.documentElement.dataset.theme === 'light' ? '180,100,30' : '232,145,74';
+
+      pts.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > cvs!.width)  p.vx *= -1;
+        if (p.y < 0 || p.y > cvs!.height) p.vy *= -1;
+      });
+
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const dx = pts[i].x - pts[j].x;
+          const dy = pts[i].y - pts[j].y;
+          const d  = Math.sqrt(dx * dx + dy * dy);
+          if (d < 130) {
+            cx.strokeStyle = `rgba(${base},${0.18 * (1 - d / 130)})`;
+            cx.lineWidth = 0.6;
+            cx.beginPath();
+            cx.moveTo(pts[i].x, pts[i].y);
+            cx.lineTo(pts[j].x, pts[j].y);
+            cx.stroke();
+          }
+        }
+        cx.fillStyle = `rgba(${base},0.45)`;
+        cx.beginPath();
+        cx.arc(pts[i].x, pts[i].y, 1.5, 0, Math.PI * 2);
+        cx.fill();
+      }
+      requestAnimationFrame(drawParticles);
+    })();
   }
-  drawParticles();
 </script>
