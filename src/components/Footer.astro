@@ -1,18 +1,36 @@
 ---
-import type { Translations } from '../i18n';
+import type { Translations, Lang } from '../i18n';
 
 interface Props {
   t: Translations;
+  lang?: Lang;
 }
-const { t } = Astro.props;
+
+const { t, lang = 'en' } = Astro.props;
 const year = new Date().getFullYear();
+
+const privacyLabel = { en: 'Privacy policy', es: 'Política de privacidad', gl: 'Política de privacidade' }[lang];
+const privacyUrl = lang !== 'en'
+  ? `${import.meta.env.BASE_URL}${lang}/privacy/`
+  : `${import.meta.env.BASE_URL}privacy/`;
 ---
 
 <footer class="px-8 py-8" style="border-top: 1px solid var(--color-border);">
-  <div class="max-w-5xl mx-auto flex items-center justify-between">
-    <span class="text-xs uppercase tracking-[0.15em]" style="color: var(--color-muted); font-family: var(--font-display);">
-      © {year} Miguel Padín Domínguez
-    </span>
+  <div class="max-w-5xl mx-auto flex items-center justify-between flex-wrap gap-y-2">
+    <div style="display: flex; align-items: center; gap: 1.25rem;">
+      <span class="text-xs uppercase tracking-[0.15em]" style="color: var(--color-muted); font-family: var(--font-display);">
+        © {year} Miguel Padín Domínguez
+      </span>
+      <a
+        href={privacyUrl}
+        class="text-xs uppercase tracking-[0.15em] transition-colors duration-200"
+        style="color: var(--color-muted); font-family: var(--font-display);"
+        onmouseover="this.style.color='var(--color-accent)'"
+        onmouseout="this.style.color='var(--color-muted)'"
+      >
+        {privacyLabel}
+      </a>
+    </div>
     <a
       href="https://maps.google.com/?q=Las+Palmas+de+Gran+Canaria"
       target="_blank"
