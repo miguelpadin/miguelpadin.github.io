@@ -7,9 +7,9 @@ interface Props {
 
 const { lang = 'en' } = Astro.props;
 
-const privacyUrl = lang !== 'en'
-  ? `${import.meta.env.BASE_URL}${lang}/privacy/`
-  : `${import.meta.env.BASE_URL}privacy/`;
+const cookiesUrl = lang !== 'en'
+  ? `${import.meta.env.BASE_URL}${lang}/cookies/`
+  : `${import.meta.env.BASE_URL}cookies/`;
 
 const copy = {
   en: {
@@ -20,7 +20,7 @@ const copy = {
     analytics: 'Analytics',
     analyticsBadge: 'Optional',
     analyticsDesc: 'Google Analytics — anonymous usage data.',
-    privacy: 'Privacy policy',
+    cookies: 'Cookie policy',
     accept: 'Accept all',
     decline: 'Necessary only',
   },
@@ -32,7 +32,7 @@ const copy = {
     analytics: 'Analíticas',
     analyticsBadge: 'Opcionales',
     analyticsDesc: 'Google Analytics — datos de uso anónimos.',
-    privacy: 'Política de privacidad',
+    cookies: 'Política de cookies',
     accept: 'Aceptar todo',
     decline: 'Solo necesarias',
   },
@@ -44,7 +44,7 @@ const copy = {
     analytics: 'Analíticas',
     analyticsBadge: 'Opcionais',
     analyticsDesc: 'Google Analytics — datos de uso anónimos.',
-    privacy: 'Política de privacidade',
+    cookies: 'Política de cookies',
     accept: 'Aceptar todo',
     decline: 'Só necesarias',
   },
@@ -163,7 +163,7 @@ const c = copy[lang];
   <!-- Actions -->
   <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.125rem;">
     <a
-      href={privacyUrl}
+      href={cookiesUrl}
       style="
         font-family: var(--font-display);
         font-size: 0.5625rem;
@@ -176,7 +176,7 @@ const c = copy[lang];
       "
       onmouseover="this.style.color='var(--color-accent)'"
       onmouseout="this.style.color='var(--color-muted)'"
-    >{c.privacy}</a>
+    >{c.cookies}</a>
     <div style="display: flex; gap: 0.5rem;">
       <button
         id="cookie-decline"

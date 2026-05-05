@@ -1,0 +1,103 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const lang = 'es';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout
+  title="Aviso legal — Miguel Padín Domínguez"
+  description="Aviso legal de miguelpadin.github.io — responsable del sitio, propiedad intelectual y legislación aplicable."
+  lang={lang}
+>
+  <div style="max-width: 680px; margin: 0 auto; padding: 5rem 2rem 7rem;">
+    <a
+      href={`${base}/es/`}
+      style="
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--font-display);
+        font-size: 0.625rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--color-muted);
+        text-decoration: none;
+        margin-bottom: 3rem;
+        transition: color 0.2s;
+      "
+      onmouseover="this.style.color='var(--color-accent)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >← Volver</a>
+
+    <article>
+      <p style="
+        font-family: var(--font-display);
+        font-size: 0.625rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+        margin: 0 0 1rem;
+      ">Legal</p>
+
+      <h1 style="
+        font-family: var(--font-display);
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 700;
+        color: var(--color-fg);
+        margin: 0 0 0.5rem;
+        line-height: 1.15;
+      ">Aviso legal</h1>
+
+      <p style="
+        font-family: var(--font-body);
+        font-size: 0.8125rem;
+        color: var(--color-muted);
+        margin: 0 0 3rem;
+      ">Última actualización: mayo de 2026</p>
+
+      <div style="
+        font-family: var(--font-body);
+        font-size: 0.9375rem;
+        color: var(--color-muted);
+        line-height: 1.75;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      ">
+
+        <section>
+          <h2 style="font-family: var(--font-display); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg); margin: 0 0 0.75rem;">Titular del sitio</h2>
+          <p style="margin: 0;">Este sitio web está operado por <strong style="color: var(--color-fg);">Miguel Padín Domínguez</strong>, actuando como persona física particular.<br />
+          Contacto: <a href="mailto:miguel.padin.dominguez@gmail.com" style="color: var(--color-accent); text-decoration: none;">miguel.padin.dominguez@gmail.com</a></p>
+        </section>
+
+        <section>
+          <h2 style="font-family: var(--font-display); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg); margin: 0 0 0.75rem;">Objeto del sitio</h2>
+          <p style="margin: 0;">Este sitio web es un portfolio personal y currículum con fines meramente informativos. No se comercializan productos ni servicios a través de él.</p>
+        </section>
+
+        <section>
+          <h2 style="font-family: var(--font-display); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg); margin: 0 0 0.75rem;">Propiedad intelectual</h2>
+          <p style="margin: 0;">Todos los contenidos de este sitio — incluyendo textos, diseño, código y gráficos — son propiedad de Miguel Padín Domínguez salvo que se indique lo contrario. Queda prohibida la reproducción, distribución o comunicación pública de cualquier parte de este sitio sin autorización previa y por escrito.</p>
+        </section>
+
+        <section>
+          <h2 style="font-family: var(--font-display); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg); margin: 0 0 0.75rem;">Limitación de responsabilidad</h2>
+          <p style="margin: 0;">El titular hace todo lo posible por mantener la información del sitio actualizada y precisa, pero no ofrece garantías sobre su exhaustividad o idoneidad para ningún propósito concreto. El titular no se responsabiliza de los daños derivados del uso, o de la imposibilidad de uso, de este sitio, ni del contenido de los sitios externos enlazados.</p>
+        </section>
+
+        <section>
+          <h2 style="font-family: var(--font-display); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg); margin: 0 0 0.75rem;">Protección de datos</h2>
+          <p style="margin: 0;">Para obtener información sobre cómo se tratan los datos personales, consulta la <a href={`${base}/es/privacy/`} style="color: var(--color-accent); text-decoration: none;">Política de privacidad</a> y la <a href={`${base}/es/cookies/`} style="color: var(--color-accent); text-decoration: none;">Política de cookies</a>.</p>
+        </section>
+
+        <section>
+          <h2 style="font-family: var(--font-display); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg); margin: 0 0 0.75rem;">Legislación aplicable y jurisdicción</h2>
+          <p style="margin: 0;">Este aviso legal se rige por la legislación española. Cualquier controversia derivada del uso de este sitio web quedará sometida a la jurisdicción de los juzgados y tribunales de Las Palmas de Gran Canaria, salvo que la normativa de consumo aplicable disponga lo contrario.</p>
+        </section>
+
+      </div>
+    </article>
+  </div>
+</Layout>

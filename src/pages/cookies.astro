@@ -1,0 +1,139 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const lang = 'en';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout
+  title="Cookie Policy — Miguel Padín Domínguez"
+  description="Cookie policy for miguelpadin.github.io — what cookies are used and how to manage them."
+  lang={lang}
+>
+  <div style="max-width: 680px; margin: 0 auto; padding: 5rem 2rem 7rem;">
+    <a
+      href={`${base}/`}
+      style="
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--font-display);
+        font-size: 0.625rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--color-muted);
+        text-decoration: none;
+        margin-bottom: 3rem;
+        transition: color 0.2s;
+      "
+      onmouseover="this.style.color='var(--color-accent)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >← Back</a>
+
+    <article>
+      <p style="
+        font-family: var(--font-display);
+        font-size: 0.625rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+        margin: 0 0 1rem;
+      ">Legal</p>
+
+      <h1 style="
+        font-family: var(--font-display);
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 700;
+        color: var(--color-fg);
+        margin: 0 0 0.5rem;
+        line-height: 1.15;
+      ">Cookie Policy</h1>
+
+      <p style="
+        font-family: var(--font-body);
+        font-size: 0.8125rem;
+        color: var(--color-muted);
+        margin: 0 0 3rem;
+      ">Last updated: May 2026</p>
+
+      <div style="
+        font-family: var(--font-body);
+        font-size: 0.9375rem;
+        color: var(--color-muted);
+        line-height: 1.75;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      ">
+
+        <section>
+          <h2 style="font-family: var(--font-display); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg); margin: 0 0 0.75rem;">What are cookies?</h2>
+          <p style="margin: 0;">Cookies are small files that a website stores in your browser. This site uses browser <strong style="color: var(--color-fg);">local storage</strong> (not traditional cookies) to remember your preferences — it works the same way but data is never transmitted to a server automatically.</p>
+        </section>
+
+        <section>
+          <h2 style="font-family: var(--font-display); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg); margin: 0 0 0.75rem;">Cookies we use</h2>
+
+          <p style="margin: 0 0 1.25rem;"><strong style="color: var(--color-fg);">Necessary cookies</strong> are always active. They are stored in your browser's local storage (not transmitted to any server) and are required for the site to remember your cookie preference.</p>
+
+          <div style="border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden; margin-bottom: 1.25rem;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.8125rem;">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--color-border);">
+                  <th style="padding: 0.625rem 1rem; text-align: left; font-family: var(--font-display); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-fg);">Name</th>
+                  <th style="padding: 0.625rem 1rem; text-align: left; font-family: var(--font-display); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-fg);">Purpose</th>
+                  <th style="padding: 0.625rem 1rem; text-align: left; font-family: var(--font-display); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-fg);">Storage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 0.625rem 1rem; font-family: monospace; font-size: 0.8125rem; color: var(--color-accent);">cookie-consent</td>
+                  <td style="padding: 0.625rem 1rem;">Stores your cookie preference (accepted / declined)</td>
+                  <td style="padding: 0.625rem 1rem;">localStorage · no expiry</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="margin: 0 0 1.25rem;"><strong style="color: var(--color-fg);">Analytics cookies</strong> are only set if you choose "Accept all". They are provided by Google Analytics 4 and help understand how visitors use this site. No personally identifiable information is collected.</p>
+
+          <div style="border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.8125rem;">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--color-border);">
+                  <th style="padding: 0.625rem 1rem; text-align: left; font-family: var(--font-display); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-fg);">Name</th>
+                  <th style="padding: 0.625rem 1rem; text-align: left; font-family: var(--font-display); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-fg);">Purpose</th>
+                  <th style="padding: 0.625rem 1rem; text-align: left; font-family: var(--font-display); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-fg);">Expires</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--color-border);">
+                  <td style="padding: 0.625rem 1rem; font-family: monospace; font-size: 0.8125rem; color: var(--color-accent);">_ga</td>
+                  <td style="padding: 0.625rem 1rem;">Distinguishes unique users</td>
+                  <td style="padding: 0.625rem 1rem;">2 years</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.625rem 1rem; font-family: monospace; font-size: 0.8125rem; color: var(--color-accent);">_ga_*</td>
+                  <td style="padding: 0.625rem 1rem;">Persists GA4 session state</td>
+                  <td style="padding: 0.625rem 1rem;">2 years</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section>
+          <h2 style="font-family: var(--font-display); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg); margin: 0 0 0.75rem;">Managing your consent</h2>
+          <p style="margin: 0 0 0.75rem;">You can withdraw your consent at any time. To do so, open your browser's developer tools, go to <em>Application → Local Storage</em>, delete the <code style="font-family: monospace; font-size: 0.875rem; color: var(--color-accent);">cookie-consent</code> key, and reload the page — the banner will reappear.</p>
+          <p style="margin: 0;">To request deletion of analytics data collected by Google, visit <a href="https://myaccount.google.com/data-and-privacy" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: none;">Google's Privacy Controls</a>.</p>
+        </section>
+
+        <section>
+          <h2 style="font-family: var(--font-display); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg); margin: 0 0 0.75rem;">Third-party cookies</h2>
+          <p style="margin: 0;">Analytics cookies are set by <a href="https://analytics.google.com/" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: none;">Google Analytics 4</a>, operated by Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Ireland). See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: none;">Google's Privacy Policy</a> for details.</p>
+        </section>
+
+      </div>
+    </article>
+  </div>
+</Layout>
