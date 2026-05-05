@@ -202,6 +202,50 @@
 }
 
 
+/* ── Pulsing available dot ───────────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.pulse-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  flex-shrink: 0;
+  position: relative;
+}
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-accent);
+  opacity: 0;
+  animation: pulse-ring 2.4s ease-out infinite;
+}
+
+/* ── Section divider sweep ───────────────────────────────────── */
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+[data-reveal].is-visible .divider-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  animation: divider-sweep 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes divider-sweep {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(200%); }
+}
+
 /* ── Split text chars ────────────────────────────────────────── */
 .split-char {
   display: inline-block;
