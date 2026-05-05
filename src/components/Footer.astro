@@ -9,10 +9,16 @@ interface Props {
 const { t, lang = 'en' } = Astro.props;
 const year = new Date().getFullYear();
 
+const prefix = lang !== 'en' ? `${import.meta.env.BASE_URL}${lang}/` : `${import.meta.env.BASE_URL}`;
+
 const privacyLabel = { en: 'Privacy policy', es: 'Política de privacidad', gl: 'Política de privacidade' }[lang];
-const privacyUrl = lang !== 'en'
-  ? `${import.meta.env.BASE_URL}${lang}/privacy/`
-  : `${import.meta.env.BASE_URL}privacy/`;
+const privacyUrl = `${prefix}privacy/`;
+
+const cookiesLabel = { en: 'Cookie policy', es: 'Política de cookies', gl: 'Política de cookies' }[lang];
+const cookiesUrl = `${prefix}cookies/`;
+
+const legalLabel = { en: 'Legal notice', es: 'Aviso legal', gl: 'Aviso legal' }[lang];
+const legalUrl = `${prefix}legal/`;
 ---
 
 <footer class="px-8 py-8" style="border-top: 1px solid var(--color-border);">
@@ -29,6 +35,24 @@ const privacyUrl = lang !== 'en'
         onmouseout="this.style.color='var(--color-muted)'"
       >
         {privacyLabel}
+      </a>
+      <a
+        href={cookiesUrl}
+        class="text-xs uppercase tracking-[0.15em] transition-colors duration-200"
+        style="color: var(--color-muted); font-family: var(--font-display);"
+        onmouseover="this.style.color='var(--color-accent)'"
+        onmouseout="this.style.color='var(--color-muted)'"
+      >
+        {cookiesLabel}
+      </a>
+      <a
+        href={legalUrl}
+        class="text-xs uppercase tracking-[0.15em] transition-colors duration-200"
+        style="color: var(--color-muted); font-family: var(--font-display);"
+        onmouseover="this.style.color='var(--color-accent)'"
+        onmouseout="this.style.color='var(--color-muted)'"
+      >
+        {legalLabel}
       </a>
     </div>
     <a
