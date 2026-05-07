@@ -13,6 +13,17 @@
   --font-body: 'DM Sans', system-ui, sans-serif;
 }
 
+/* ── Light theme ─────────────────────────────────────────────── */
+[data-theme="light"] {
+  --color-bg: #F5F3EE;
+  --color-surface: #ECEAE4;
+  --color-border: #D5D1C8;
+  --color-fg: #1A1917;
+  --color-muted: #8C8984;
+  --color-secondary: #4A4844;
+  --color-accent: #C97A35;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
