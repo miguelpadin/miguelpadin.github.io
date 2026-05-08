@@ -49,8 +49,8 @@ export const skillUrls: Record<string, string> = {
   'ESM':                   'https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules',
   'Code Review':           'https://google.github.io/eng-practices/review/',
   // Architecture
-  'Hexagonal Architecture':     'https://alistair.cockburn.us/hexagonal-architecture/',
-  'Arquitectura Hexagonal':     'https://alistair.cockburn.us/hexagonal-architecture/',
+  'Hexagonal Architecture':     'https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)',
+  'Arquitectura Hexagonal':     'https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)',
   'DDD':                        'https://martinfowler.com/bliki/DomainDrivenDesign.html',
   'Clean Architecture':         'https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html',
   'SOLID':                      'https://en.wikipedia.org/wiki/SOLID',
