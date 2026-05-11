@@ -1,5 +1,6 @@
 ---
 import type { Translations } from '../i18n';
+import { skillUrls } from '../i18n';
 
 interface Props {
   t: Translations;
@@ -31,21 +32,33 @@ const { t } = Astro.props;
             {group.label}
           </p>
           <div class="flex flex-wrap gap-2">
-            {group.items.map((item) => (
-              <span
-                class="skill-pill text-sm px-3 py-1.5 transition-colors duration-200 cursor-auto"
-                style="
-                  color: var(--color-secondary);
-                  background: var(--color-bg);
-                  border: 1px solid var(--color-border);
-                  font-weight: 300;
-                "
-                onmouseover="this.style.borderColor='var(--color-accent)'; this.style.color='var(--color-fg)';"
-                onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-secondary)';"
-              >
-                {item}
-              </span>
-            ))}
+            {group.items.map((item) => {
+              const url = skillUrls[item];
+              const pillClass = "skill-pill text-sm px-3 py-1.5 transition-colors duration-200";
+              const pillStyle = "color: var(--color-secondary); background: var(--color-bg); border: 1px solid var(--color-border); font-weight: 300;";
+              return url ? (
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class={pillClass}
+                  style={pillStyle}
+                  onmouseover="this.style.borderColor='var(--color-accent)'; this.style.color='var(--color-fg)';"
+                  onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-secondary)';"
+                >
+                  {item}
+                </a>
+              ) : (
+                <span
+                  class={pillClass}
+                  style={pillStyle}
+                  onmouseover="this.style.borderColor='var(--color-accent)'; this.style.color='var(--color-fg)';"
+                  onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-secondary)';"
+                >
+                  {item}
+                </span>
+              );
+            })}
           </div>
         </div>
       ))}

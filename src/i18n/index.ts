@@ -2,6 +2,62 @@ export const languages = { en: 'EN', es: 'ES', gl: 'GL' } as const;
 export type Lang = keyof typeof languages;
 export const defaultLang: Lang = 'en';
 
+export const skillUrls: Record<string, string> = {
+  // Frontend
+  'Vue':                   'https://vuejs.org',
+  'Nuxt':                  'https://nuxt.com',
+  'TypeScript':            'https://www.typescriptlang.org',
+  'Pinia':                 'https://pinia.vuejs.org',
+  'Vuex':                  'https://vuex.vuejs.org',
+  'PrimeVue':              'https://primevue.org',
+  'Quasar':                'https://quasar.dev',
+  'BootstrapVue':          'https://bootstrap-vue.org',
+  'Tailwind':              'https://tailwindcss.com',
+  'Bootstrap':             'https://getbootstrap.com',
+  'Bulma':                 'https://bulma.io',
+  'SASS':                  'https://sass-lang.com',
+  'SCSS':                  'https://sass-lang.com',
+  'Flexbox':               'https://developer.mozilla.org/docs/Web/CSS/CSS_flexible_box_layout',
+  'CSS Grid':              'https://developer.mozilla.org/docs/Web/CSS/CSS_grid_layout',
+  'Vite':                  'https://vitejs.dev',
+  // Backend
+  'Python':                'https://www.python.org',
+  'REST APIs':             'https://restfulapi.net',
+  'RESTful':               'https://restfulapi.net',
+  'HATEOAS':               'https://restfulapi.net/hateoas',
+  'OpenAPI':               'https://www.openapis.org',
+  'Odoo':                  'https://www.odoo.com',
+  'SQL':                   'https://www.w3schools.com/sql/',
+  'PostgreSQL':            'https://www.postgresql.org',
+  'Oracle':                'https://www.oracle.com/database/',
+  'PL/SQL':                'https://www.oracle.com/database/technologies/appdev/plsql.html',
+  'Node.js':               'https://nodejs.org',
+  // Testing
+  'Vitest':                'https://vitest.dev',
+  'Jest':                  'https://jestjs.io',
+  'Playwright':            'https://playwright.dev',
+  'Cypress':               'https://www.cypress.io',
+  'Vue Test Utils':        'https://test-utils.vuejs.org',
+  'Testing Library':       'https://testing-library.com',
+  'pytest':                'https://pytest.org',
+  'TDD':                   'https://martinfowler.com/bliki/TestDrivenDevelopment.html',
+  'BDD':                   'https://cucumber.io/docs/bdd/',
+  // Tooling
+  'GitHub Actions':        'https://github.com/features/actions',
+  'Git':                   'https://git-scm.com',
+  'CI/CD':                 'https://about.gitlab.com/topics/ci-cd/',
+  'ESM':                   'https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules',
+  'Code Review':           'https://google.github.io/eng-practices/review/',
+  // Architecture
+  'Hexagonal Architecture':     'https://alistair.cockburn.us/hexagonal-architecture/',
+  'Arquitectura Hexagonal':     'https://alistair.cockburn.us/hexagonal-architecture/',
+  'DDD':                        'https://martinfowler.com/bliki/DomainDrivenDesign.html',
+  'Clean Architecture':         'https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html',
+  'SOLID':                      'https://en.wikipedia.org/wiki/SOLID',
+  'REST':                       'https://restfulapi.net',
+  'MVC':                        'https://developer.mozilla.org/docs/Glossary/MVC',
+};
+
 export function getLangUrl(targetLang: Lang): string {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   return targetLang === 'en' ? `${base}/` : `${base}/${targetLang}/`;
