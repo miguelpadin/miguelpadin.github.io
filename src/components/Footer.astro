@@ -13,8 +13,16 @@ const year = new Date().getFullYear();
     <span class="text-xs uppercase tracking-[0.15em]" style="color: var(--color-muted); font-family: var(--font-display);">
       © {year} Miguel Padín Domínguez
     </span>
-    <span class="text-xs" style="color: var(--color-muted);">
+    <a
+      href="https://maps.google.com/?q=Las+Palmas+de+Gran+Canaria"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-xs transition-colors duration-200"
+      style="color: var(--color-muted);"
+      onmouseover="this.style.color='var(--color-accent)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >
       {t.footer}
-    </span>
+    </a>
   </div>
 </footer>
