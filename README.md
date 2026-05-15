@@ -7,7 +7,7 @@ Personal portfolio — [miguelpadin.github.io](https://miguelpadin.github.io/)
 - [Astro](https://astro.build) v6 + TypeScript
 - Tailwind CSS v4
 - Multi-language: EN / ES / GL
-- Deployed via GitHub Actions → GitHub Pages
+- Deployed via GitHub Actions → GitHub Pages from release tags
 
 ## Dev
 
