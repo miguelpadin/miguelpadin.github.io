@@ -152,7 +152,7 @@
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   display: inline-flex;
   align-items: center;
-  cursor: crosshair;
+  cursor: pointer;
 }
 .magnetic.is-dragging {
   transition: transform 0.08s linear;
