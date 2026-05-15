@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.1.2...v0.1.3) (2026-05-15)
+
+
+### Bug Fixes
+
+* add blank line for better readability in README ([f95b07d](https://github.com/miguelpadin/miguelpadin.github.io/commit/f95b07d3588d18517789cdd4f4acc6dc1e4ef6b3))
+
 ## [0.1.2](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.1.1...v0.1.2) (2026-05-15)
 
 
