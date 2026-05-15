@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.1.5...v0.1.6) (2026-05-15)
+
+
+### Bug Fixes
+
+* remove unused fade-in animation element from Hero component ([027bba6](https://github.com/miguelpadin/miguelpadin.github.io/commit/027bba61bbf4f77bf96475c788dbf22f8c636b71))
+
 ## [0.1.5](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.1.4...v0.1.5) (2026-05-15)
 
 
