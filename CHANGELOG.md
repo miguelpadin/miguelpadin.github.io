@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.2](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.1.1...v0.1.2) (2026-05-15)
+
+
+### Bug Fixes
+
+* add missing token configuration for release-please action ([2325deb](https://github.com/miguelpadin/miguelpadin.github.io/commit/2325deb499b2610ab31fc0b54eccbebd0c123a47))
+* use fallback token for release-please action ([2d50400](https://github.com/miguelpadin/miguelpadin.github.io/commit/2d50400bdc97b794cc33c8a624a3287407432d43))
+
 ## [0.1.1](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.1.0...v0.1.1) (2026-05-15)
 
 
