@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.1.3...v0.1.4) (2026-05-15)
+
+
+### Bug Fixes
+
+* downgrade action versions in deploy workflow for compatibility ([d9b1bfb](https://github.com/miguelpadin/miguelpadin.github.io/commit/d9b1bfb39845e89e15aea324fabc54c4df1ee0e7))
+
 ## [0.1.3](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.1.2...v0.1.3) (2026-05-15)
 
 
