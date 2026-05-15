@@ -9,6 +9,7 @@ Personal portfolio — [miguelpadin.github.io](https://miguelpadin.github.io/)
 - Multi-language: EN / ES / GL
 - Deployed via GitHub Actions → GitHub Pages from release tags
 
+
 ## Dev
 
 ```sh
