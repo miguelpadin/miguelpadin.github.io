@@ -3,7 +3,8 @@ export type Lang = keyof typeof languages;
 export const defaultLang: Lang = 'en';
 
 export function getLangUrl(targetLang: Lang): string {
-  return targetLang === 'en' ? '/' : `/${targetLang}/`;
+  const base = import.meta.env.BASE_URL;
+  return targetLang === 'en' ? base : `${base}${targetLang}/`;
 }
 
 const ui = {
