@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.3.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.2.0...v0.3.0) (2026-05-22)
+
+
+### Features
+
+* add base path for GitHub Pages deployment under /miguelpadin ([9aa98a5](https://github.com/miguelpadin/miguelpadin.github.io/commit/9aa98a531807c71b43391eb6246d73af5e199d3b))
+* add scroll progress bar, aurora background blobs, and skill pill animations while updating tech stack lists ([756c473](https://github.com/miguelpadin/miguelpadin.github.io/commit/756c473bdc14417b95d055d34a985fa67f5fc02b))
+* initialize portfolio project with Astro, Tailwind CSS, and custom branding components ([dd08493](https://github.com/miguelpadin/miguelpadin.github.io/commit/dd0849366345b4cfa9b0031e7b22201fd59fb2c8))
+* marquee strip, active nav and 3D tilt on experience entries ([fa48989](https://github.com/miguelpadin/miguelpadin.github.io/commit/fa48989682c6bc97106779da3ae37757852cf9b4))
+* update experience to 10+ years and centralize meta description ([d63e4fa](https://github.com/miguelpadin/miguelpadin.github.io/commit/d63e4fa46e0088f348455a04498693c9c7db819b))
+* update resume skills and footer ([23da15e](https://github.com/miguelpadin/miguelpadin.github.io/commit/23da15e30542989a416c943c19af4fbc69ee180d))
+* visual polish, animations, skills update and fixes ([01f7254](https://github.com/miguelpadin/miguelpadin.github.io/commit/01f7254501ecd05149d156865677788182d3fd04))
+
+
+### Bug Fixes
+
+* add blank line for better readability in README ([2e73269](https://github.com/miguelpadin/miguelpadin.github.io/commit/2e73269440d0c71fc001ab7f3318130a09e9465f))
+* add left padding to header on mobile ([fbf30f1](https://github.com/miguelpadin/miguelpadin.github.io/commit/fbf30f167137f4b33d9521b26e65b225fc4c118a))
+* add missing token configuration for release-please action ([06c6dea](https://github.com/miguelpadin/miguelpadin.github.io/commit/06c6deafadc000208041837a0f43d5c12e794f16))
+* clarify release deployment in README ([a893f77](https://github.com/miguelpadin/miguelpadin.github.io/commit/a893f770539a1e4e4fbd4eaa10b446798ac1d304))
+* downgrade action versions in deploy workflow for compatibility ([e9a7205](https://github.com/miguelpadin/miguelpadin.github.io/commit/e9a7205a0a96d41ba8528c6c114e74541952106f))
+* remove unused fade-in animation element from Hero component ([e4a5066](https://github.com/miguelpadin/miguelpadin.github.io/commit/e4a50668dfca42ceea72c227cb9d6615eecbe395))
+* upgrade action versions in deploy workflow for improved compatibility ([9918471](https://github.com/miguelpadin/miguelpadin.github.io/commit/9918471570ccbd79ad7f609a0b1e38d978ad2964))
+* use fallback token for release-please action ([4bbf4fc](https://github.com/miguelpadin/miguelpadin.github.io/commit/4bbf4fc1ec13910711641c292a6bf8a2ba3e115d))
+
 ## [0.2.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.1.5...v0.2.0) (2026-05-22)
 
 
