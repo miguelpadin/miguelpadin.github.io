@@ -31,6 +31,7 @@ export type Translations = {
   hero: {
     label: string;
     bio: string;
+    description: string;
   };
   experience: {
     label: string;
@@ -154,7 +155,8 @@ const ui = {
     },
     hero: {
       label: 'Software Engineer',
-      bio: '9+ years building enterprise systems and modern web applications. Focused on scalable architecture, code quality and developer experience. Based in Las Palmas de Gran Canaria, Spain.',
+      description: 'Software engineer with 10+ years of experience. Focused on Vue 3, TypeScript and modern web architecture.',
+      bio: '10+ years building enterprise systems and modern web applications. Focused on scalable architecture, code quality and developer experience. Based in Las Palmas de Gran Canaria, Spain.',
     },
     experience: {
       label: 'Experience',
@@ -233,7 +235,8 @@ const ui = {
     },
     hero: {
       label: 'Ingeniero de Software',
-      bio: 'Más de 9 años construyendo sistemas empresariales y aplicaciones web modernas. Enfocado en arquitectura escalable, calidad de código y experiencia de desarrollo. Afincado en Las Palmas de Gran Canaria, España.',
+      description: 'Ingeniero de software con más de 10 años de experiencia. Especializado en Vue 3, TypeScript y arquitectura web moderna.',
+      bio: 'Más de 10 años construyendo sistemas empresariales y aplicaciones web modernas. Enfocado en arquitectura escalable, calidad de código y experiencia de desarrollo. Afincado en Las Palmas de Gran Canaria, España.',
     },
     experience: {
       label: 'Experiencia',
@@ -312,7 +315,8 @@ const ui = {
     },
     hero: {
       label: 'Enxeñeiro de Software',
-      bio: 'Máis de 9 anos construíndo sistemas empresariais e aplicacións web modernas. Enfocado en arquitectura escalable, calidade de código e experiencia de desenvolvemento. Afincado en Las Palmas de Gran Canaria, España.',
+      description: 'Enxeñeiro de software con máis de 10 anos de experiencia. Especializado en Vue 3, TypeScript e arquitectura web moderna.',
+      bio: 'Máis de 10 anos construíndo sistemas empresariais e aplicacións web modernas. Enfocado en arquitectura escalable, calidade de código e experiencia de desenvolvemento. Afincado en Las Palmas de Gran Canaria, España.',
     },
     experience: {
       label: 'Experiencia',
