@@ -2,6 +2,57 @@ export const languages = { en: 'EN', es: 'ES', gl: 'GL' } as const;
 export type Lang = keyof typeof languages;
 export const defaultLang: Lang = 'en';
 
+type ExperienceJob = {
+  company: string;
+  url?: string;
+  role: string;
+  period: string;
+  location: string;
+  current: boolean;
+  highlights: readonly string[];
+};
+
+type SkillGroup = {
+  label: string;
+  items: readonly string[];
+};
+
+type LanguageSkill = {
+  label: string;
+  level: string;
+};
+
+export type Translations = {
+  nav: {
+    experience: string;
+    skills: string;
+    contact: string;
+  };
+  hero: {
+    label: string;
+    bio: string;
+  };
+  experience: {
+    label: string;
+    current: string;
+    jobs: readonly ExperienceJob[];
+  };
+  skills: {
+    label: string;
+    groups: readonly SkillGroup[];
+    languagesLabel: string;
+    spanish: LanguageSkill;
+    galician: LanguageSkill;
+    english: LanguageSkill;
+  };
+  contact: {
+    label: string;
+    heading: readonly [string, string];
+    subtext: string;
+  };
+  footer: string;
+};
+
 export const skillUrls: Record<string, string> = {
   // Frontend
   'Vue':                   'https://vuejs.org',
@@ -28,6 +79,7 @@ export const skillUrls: Record<string, string> = {
   'Odoo':                  'https://www.odoo.com',
   'SQL':                   'https://www.w3schools.com/sql/',
   'PostgreSQL':            'https://www.postgresql.org',
+  'Supabase':              'https://supabase.com',
   'Oracle':                'https://www.oracle.com/database/',
   'PL/SQL':                'https://www.oracle.com/database/technologies/appdev/plsql.html',
   'Node.js':               'https://nodejs.org',
@@ -43,6 +95,8 @@ export const skillUrls: Record<string, string> = {
   'BDD':                   'https://cucumber.io/docs/bdd/',
   // Tooling
   'GitHub Actions':        'https://github.com/features/actions',
+  'GitHub Pages':          'https://pages.github.com',
+  'Vercel':                'https://vercel.com',
   'Git':                   'https://git-scm.com',
   'CI/CD':                 'https://about.gitlab.com/topics/ci-cd/',
   'ESM':                   'https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules',
@@ -152,8 +206,8 @@ const ui = {
       label: 'Skills',
       groups: [
         { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
-        { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
-        { label: 'Tooling & Process', items: ['GitHub Actions', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Scrum', 'npm', 'pnpm'] },
+        { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Supabase', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
+        { label: 'Tooling & Process', items: ['GitHub Actions', 'GitHub Pages', 'Vercel', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Scrum', 'npm', 'pnpm'] },
         { label: 'Architecture', items: ['Hexagonal Architecture', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS', 'Monorepo', 'API Gateway', 'SPA', 'SSR'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'AI', items: ['Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'CodeRabbit', 'Ollama', 'LM Studio', 'Continue'] },
@@ -231,8 +285,8 @@ const ui = {
       label: 'Habilidades',
       groups: [
         { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
-        { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
-        { label: 'Herramientas y proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Scrum', 'npm', 'pnpm'] },
+        { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Supabase', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
+        { label: 'Herramientas y proceso', items: ['GitHub Actions', 'GitHub Pages', 'Vercel', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Scrum', 'npm', 'pnpm'] },
         { label: 'Arquitectura', items: ['Arquitectura Hexagonal', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'IA', items: ['Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'CodeRabbit', 'Ollama', 'LM Studio', 'Continue'] },
@@ -310,8 +364,8 @@ const ui = {
       label: 'Habilidades',
       groups: [
         { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
-        { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
-        { label: 'Ferramentas e proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Scrum', 'npm', 'pnpm'] },
+        { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Supabase', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
+        { label: 'Ferramentas e proceso', items: ['GitHub Actions', 'GitHub Pages', 'Vercel', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Scrum', 'npm', 'pnpm'] },
         { label: 'Arquitectura', items: ['Arquitectura Hexagonal', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'IA', items: ['Antigravity', 'Claude Code', 'Codex', 'OpenCode', 'CodeRabbit', 'Ollama', 'LM Studio', 'Continue'] },
@@ -328,9 +382,7 @@ const ui = {
     },
     footer: 'Las Palmas de Gran Canaria, España',
   },
-} as const;
-
-export type Translations = (typeof ui)[Lang];
+} as const satisfies Record<Lang, Translations>;
 
 export function useTranslations(lang: Lang): Translations {
   return ui[lang];
