@@ -1,5 +1,6 @@
 ---
 import type { Translations, Lang } from '../i18n';
+import packageJson from '../../package.json';
 
 interface Props {
   t: Translations;
@@ -8,6 +9,7 @@ interface Props {
 
 const { t, lang = 'en' } = Astro.props;
 const year = new Date().getFullYear();
+const version = packageJson.version;
 
 const prefix = lang !== 'en' ? `${import.meta.env.BASE_URL}${lang}/` : `${import.meta.env.BASE_URL}`;
 
@@ -22,49 +24,101 @@ const legalUrl = `${prefix}legal/`;
 ---
 
 <footer class="px-8 py-8" style="border-top: 1px solid var(--color-border);">
-  <div class="max-w-5xl mx-auto flex items-center justify-between flex-wrap gap-y-2">
-    <div style="display: flex; align-items: center; gap: 1.25rem;">
+  <div class="footer-inner max-w-5xl mx-auto">
+    <div class="footer-name">
       <span class="text-xs uppercase tracking-[0.15em]" style="color: var(--color-muted); font-family: var(--font-display);">
         © {year} Miguel Padín Domínguez
       </span>
-      <a
-        href={privacyUrl}
-        class="text-xs uppercase tracking-[0.15em] transition-colors duration-200"
-        style="color: var(--color-muted); font-family: var(--font-display);"
-        onmouseover="this.style.color='var(--color-accent)'"
-        onmouseout="this.style.color='var(--color-muted)'"
-      >
-        {privacyLabel}
-      </a>
-      <a
-        href={cookiesUrl}
-        class="text-xs uppercase tracking-[0.15em] transition-colors duration-200"
-        style="color: var(--color-muted); font-family: var(--font-display);"
-        onmouseover="this.style.color='var(--color-accent)'"
-        onmouseout="this.style.color='var(--color-muted)'"
-      >
-        {cookiesLabel}
-      </a>
-      <a
-        href={legalUrl}
-        class="text-xs uppercase tracking-[0.15em] transition-colors duration-200"
-        style="color: var(--color-muted); font-family: var(--font-display);"
-        onmouseover="this.style.color='var(--color-accent)'"
-        onmouseout="this.style.color='var(--color-muted)'"
-      >
-        {legalLabel}
-      </a>
+      <span class="text-[10px] uppercase tracking-widest" style="color: var(--color-muted); font-family: var(--font-display); opacity: 0.72;">
+        v.{version}
+      </span>
     </div>
     <a
       href="https://maps.google.com/?q=Las+Palmas+de+Gran+Canaria"
       target="_blank"
       rel="noopener noreferrer"
-      class="text-xs transition-colors duration-200"
+      class="footer-location text-xs transition-colors duration-200"
       style="color: var(--color-muted);"
       onmouseover="this.style.color='var(--color-accent)'"
       onmouseout="this.style.color='var(--color-muted)'"
     >
       {t.footer}
     </a>
+    <a
+      href={privacyUrl}
+      class="footer-link footer-privacy text-xs uppercase tracking-[0.15em] transition-colors duration-200"
+      style="color: var(--color-muted); font-family: var(--font-display);"
+      onmouseover="this.style.color='var(--color-accent)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >
+      {privacyLabel}
+    </a>
+    <a
+      href={cookiesUrl}
+      class="footer-link footer-cookies text-xs uppercase tracking-[0.15em] transition-colors duration-200"
+      style="color: var(--color-muted); font-family: var(--font-display);"
+      onmouseover="this.style.color='var(--color-accent)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >
+      {cookiesLabel}
+    </a>
+    <a
+      href={legalUrl}
+      class="footer-link footer-legal text-xs uppercase tracking-[0.15em] transition-colors duration-200"
+      style="color: var(--color-muted); font-family: var(--font-display);"
+      onmouseover="this.style.color='var(--color-accent)'"
+      onmouseout="this.style.color='var(--color-muted)'"
+    >
+      {legalLabel}
+    </a>
   </div>
 </footer>
+
+<style>
+  .footer-inner {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+  }
+
+  .footer-name {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    order: 1;
+  }
+
+  .footer-link {
+    order: 2;
+  }
+
+  .footer-location {
+    margin-left: auto;
+    order: 3;
+  }
+
+  @media (max-width: 639px) {
+    .footer-inner {
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .footer-location {
+      margin-left: 0;
+      order: 2;
+    }
+
+    .footer-privacy {
+      order: 3;
+    }
+
+    .footer-cookies {
+      order: 4;
+    }
+
+    .footer-legal {
+      order: 5;
+    }
+  }
+</style>
