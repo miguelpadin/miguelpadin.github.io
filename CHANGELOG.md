@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.1.5...v0.2.0) (2026-05-22)
+
+
+### Features
+
+* update resume skills and footer ([c8940a5](https://github.com/miguelpadin/miguelpadin.github.io/commit/c8940a53e4693a0b697ec75b2398cc1e6fc726e0))
+
+
+### Bug Fixes
+
+* remove unused fade-in animation element from Hero component ([027bba6](https://github.com/miguelpadin/miguelpadin.github.io/commit/027bba61bbf4f77bf96475c788dbf22f8c636b71))
+
 ## [0.1.5](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.1.4...v0.1.5) (2026-05-15)
 
 
