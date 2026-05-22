@@ -13,8 +13,8 @@ Personal portfolio — [miguelpadin.github.io](https://miguelpadin.github.io/)
 ## Dev
 
 ```sh
-npm install
-npm run dev       # localhost:4321
-npm run build     # build to ./dist
-npm run preview   # preview build locally
+pnpm install
+pnpm dev          # localhost:4321
+pnpm build        # build to ./dist
+pnpm preview      # preview build locally
 ```
