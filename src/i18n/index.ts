@@ -63,7 +63,7 @@ const ui = {
     skills: {
       label: 'Skills',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'Oracle', 'PL/SQL', 'Node.js'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'Tooling & Process', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review'] },
@@ -138,7 +138,7 @@ const ui = {
     skills: {
       label: 'Habilidades',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'Oracle', 'PL/SQL', 'Node.js'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'Herramientas y proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review'] },
@@ -213,7 +213,7 @@ const ui = {
     skills: {
       label: 'Habilidades',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
+        { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'Oracle', 'PL/SQL', 'Node.js'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'Ferramentas e proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review'] },
