@@ -167,47 +167,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         if (el) sectionObserver.observe(el);
       });
 
-      // ── Animated tab title ────────────────────────────────────────
-      const titleFrames = [
-        'Miguel Padín Domínguez',
-        'Software Engineer',
-        'Vue · TypeScript · Python',
-        '9+ Years of Experience',
-        'Available for new projects',
-      ];
-      let tIdx = 0, tChar = 0, tDeleting = false, tTimer = 0;
-
-      function typeTitle() {
-        const cur = titleFrames[tIdx];
-        if (!tDeleting) {
-          tChar++;
-          document.title = cur.slice(0, tChar) + (tChar < cur.length ? '▋' : '');
-          if (tChar >= cur.length) {
-            tTimer = window.setTimeout(() => { tDeleting = true; typeTitle(); }, 2800);
-            return;
-          }
-          tTimer = window.setTimeout(typeTitle, 75);
-        } else {
-          tChar--;
-          document.title = cur.slice(0, tChar) + (tChar > 0 ? '▋' : '');
-          if (tChar <= 0) {
-            tDeleting = false;
-            tIdx = (tIdx + 1) % titleFrames.length;
-            tTimer = window.setTimeout(typeTitle, 350);
-            return;
-          }
-          tTimer = window.setTimeout(typeTitle, 38);
-        }
-      }
-      window.setTimeout(typeTitle, 1800);
-
+      // ── Tab title visibility easter egg ───────────────────────────
+      const staticTitle = document.title;
       document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          clearTimeout(tTimer);
-          document.title = '👋 ¡Hasta pronto!';
-        } else {
-          tTimer = window.setTimeout(typeTitle, 600);
-        }
+        document.title = document.hidden ? '👋 ¡Hasta pronto!' : staticTitle;
       });
 
       // ── Animated favicon ──────────────────────────────────────────
