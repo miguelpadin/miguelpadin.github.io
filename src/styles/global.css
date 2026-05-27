@@ -190,6 +190,65 @@
     0 0 40px rgba(232,145,74,0.15);
 }
 
+/* ── Custom cursor ───────────────────────────────────────────── */
+@media (pointer: fine) {
+  * { cursor: none !important; }
+}
+
+#cursor-dot {
+  position: fixed;
+  width: 6px; height: 6px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s, transform 0.2s;
+  will-change: left, top;
+}
+#cursor-ring {
+  position: fixed;
+  width: 40px; height: 40px;
+  border: 1.5px solid rgba(232,145,74,0.45);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999998;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s cubic-bezier(0.16,1,0.3,1),
+              height 0.4s cubic-bezier(0.16,1,0.3,1),
+              border-color 0.35s,
+              opacity 0.3s;
+  will-change: left, top;
+}
+body.cursor-hover #cursor-ring {
+  width: 68px; height: 68px;
+  border-color: var(--color-accent);
+  opacity: 0.65;
+}
+body.cursor-hover #cursor-dot {
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+}
+
+/* ── Split text chars ────────────────────────────────────────── */
+.split-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(14px) rotate(4deg);
+  transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1),
+              transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+[data-split].is-split-visible .split-char {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Scroll skew ─────────────────────────────────────────────── */
+main {
+  will-change: transform;
+  transition: transform 0s;
+}
+
 /* ── Skill pill shimmer ──────────────────────────────────────── */
 .skill-pill {
   position: relative;
