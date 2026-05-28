@@ -158,6 +158,38 @@
   transition: transform 0.08s linear;
 }
 
+/* ── Hero name shimmer (added via JS after scramble) ────────── */
+@keyframes name-shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.name-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-fg) 0%,
+    var(--color-fg) 35%,
+    var(--color-accent) 50%,
+    var(--color-fg) 65%,
+    var(--color-fg) 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: name-shimmer 4s linear infinite;
+}
+
+/* ── Company name glow on hover ──────────────────────────────── */
+.company-name {
+  transition: text-shadow 0.3s ease;
+}
+.job-entry:hover .company-name {
+  text-shadow:
+    0 0 20px rgba(232,145,74,0.4),
+    0 0 40px rgba(232,145,74,0.15);
+}
+
 /* ── Skill pill shimmer ──────────────────────────────────────── */
 .skill-pill {
   position: relative;

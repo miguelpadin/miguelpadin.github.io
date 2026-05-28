@@ -7,7 +7,7 @@ interface Props {
 }
 
 const {
-  title = 'Miguel Padín — Software Engineer',
+  title = 'Miguel Padín Domínguez — Software Engineer',
   description = 'Software engineer with 9+ years of experience. Focused on Vue 3, TypeScript and modern web architecture.',
 } = Astro.props;
 
@@ -25,6 +25,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
   </head>
   <body class="min-h-screen" style="cursor: crosshair;">
+    <!-- Dot grid spotlight -->
+    <div id="grid-spotlight" style="
+      position: fixed; inset: 0; pointer-events: none; z-index: 2;
+      background-image: radial-gradient(circle, rgba(232,145,74,0.13) 1px, transparent 1px);
+      background-size: 38px 38px;
+      -webkit-mask-image: radial-gradient(circle 220px at var(--mx, -500px) var(--my, -500px), black 0%, transparent 100%);
+      mask-image: radial-gradient(circle 220px at var(--mx, -500px) var(--my, -500px), black 0%, transparent 100%);
+    "></div>
+
     <!-- Scroll progress bar -->
     <div id="scroll-bar" style="
       position: fixed; top: 0; left: 0; z-index: 100000;
@@ -36,6 +45,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <slot />
 
     <script>
+      // ── Dot grid spotlight ────────────────────────────────────────
+      const grid = document.getElementById('grid-spotlight')!;
+      window.addEventListener('mousemove', (e) => {
+        grid.style.setProperty('--mx', e.clientX + 'px');
+        grid.style.setProperty('--my', e.clientY + 'px');
+      }, { passive: true });
+
       // ── Scroll reveal ──────────────────────────────────────────────
       const observer = new IntersectionObserver(
         (entries) => {

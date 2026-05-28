@@ -63,13 +63,14 @@ const ui = {
     skills: {
       label: 'Skills',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Tailwind', 'Sass', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
-        { label: 'Backend', items: ['Python', 'REST APIs', 'OpenAPI', 'Odoo', 'SQL', 'Node.js'] },
-        { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD'] },
+        { label: 'Frontend', items: ['Vue', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'Tailwind', 'Bootstrap', 'Bulma', 'Sass', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
+        { label: 'Backend', items: ['Python', 'REST APIs', 'OpenAPI', 'Odoo', 'SQL', 'Oracle', 'PL/SQL', 'Node.js'] },
+        { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'Tooling & Process', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review'] },
       ],
       languagesLabel: 'Languages',
       spanish: { label: 'Spanish', level: 'Native' },
+      galician: { label: 'Galician', level: 'Native' },
       english: { label: 'English', level: 'Professional proficiency' },
     },
     contact: {
@@ -136,13 +137,14 @@ const ui = {
     skills: {
       label: 'Habilidades',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Tailwind', 'Sass', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
-        { label: 'Backend', items: ['Python', 'REST APIs', 'OpenAPI', 'Odoo', 'SQL', 'Node.js'] },
-        { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD'] },
+        { label: 'Frontend', items: ['Vue', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'Tailwind', 'Bootstrap', 'Bulma', 'Sass', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
+        { label: 'Backend', items: ['Python', 'REST APIs', 'OpenAPI', 'Odoo', 'SQL', 'Oracle', 'PL/SQL', 'Node.js'] },
+        { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'Herramientas y proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review'] },
       ],
       languagesLabel: 'Idiomas',
       spanish: { label: 'Español', level: 'Nativo' },
+      galician: { label: 'Gallego', level: 'Nativo' },
       english: { label: 'Inglés', level: 'Nivel profesional' },
     },
     contact: {
@@ -209,13 +211,14 @@ const ui = {
     skills: {
       label: 'Habilidades',
       groups: [
-        { label: 'Frontend', items: ['Vue', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Tailwind', 'Sass', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
-        { label: 'Backend', items: ['Python', 'REST APIs', 'OpenAPI', 'Odoo', 'SQL', 'Node.js'] },
-        { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD'] },
+        { label: 'Frontend', items: ['Vue', 'TypeScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'Tailwind', 'Bootstrap', 'Bulma', 'Sass', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite'] },
+        { label: 'Backend', items: ['Python', 'REST APIs', 'OpenAPI', 'Odoo', 'SQL', 'Oracle', 'PL/SQL', 'Node.js'] },
+        { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'Ferramentas e proceso', items: ['GitHub Actions', 'Git', 'CI/CD', 'ESM', 'Code Review'] },
       ],
       languagesLabel: 'Idiomas',
       spanish: { label: 'Español', level: 'Nativo' },
+      galician: { label: 'Galego', level: 'Nativo' },
       english: { label: 'Inglés', level: 'Nivel profesional' },
     },
     contact: {
