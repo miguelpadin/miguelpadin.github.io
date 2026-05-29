@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.3.0...v0.4.0) (2026-05-29)
+
+
+### Features
+
+* add requested skills ([#9](https://github.com/miguelpadin/miguelpadin.github.io/issues/9)) ([cd40d7a](https://github.com/miguelpadin/miguelpadin.github.io/commit/cd40d7a0ee0f23415b189751866c7219c1decd33))
+
 ## [0.3.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.2.0...v0.3.0) (2026-05-22)
 
 
