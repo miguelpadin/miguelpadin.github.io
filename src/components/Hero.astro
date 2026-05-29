@@ -37,9 +37,9 @@ const { t } = Astro.props;
       style="
         font-family: var(--font-display);
         font-weight: 800;
-        font-size: clamp(3.5rem, 10vw, 7.5rem);
+        font-size: var(--hero-name-size, 3.5rem);
         color: var(--color-fg);
-        letter-spacing: -0.02em;
+        letter-spacing: 0;
       "
     >
       <span id="para-0" class="scramble-line block" data-text="Miguel">Miguel</span>
