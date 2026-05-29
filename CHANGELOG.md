@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.4.0...v0.4.1) (2026-05-29)
+
+
+### Bug Fixes
+
+* trigger patch release ([#13](https://github.com/miguelpadin/miguelpadin.github.io/issues/13)) ([bbf3653](https://github.com/miguelpadin/miguelpadin.github.io/commit/bbf3653395751fe66df52f18ea860da668b7bad7))
+
 ## [0.4.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.3.0...v0.4.0) (2026-05-29)
 
 
