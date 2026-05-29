@@ -262,7 +262,7 @@ const jsonLd = {
       }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
       // ── Service worker ────────────────────────────────────────────
-      if ('serviceWorker' in navigator) {
+      if (import.meta.env.PROD && 'serviceWorker' in navigator) {
         let reloadingForServiceWorker = false;
         navigator.serviceWorker.addEventListener('controllerchange', () => {
           if (reloadingForServiceWorker) return;
