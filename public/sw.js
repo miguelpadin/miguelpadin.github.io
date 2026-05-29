@@ -1,5 +1,7 @@
-const CACHE = 'mpd-v1';
-const URLS  = ['/miguelpadin-webcv/', '/miguelpadin-webcv/es/', '/miguelpadin-webcv/gl/'];
+const CACHE = 'mpd-v2';
+const scopePath = new URL(self.registration.scope).pathname.replace(/\/$/, '');
+const scopedUrl = (path) => `${scopePath}${path}`;
+const URLS = [scopedUrl('/'), scopedUrl('/es/'), scopedUrl('/gl/')];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(URLS)));
