@@ -56,6 +56,29 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
         scrollBar.style.width = (pct * 100) + '%';
       }, { passive: true });
+
+      // ── Active nav on scroll ───────────────────────────────────────
+      const sectionIds = ['experience', 'skills', 'contact'];
+      const navLinks = Object.fromEntries(
+        sectionIds.map(id => [id, document.querySelector<HTMLElement>(`a[href="#${id}"]`)])
+      );
+
+      const resetNav = () => sectionIds.forEach(id => {
+        if (navLinks[id]) navLinks[id]!.style.color = 'var(--color-muted)';
+      });
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const link = navLinks[entry.target.id];
+          if (!link) return;
+          link.style.color = entry.isIntersecting ? 'var(--color-accent)' : 'var(--color-muted)';
+        });
+      }, { threshold: 0.25 });
+
+      sectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) sectionObserver.observe(el);
+      });
     </script>
   </body>
 </html>

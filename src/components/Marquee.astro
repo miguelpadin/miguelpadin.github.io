@@ -1,0 +1,47 @@
+---
+const items = [
+  'Vue', 'TypeScript', 'Python', 'DDD', 'TDD', 'REST API',
+  'GitHub Actions', 'Vitest', 'Playwright', 'OpenAPI', 'Pinia',
+  'Vite', 'Tailwind', 'Cypress', 'pytest', 'CI/CD',
+];
+
+const repeated = [...items, ...items];
+---
+
+<div
+  class="relative overflow-hidden py-5 select-none"
+  style="border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);"
+>
+  <!-- Fade edges -->
+  <div class="absolute inset-y-0 left-0 w-24 z-10 pointer-events-none"
+    style="background: linear-gradient(to right, var(--color-bg), transparent);"></div>
+  <div class="absolute inset-y-0 right-0 w-24 z-10 pointer-events-none"
+    style="background: linear-gradient(to left, var(--color-bg), transparent);"></div>
+
+  <div class="marquee-track flex items-center gap-8 w-max">
+    {repeated.map((item) => (
+      <span class="flex items-center gap-8">
+        <span
+          class="text-xs uppercase tracking-[0.2em] whitespace-nowrap"
+          style="color: var(--color-muted); font-family: var(--font-display);"
+        >
+          {item}
+        </span>
+        <span style="color: var(--color-border); font-size: 0.4rem;">◆</span>
+      </span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee-track {
+    animation: marquee 30s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+</style>

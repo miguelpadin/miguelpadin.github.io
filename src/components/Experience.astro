@@ -92,13 +92,30 @@ const { t } = Astro.props;
 </section>
 
 <script>
-  document.querySelectorAll('.job-entry').forEach((entry) => {
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
+
+  document.querySelectorAll<HTMLElement>('.job-entry').forEach((entry) => {
     const inner = entry.querySelector('.job-inner') as HTMLElement;
+
     entry.addEventListener('mouseenter', () => {
       if (inner) inner.style.borderLeftColor = 'var(--color-accent)';
     });
     entry.addEventListener('mouseleave', () => {
       if (inner) inner.style.borderLeftColor = 'transparent';
     });
+
+    if (!isTouch) {
+      entry.addEventListener('mousemove', (e) => {
+        const rect = entry.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width  - 0.5;
+        const y = (e.clientY - rect.top)  / rect.height - 0.5;
+        entry.style.transform = `perspective(900px) rotateX(${-y * 2}deg) rotateY(${x * 2}deg)`;
+        entry.style.transition = 'transform 0.1s linear';
+      });
+      entry.addEventListener('mouseleave', () => {
+        entry.style.transform = '';
+        entry.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      });
+    }
   });
 </script>
