@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.2](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.4.1...v0.4.2) (2026-05-30)
+
+
+### Bug Fixes
+
+* hero name stretch ([#15](https://github.com/miguelpadin/miguelpadin.github.io/issues/15)) ([3f06859](https://github.com/miguelpadin/miguelpadin.github.io/commit/3f0685951e1d79bcc7db2a9cd0711a0305dafb56))
+
 ## [0.4.1](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.4.0...v0.4.1) (2026-05-29)
 
 
