@@ -63,11 +63,10 @@ const { t } = Astro.props;
               <p class="text-sm mb-4" style="color: var(--color-secondary); font-weight: 300;">
                 {job.role}
               </p>
-              <p class="text-xs uppercase tracking-widest" style="color: var(--color-muted); font-family: var(--font-display);">
-                {job.period}
-              </p>
-              <p class="text-xs mt-1" style="color: var(--color-muted);">
-                {job.location}
+              <p class="text-xs flex items-center gap-2" style="color: var(--color-muted); font-family: var(--font-display);">
+                <span class="uppercase tracking-widest">{job.period}</span>
+                <span style="color: var(--color-border);">·</span>
+                <span>{job.location}</span>
               </p>
             </div>
 
