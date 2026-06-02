@@ -44,21 +44,15 @@
   }
 }
 
-/* Entrance animations */
+/* ── Entrance animations ─────────────────────────────────────── */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
 
 .animate-hero > * {
@@ -71,17 +65,112 @@
 .animate-hero > *:nth-child(4) { animation-delay: 0.5s; }
 .animate-hero > *:nth-child(5) { animation-delay: 0.65s; }
 
-/* Scroll-triggered animations */
+/* ── Scroll-triggered reveal ─────────────────────────────────── */
 [data-reveal] {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: none;
-}
+[data-reveal].is-visible { opacity: 1; transform: none; }
 [data-reveal-delay='1'] { transition-delay: 0.1s; }
 [data-reveal-delay='2'] { transition-delay: 0.2s; }
 [data-reveal-delay='3'] { transition-delay: 0.3s; }
+
+/* ── Aurora blobs ────────────────────────────────────────────── */
+.hero-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.blob-1 {
+  width: 55vw; height: 55vw;
+  background: radial-gradient(circle, rgba(232,145,74,0.10) 0%, transparent 65%);
+  top: -20%; left: -15%;
+  animation: blob1 14s ease-in-out infinite alternate;
+}
+.blob-2 {
+  width: 40vw; height: 40vw;
+  background: radial-gradient(circle, rgba(180,55,30,0.07) 0%, transparent 65%);
+  top: 10%; right: -10%;
+  animation: blob2 18s ease-in-out infinite alternate;
+}
+.blob-3 {
+  width: 38vw; height: 38vw;
+  background: radial-gradient(circle, rgba(40,70,220,0.05) 0%, transparent 65%);
+  bottom: 0%; left: 25%;
+  animation: blob3 22s ease-in-out infinite alternate;
+}
+
+@keyframes blob1 {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(6vw, 7vh) scale(1.18); }
+}
+@keyframes blob2 {
+  from { transform: translate(0, 0) scale(1.1); }
+  to   { transform: translate(-5vw, 9vh) scale(0.88); }
+}
+@keyframes blob3 {
+  from { transform: translate(0, 0) scale(0.92); }
+  to   { transform: translate(4vw, -7vh) scale(1.12); }
+}
+
+/* ── Glitch on hero name ─────────────────────────────────────── */
+@keyframes glitch {
+  0%, 82%, 100% {
+    clip-path: none;
+    transform: none;
+    filter: none;
+  }
+  83% {
+    clip-path: polygon(0 15%, 100% 15%, 100% 45%, 0 45%);
+    transform: translate(-4px, 0) skewX(-2deg);
+    filter: hue-rotate(80deg) brightness(1.4);
+  }
+  84% {
+    clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%);
+    transform: translate(4px, 0) skewX(1deg);
+    filter: none;
+  }
+  85% {
+    clip-path: none;
+    transform: translate(-2px, 0);
+    filter: brightness(1.2);
+  }
+  86% { clip-path: none; transform: none; filter: none; }
+}
+
+.hero-name {
+  animation: glitch 9s infinite;
+}
+
+/* ── Magnetic transition ─────────────────────────────────────── */
+.magnetic {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: inline-block;
+  cursor: crosshair;
+}
+.magnetic.is-dragging {
+  transition: transform 0.08s linear;
+}
+
+/* ── Skill pill shimmer ──────────────────────────────────────── */
+.skill-pill {
+  position: relative;
+  overflow: hidden;
+}
+.skill-pill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(232,145,74,0.15) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0s;
+}
+.skill-pill:hover::after {
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+}

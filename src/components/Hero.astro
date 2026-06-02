@@ -7,20 +7,12 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<section class="relative min-h-screen flex flex-col justify-center px-8 pt-16 overflow-hidden">
+<section id="hero-section" class="relative min-h-screen flex flex-col justify-center px-8 pt-16 overflow-hidden">
 
-  <!-- Ambient glow -->
-  <div
-    class="absolute pointer-events-none"
-    style="
-      top: -20%;
-      left: -10%;
-      width: 60vw;
-      height: 60vw;
-      background: radial-gradient(ellipse, rgba(232,145,74,0.06) 0%, transparent 70%);
-      border-radius: 50%;
-    "
-  ></div>
+  <!-- Aurora blobs -->
+  <div class="hero-blob blob-1"></div>
+  <div class="hero-blob blob-2"></div>
+  <div class="hero-blob blob-3"></div>
 
   <div class="max-w-5xl mx-auto w-full animate-hero">
 
@@ -32,6 +24,7 @@ const { t } = Astro.props;
     </p>
 
     <h1
+      id="hero-name"
       class="leading-none mb-10"
       style="
         font-family: var(--font-display);
@@ -41,9 +34,9 @@ const { t } = Astro.props;
         letter-spacing: -0.02em;
       "
     >
-      Miguel<br />
-      <span style="color: var(--color-secondary);">Padín</span><br />
-      Domínguez
+      <span id="para-0" class="scramble-line block" data-text="Miguel">Miguel</span>
+      <span id="para-1" class="scramble-line block" data-text="Padín" style="color: var(--color-secondary);">Padín</span>
+      <span id="para-2" class="scramble-line block" data-text="Domínguez">Domínguez</span>
     </h1>
 
     <div
@@ -60,27 +53,15 @@ const { t } = Astro.props;
 
     <div class="flex items-center gap-8 flex-wrap">
       {[
-        {
-          label: 'LinkedIn',
-          href: 'https://linkedin.com/in/miguelpadin',
-          icon: 'linkedin',
-        },
-        {
-          label: 'GitHub',
-          href: 'https://github.com/miguelpadin',
-          icon: 'github',
-        },
-        {
-          label: 'Email',
-          href: 'mailto:miguel.padin.dominguez@gmail.com',
-          icon: 'mail',
-        },
+        { label: 'LinkedIn', href: 'https://linkedin.com/in/miguelpadin', icon: 'linkedin' },
+        { label: 'GitHub',   href: 'https://github.com/miguelpadin',       icon: 'github'   },
+        { label: 'Email',    href: 'mailto:miguel.padin.dominguez@gmail.com', icon: 'mail'  },
       ].map(({ label, href, icon }) => (
         <a
           href={href}
           target={href.startsWith('http') ? '_blank' : undefined}
           rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-          class="flex items-center gap-2.5 transition-colors duration-200"
+          class="magnetic flex items-center gap-2.5 transition-colors duration-200"
           style="color: var(--color-muted); font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.7rem;"
           onmouseover="this.style.color='var(--color-accent)'"
           onmouseout="this.style.color='var(--color-muted)'"
@@ -115,3 +96,93 @@ const { t } = Astro.props;
   </div>
 
 </section>
+
+<script>
+  // ── Text scramble ──────────────────────────────────────────────
+  const CHARS = '!<>-_\\/[]{}—=+*^?#@$%ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+
+  function scramble(el: HTMLElement, delay: number) {
+    const target = el.dataset.text!;
+    let frame = 0;
+    const totalFrames = target.length * 6;
+
+    setTimeout(() => {
+      const tick = () => {
+        let output = '';
+        for (let i = 0; i < target.length; i++) {
+          const threshold = (i / target.length) * totalFrames;
+          if (frame >= threshold + 4) {
+            output += target[i];
+          } else if (frame >= threshold) {
+            output += `<span style="color:var(--color-muted)">${CHARS[Math.floor(Math.random() * CHARS.length)]}</span>`;
+          } else {
+            output += `<span style="opacity:0">${target[i]}</span>`;
+          }
+        }
+        el.innerHTML = output;
+        frame++;
+        if (frame <= totalFrames + 4) requestAnimationFrame(tick);
+        else el.textContent = target;
+      };
+      requestAnimationFrame(tick);
+    }, delay);
+  }
+
+  document.querySelectorAll<HTMLElement>('.scramble-line').forEach((el, i) => {
+    scramble(el, 300 + i * 180);
+  });
+
+  // Activate glitch after entrance animation completes
+  setTimeout(() => {
+    const heroName = document.getElementById('hero-name');
+    if (heroName) {
+      heroName.style.opacity = '1';
+      heroName.classList.add('hero-name');
+    }
+  }, 2000);
+
+  // ── Mouse parallax on name ─────────────────────────────────────
+  const heroSection = document.getElementById('hero-section')!;
+  const paraLayers = [
+    { el: document.getElementById('para-0'), depth: 0.010 },
+    { el: document.getElementById('para-1'), depth: 0.018 },
+    { el: document.getElementById('para-2'), depth: 0.007 },
+  ];
+
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
+  if (!isTouch) {
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      const dx = e.clientX - rect.left - rect.width / 2;
+      const dy = e.clientY - rect.top  - rect.height / 2;
+      paraLayers.forEach(({ el, depth }) => {
+        if (el) el.style.transform = `translate(${dx * depth}px, ${dy * depth}px)`;
+      });
+    });
+
+    heroSection.addEventListener('mouseleave', () => {
+      paraLayers.forEach(({ el }) => {
+        if (el) {
+          el.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          el.style.transform = 'translate(0, 0)';
+          setTimeout(() => { if (el) el.style.transition = ''; }, 800);
+        }
+      });
+    });
+
+    // ── Magnetic links ─────────────────────────────────────────
+    document.querySelectorAll<HTMLElement>('.magnetic').forEach(el => {
+      el.addEventListener('mousemove', (e) => {
+        const rect = el.getBoundingClientRect();
+        const dx = e.clientX - (rect.left + rect.width  / 2);
+        const dy = e.clientY - (rect.top  + rect.height / 2);
+        el.classList.add('is-dragging');
+        el.style.transform = `translate(${dx * 0.28}px, ${dy * 0.38}px)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        el.classList.remove('is-dragging');
+        el.style.transform = 'translate(0, 0)';
+      });
+    });
+  }
+</script>
