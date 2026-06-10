@@ -1,0 +1,27 @@
+---
+interface Props {
+  size?: number;
+}
+const { size = 32 } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 40 40"
+  xmlns="http://www.w3.org/2000/svg"
+  fill="none"
+  aria-label="Miguel Padín Domínguez"
+>
+  <rect width="40" height="40" rx="7" fill="#0B0B0D"/>
+  <rect width="40" height="40" rx="7" stroke="#1E1E24" stroke-width="1"/>
+  <text
+    x="50%" y="27"
+    text-anchor="middle"
+    font-family="Syne, system-ui, sans-serif"
+    font-weight="800"
+    font-size="17"
+    letter-spacing="-1"
+    fill="#EDE9E3"
+  >MP</text>
+</svg>

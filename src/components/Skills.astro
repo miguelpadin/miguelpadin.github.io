@@ -1,0 +1,73 @@
+---
+import type { Translations } from '../i18n';
+
+interface Props {
+  t: Translations;
+}
+const { t } = Astro.props;
+---
+
+<section id="skills" class="px-8 py-32" style="background: var(--color-surface);">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="flex items-center gap-6 mb-20" data-reveal>
+      <span
+        class="text-xs uppercase tracking-[0.25em]"
+        style="color: var(--color-accent); font-family: var(--font-display); font-weight: 700;"
+      >
+        {t.skills.label}
+      </span>
+      <div style="flex: 1; height: 1px; background: var(--color-border);"></div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-16">
+      {t.skills.groups.map((group, i) => (
+        <div data-reveal data-reveal-delay={String(i % 3)}>
+          <p
+            class="text-xs uppercase tracking-[0.2em] mb-6"
+            style="color: var(--color-muted); font-family: var(--font-display); font-weight: 700;"
+          >
+            {group.label}
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {group.items.map((item) => (
+              <span
+                class="text-sm px-3 py-1.5 transition-colors duration-200 cursor-default"
+                style="
+                  color: var(--color-secondary);
+                  background: var(--color-bg);
+                  border: 1px solid var(--color-border);
+                  font-weight: 300;
+                "
+                onmouseover="this.style.borderColor='var(--color-accent)'; this.style.color='var(--color-fg)';"
+                onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-secondary)';"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div
+      class="mt-20 pt-12 flex flex-wrap gap-10"
+      style="border-top: 1px solid var(--color-border);"
+      data-reveal
+    >
+      <div>
+        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display);">
+          {t.skills.spanish.label}
+        </p>
+        <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{t.skills.spanish.level}</p>
+      </div>
+      <div>
+        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display);">
+          {t.skills.english.label}
+        </p>
+        <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{t.skills.english.level}</p>
+      </div>
+    </div>
+
+  </div>
+</section>

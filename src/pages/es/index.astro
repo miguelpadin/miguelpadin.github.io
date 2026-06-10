@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import Experience from '../../components/Experience.astro';
+import Skills from '../../components/Skills.astro';
+import Contact from '../../components/Contact.astro';
+import Footer from '../../components/Footer.astro';
+import { useTranslations } from '../../i18n';
+
+const lang = 'es';
+const t = useTranslations(lang);
+---
+
+<Layout
+  title="Miguel Padín — Ingeniero de Software"
+  description="Ingeniero de software con más de 9 años de experiencia. Especializado en Vue 3, TypeScript y arquitectura web moderna."
+>
+  <Header lang={lang} t={t} />
+  <main>
+    <Hero t={t} />
+    <Experience t={t} />
+    <Skills t={t} />
+    <Contact t={t} />
+  </main>
+  <Footer t={t} />
+</Layout>

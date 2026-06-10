@@ -1,0 +1,63 @@
+---
+import type { Translations } from '../i18n';
+
+interface Props {
+  t: Translations;
+}
+const { t } = Astro.props;
+---
+
+<section id="contact" class="px-8 py-32">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="flex items-center gap-6 mb-20" data-reveal>
+      <span
+        class="text-xs uppercase tracking-[0.25em]"
+        style="color: var(--color-accent); font-family: var(--font-display); font-weight: 700;"
+      >
+        {t.contact.label}
+      </span>
+      <div style="flex: 1; height: 1px; background: var(--color-border);"></div>
+    </div>
+
+    <div data-reveal>
+      <h2
+        class="mb-8 leading-none"
+        style="
+          font-family: var(--font-display);
+          font-weight: 800;
+          font-size: clamp(2rem, 5vw, 3.5rem);
+          color: var(--color-fg);
+          letter-spacing: -0.02em;
+        "
+      >
+        {t.contact.heading[0]}<br />
+        <span style="color: var(--color-muted);">{t.contact.heading[1]}</span>
+      </h2>
+
+      <p class="text-base leading-loose mb-12 max-w-md" style="color: var(--color-secondary); font-weight: 300;">
+        {t.contact.subtext}
+      </p>
+
+      <a
+        href="mailto:miguel.padin.dominguez@gmail.com"
+        class="inline-flex items-center gap-3 transition-colors duration-300 group"
+        style="
+          font-family: var(--font-display);
+          font-weight: 700;
+          font-size: clamp(1rem, 2.5vw, 1.4rem);
+          color: var(--color-fg);
+          letter-spacing: -0.01em;
+        "
+        onmouseover="this.style.color='var(--color-accent)'"
+        onmouseout="this.style.color='var(--color-fg)'"
+      >
+        <span>miguel.padin.dominguez@gmail.com</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>

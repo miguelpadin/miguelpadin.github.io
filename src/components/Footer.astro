@@ -1,0 +1,20 @@
+---
+import type { Translations } from '../i18n';
+
+interface Props {
+  t: Translations;
+}
+const { t } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="px-8 py-8" style="border-top: 1px solid var(--color-border);">
+  <div class="max-w-5xl mx-auto flex items-center justify-between">
+    <span class="text-xs uppercase tracking-[0.15em]" style="color: var(--color-muted); font-family: var(--font-display);">
+      © {year} Miguel Padín Domínguez
+    </span>
+    <span class="text-xs" style="color: var(--color-muted);">
+      {t.footer}
+    </span>
+  </div>
+</footer>

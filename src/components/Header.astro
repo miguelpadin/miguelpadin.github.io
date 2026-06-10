@@ -1,0 +1,86 @@
+---
+import { languages, getLangUrl, type Lang, type Translations } from '../i18n';
+import Logo from './Logo.astro';
+
+interface Props {
+  lang: Lang;
+  t: Translations;
+}
+const { lang, t } = Astro.props;
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 inset-x-0 z-50 transition-all duration-300"
+  style="background: transparent;"
+>
+  <div class="max-w-5xl mx-auto pr-8 flex items-center justify-between h-16">
+    <a
+      href={getLangUrl(lang)}
+      class="flex items-center gap-3 transition-opacity duration-200 hover:opacity-80"
+    >
+      <Logo size={28} />
+      <span
+        class="text-xs font-semibold tracking-[0.1em] hidden sm:block"
+        style="color: var(--color-secondary); font-family: var(--font-display);"
+      >
+        Miguel Padín Domínguez
+      </span>
+    </a>
+
+    <div class="flex items-center gap-8">
+      <!-- Nav -->
+      <nav class="hidden sm:flex items-center gap-8">
+        {[
+          { label: t.nav.experience, href: '#experience' },
+          { label: t.nav.skills, href: '#skills' },
+          { label: t.nav.contact, href: '#contact' },
+        ].map(({ label, href }) => (
+          <a
+            href={href}
+            class="text-xs uppercase tracking-[0.15em] transition-colors duration-200"
+            style="color: var(--color-muted); font-family: var(--font-display);"
+            onmouseover="this.style.color='var(--color-fg)'"
+            onmouseout="this.style.color='var(--color-muted)'"
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Language switcher -->
+      <div class="flex items-center gap-1" style="border-left: 1px solid var(--color-border); padding-left: 1.5rem;">
+        {(Object.keys(languages) as Lang[]).map((l) => (
+          <a
+            href={getLangUrl(l)}
+            class="text-[11px] px-1.5 py-0.5 transition-colors duration-200 rounded"
+            style={`
+              font-family: var(--font-display);
+              font-weight: 700;
+              letter-spacing: 0.08em;
+              color: ${l === lang ? 'var(--color-accent)' : 'var(--color-muted)'};
+              background: ${l === lang ? 'rgba(232,145,74,0.1)' : 'transparent'};
+            `}
+          >
+            {languages[l]}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      header!.style.background = 'rgba(11,11,13,0.85)';
+      header!.style.backdropFilter = 'blur(12px)';
+      header!.style.borderBottom = '1px solid var(--color-border)';
+    } else {
+      header!.style.background = 'transparent';
+      header!.style.backdropFilter = 'none';
+      header!.style.borderBottom = 'none';
+    }
+  }, { passive: true });
+</script>

@@ -1,0 +1,105 @@
+---
+import type { Translations } from '../i18n';
+
+interface Props {
+  t: Translations;
+}
+const { t } = Astro.props;
+---
+
+<section id="experience" class="px-8 py-32">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="flex items-center gap-6 mb-20" data-reveal>
+      <span
+        class="text-xs uppercase tracking-[0.25em]"
+        style="color: var(--color-accent); font-family: var(--font-display); font-weight: 700;"
+      >
+        {t.experience.label}
+      </span>
+      <div style="flex: 1; height: 1px; background: var(--color-border);"></div>
+    </div>
+
+    <div class="space-y-0">
+      {t.experience.jobs.map((job, i) => (
+        <div
+          class="job-entry group relative py-12"
+          style="border-top: 1px solid var(--color-border);"
+          data-reveal
+          data-reveal-delay={String(i % 3)}
+        >
+          <div
+            class="job-inner grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 lg:gap-16 pl-5 transition-all duration-300"
+            style="border-left: 2px solid transparent;"
+          >
+            <div>
+              <div class="flex items-start gap-3 mb-3">
+                <h3
+                  style="
+                    font-family: var(--font-display);
+                    font-weight: 700;
+                    font-size: 1.1rem;
+                    color: var(--color-fg);
+                    letter-spacing: -0.01em;
+                  "
+                >
+                  {job.company}
+                </h3>
+                {job.current && (
+                  <span
+                    class="mt-1 text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full"
+                    style="
+                      background: rgba(232,145,74,0.12);
+                      color: var(--color-accent);
+                      font-family: var(--font-display);
+                      font-weight: 700;
+                      white-space: nowrap;
+                    "
+                  >
+                    {t.experience.current}
+                  </span>
+                )}
+              </div>
+              <p class="text-sm mb-4" style="color: var(--color-secondary); font-weight: 300;">
+                {job.role}
+              </p>
+              <p class="text-xs uppercase tracking-widest" style="color: var(--color-muted); font-family: var(--font-display);">
+                {job.period}
+              </p>
+              <p class="text-xs mt-1" style="color: var(--color-muted);">
+                {job.location}
+              </p>
+            </div>
+
+            <ul class="space-y-4">
+              {job.highlights.map((item) => (
+                <li class="flex gap-4">
+                  <span
+                    class="shrink-0 w-1 h-1 rounded-full"
+                    style="background: var(--color-accent); margin-top: 0.55rem;"
+                  ></span>
+                  <p class="text-sm leading-relaxed" style="color: var(--color-secondary); font-weight: 300;">
+                    {item}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+      <div style="border-top: 1px solid var(--color-border);"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.job-entry').forEach((entry) => {
+    const inner = entry.querySelector('.job-inner') as HTMLElement;
+    entry.addEventListener('mouseenter', () => {
+      if (inner) inner.style.borderLeftColor = 'var(--color-accent)';
+    });
+    entry.addEventListener('mouseleave', () => {
+      if (inner) inner.style.borderLeftColor = 'transparent';
+    });
+  });
+</script>
