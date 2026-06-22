@@ -23,7 +23,7 @@ const { lang, t } = Astro.props;
       <span
         class="text-xs font-semibold hidden sm:block"
         id="header-name"
-        style="color: var(--color-secondary); font-family: var(--font-display); letter-spacing: 0; white-space: nowrap;"
+        style="color: var(--color-secondary); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking); white-space: nowrap;"
       >
         Miguel Padín Domínguez
       </span>
@@ -40,7 +40,7 @@ const { lang, t } = Astro.props;
           <a
             href={href}
             class="text-xs uppercase tracking-[0.15em] transition-colors duration-200"
-            style="color: var(--color-secondary); font-family: var(--font-display);"
+            style="color: var(--color-secondary); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
             onmouseover="this.style.color='var(--color-fg)'"
             onmouseout="this.style.color='var(--color-secondary)'"
           >
@@ -74,8 +74,8 @@ const { lang, t } = Astro.props;
             class="text-[11px] px-1.5 py-0.5 transition-colors duration-200 rounded"
             style={`
               font-family: var(--font-display);
-              font-weight: 700;
-              letter-spacing: 0.08em;
+              font-weight: var(--font-display-weight);
+              letter-spacing: var(--font-display-tracking);
               color: ${l === lang ? 'var(--color-accent)' : 'var(--color-muted)'};
               background: ${l === lang ? 'rgba(232,145,74,0.1)' : 'transparent'};
             `}

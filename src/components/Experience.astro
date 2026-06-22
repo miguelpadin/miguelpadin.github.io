@@ -13,7 +13,7 @@ const { t } = Astro.props;
     <div class="flex items-center gap-6 mb-20" data-reveal>
       <span
         class="text-xs uppercase tracking-[0.25em]"
-        style="color: var(--color-accent); font-family: var(--font-display); font-weight: 700;"
+        style="color: var(--color-accent); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
         data-split
       >
         {t.experience.label}
@@ -39,10 +39,10 @@ const { t } = Astro.props;
                   class="company-name"
                   style="
                     font-family: var(--font-display);
-                    font-weight: 700;
+                    font-weight: var(--font-display-weight);
                     font-size: 1.1rem;
                     color: var(--color-fg);
-                    letter-spacing: -0.01em;
+                    letter-spacing: var(--font-display-tracking);
                   "
                 >
                   {job.url ? (
@@ -64,7 +64,7 @@ const { t } = Astro.props;
                       background: rgba(232,145,74,0.12);
                       color: var(--color-accent);
                       font-family: var(--font-display);
-                      font-weight: 700;
+                      font-weight: var(--font-display-weight);
                       white-space: nowrap;
                     "
                   >

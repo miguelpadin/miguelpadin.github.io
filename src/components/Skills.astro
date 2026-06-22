@@ -14,7 +14,7 @@ const { t } = Astro.props;
     <div class="flex items-center gap-6 mb-20" data-reveal>
       <span
         class="text-xs uppercase tracking-[0.25em]"
-        style="color: var(--color-accent); font-family: var(--font-display); font-weight: 700;"
+        style="color: var(--color-accent); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
         data-split
       >
         {t.skills.label}
@@ -27,7 +27,7 @@ const { t } = Astro.props;
         <div data-reveal data-reveal-delay={String(i % 3)}>
           <p
             class="text-xs uppercase tracking-[0.2em] mb-6"
-            style="color: var(--color-muted); font-family: var(--font-display); font-weight: 700;"
+            style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
           >
             {group.label}
           </p>
@@ -70,19 +70,19 @@ const { t } = Astro.props;
       data-reveal
     >
       <div>
-        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display);">
+        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);">
           {t.skills.spanish.label}
         </p>
         <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{t.skills.spanish.level}</p>
       </div>
       <div>
-        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display);">
+        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);">
           {t.skills.galician.label}
         </p>
         <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{t.skills.galician.level}</p>
       </div>
       <div>
-        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display);">
+        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);">
           {t.skills.english.label}
         </p>
         <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{t.skills.english.level}</p>
