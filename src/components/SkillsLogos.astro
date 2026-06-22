@@ -86,7 +86,7 @@ const icons: Record<string, IconDef> = {
     <div class="flex items-center gap-6 mb-20" data-reveal>
       <span
         class="text-xs uppercase tracking-[0.25em]"
-        style="color: var(--color-accent); font-family: var(--font-display); font-weight: 700;"
+        style="color: var(--color-accent); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
         data-split
       >
         {t.skills.label}
@@ -99,7 +99,7 @@ const icons: Record<string, IconDef> = {
         <div data-reveal data-reveal-delay={String(i % 3)}>
           <p
             class="text-xs uppercase tracking-[0.2em] mb-6"
-            style="color: var(--color-muted); font-family: var(--font-display); font-weight: 700;"
+            style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
           >
             {group.label}
           </p>
@@ -178,7 +178,7 @@ const icons: Record<string, IconDef> = {
         { label: t.skills.english.label, level: t.skills.english.level },
       ].map(({ label, level }) => (
         <div>
-          <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display);">{label}</p>
+          <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);">{label}</p>
           <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{level}</p>
         </div>
       ))}
@@ -220,8 +220,8 @@ const icons: Record<string, IconDef> = {
     color: var(--color-bg);
     font-size: 10px;
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: 0.06em;
+    font-weight: var(--font-display-weight);
+    letter-spacing: var(--font-display-tracking);
     text-transform: uppercase;
     padding: 4px 8px;
     border-radius: 4px;
@@ -258,8 +258,8 @@ const icons: Record<string, IconDef> = {
   .icon-fallback {
     font-size: 9px;
     font-family: var(--font-display);
-    font-weight: 800;
+    font-weight: var(--font-display-weight);
     color: var(--color-muted);
-    letter-spacing: 0.05em;
+    letter-spacing: var(--font-display-tracking);
   }
 </style>

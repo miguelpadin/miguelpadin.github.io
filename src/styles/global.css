@@ -8,8 +8,9 @@
   --color-muted: #ADA9A4;
   --color-secondary: #9B9893;
   --color-accent: #4A9EFF;
-  --font-display: 'Syne', system-ui, sans-serif;
-  --font-name: 'Sora', system-ui, sans-serif;
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-display-weight: 600;
+  --font-display-tracking: 0.01em;
   --font-body: 'DM Sans', system-ui, sans-serif;
 }
 
@@ -22,8 +23,9 @@
   --color-muted: #ADA9A4;
   --color-secondary: #9B9893;
   --color-accent: #4A9EFF;
-  --font-display: 'Syne', system-ui, sans-serif;
-  --font-name: 'Sora', system-ui, sans-serif;
+  --font-display: 'Sora', system-ui, sans-serif;
+  --font-display-weight: 600;
+  --font-display-tracking: 0.01em;
   --font-body: 'DM Sans', system-ui, sans-serif;
 }
 
