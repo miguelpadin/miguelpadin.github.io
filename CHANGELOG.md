@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.5.0...v0.5.1) (2026-06-22)
+
+
+### Bug Fixes
+
+* align display typography system ([#22](https://github.com/miguelpadin/miguelpadin.github.io/issues/22)) ([916fa02](https://github.com/miguelpadin/miguelpadin.github.io/commit/916fa0296970d1f03cc099183250d5855c99592d))
+
 ## [0.5.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.4.3...v0.5.0) (2026-06-11)
 
 
