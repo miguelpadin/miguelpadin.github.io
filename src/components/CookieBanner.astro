@@ -169,6 +169,7 @@ const c = copy[lang];
   <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.125rem;">
     <a
       href={cookiesUrl}
+      class="cb-link"
       style="
         font-family: var(--font-display);
         font-weight: var(--font-display-weight);
@@ -180,8 +181,6 @@ const c = copy[lang];
         text-underline-offset: 3px;
         transition: color 0.2s;
       "
-      onmouseover="this.style.color='var(--color-accent)'"
-      onmouseout="this.style.color='var(--color-muted)'"
     >{c.cookies}</a>
     <div style="display: flex; gap: 0.5rem;">
       <button
@@ -200,9 +199,7 @@ const c = copy[lang];
           cursor: pointer;
           transition: color 0.2s, border-color 0.2s;
         "
-        onmouseover="this.style.color='var(--color-fg)';this.style.borderColor='var(--color-muted)'"
-        onmouseout="this.style.color='var(--color-muted)';this.style.borderColor='var(--color-border)'"
-      >{c.decline}</button>
+      class="cb-decline">{c.decline}</button>
       <button
         id="cookie-accept"
         style="
@@ -219,12 +216,16 @@ const c = copy[lang];
           cursor: pointer;
           transition: opacity 0.2s;
         "
-        onmouseover="this.style.opacity='0.82'"
-        onmouseout="this.style.opacity='1'"
-      >{c.accept}</button>
+      class="cb-accept">{c.accept}</button>
     </div>
   </div>
 </div>
+
+<style>
+  .cb-link:hover { color: var(--color-accent) !important; }
+  .cb-decline:hover { color: var(--color-fg) !important; border-color: var(--color-muted) !important; }
+  .cb-accept:hover { opacity: 0.82 !important; }
+</style>
 
 <script is:inline>
   (function () {

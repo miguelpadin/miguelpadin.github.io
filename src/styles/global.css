@@ -216,6 +216,24 @@ canvas {
 .space-y-0 > * + * { margin-top: 0; }
 .space-y-4 > * + * { margin-top: 1rem; }
 
+/* ── Hover utilities (replacing inline onmouseover/out) ──────── */
+.nav-link:hover {
+  color: var(--color-fg) !important;
+}
+.footer-link:hover,
+.footer-location:hover {
+  color: var(--color-accent) !important;
+}
+.contact-link:hover {
+  color: var(--color-accent) !important;
+}
+.back-link:hover {
+  color: var(--color-accent) !important;
+}
+.back-link-404:hover {
+  opacity: 0.7 !important;
+}
+
 @media (min-width: 640px) {
   .sm\:block { display: block; }
   .sm\:flex { display: flex; }
@@ -318,6 +336,9 @@ canvas {
 .magnetic.is-dragging {
   transition: transform 0.08s linear;
 }
+.magnetic:hover {
+  color: var(--color-accent) !important;
+}
 
 
 /* ── Company name glow on hover ──────────────────────────────── */
@@ -405,4 +426,8 @@ canvas {
 .skill-pill:hover::after {
   transform: translateX(100%);
   transition: transform 0.4s ease;
+}
+.skill-pill:hover {
+  border-color: var(--color-accent) !important;
+  color: var(--color-fg) !important;
 }

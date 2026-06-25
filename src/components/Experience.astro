@@ -7,17 +7,18 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<section id="experience" class="px-8 py-32">
+<section id="experience" class="px-8 py-32" aria-labelledby="experience-heading">
   <div class="max-w-5xl mx-auto">
 
     <div class="flex items-center gap-6 mb-20" data-reveal>
-      <span
+      <h2
+        id="experience-heading"
         class="text-xs uppercase tracking-[0.25em]"
         style="color: var(--color-accent); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
         data-split
       >
         {t.experience.label}
-      </span>
+      </h2>
       <div class="divider-line"></div>
     </div>
 

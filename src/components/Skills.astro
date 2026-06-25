@@ -8,17 +8,18 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<section id="skills" class="px-8 py-32" style="background: var(--color-surface);">
+<section id="skills" class="px-8 py-32" style="background: var(--color-surface);" aria-labelledby="skills-heading">
   <div class="max-w-5xl mx-auto">
 
     <div class="flex items-center gap-6 mb-20" data-reveal>
-      <span
+      <h2
+        id="skills-heading"
         class="text-xs uppercase tracking-[0.25em]"
         style="color: var(--color-accent); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
         data-split
       >
         {t.skills.label}
-      </span>
+      </h2>
       <div class="divider-line"></div>
     </div>
 
@@ -43,8 +44,7 @@ const { t } = Astro.props;
                   rel="noopener noreferrer"
                   class={pillClass}
                   style={pillStyle}
-                  onmouseover="this.style.borderColor='var(--color-accent)'; this.style.color='var(--color-fg)';"
-                  onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-secondary)';"
+
                 >
                   {item}
                 </a>
@@ -52,8 +52,7 @@ const { t } = Astro.props;
                 <span
                   class={pillClass}
                   style={pillStyle}
-                  onmouseover="this.style.borderColor='var(--color-accent)'; this.style.color='var(--color-fg)';"
-                  onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-secondary)';"
+
                 >
                   {item}
                 </span>

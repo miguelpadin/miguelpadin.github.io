@@ -17,7 +17,7 @@ const { t } = Astro.props;
   </div>
 
   <!-- Particle network canvas -->
-  <canvas id="hero-canvas" style="position:absolute;inset:0;pointer-events:none;z-index:0;opacity:0.55;"></canvas>
+  <canvas id="hero-canvas" role="presentation" aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;z-index:0;opacity:0.55;"></canvas>
 
   <div class="max-w-5xl mx-auto w-full animate-hero relative">
 
@@ -73,8 +73,6 @@ const { t } = Astro.props;
           rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
           class="magnetic flex items-center gap-2.5 transition-colors duration-200"
           style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); text-transform: uppercase; letter-spacing: var(--font-display-tracking); font-size: 0.7rem;"
-          onmouseover="this.style.color='var(--color-accent)'"
-          onmouseout="this.style.color='var(--color-muted)'"
         >
           {icon === 'linkedin' && (
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">

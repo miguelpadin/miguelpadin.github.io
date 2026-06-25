@@ -39,10 +39,8 @@ const { lang, t } = Astro.props;
         ].map(({ label, href }) => (
           <a
             href={href}
-            class="text-xs uppercase tracking-[0.15em] transition-colors duration-200"
+            class="nav-link text-xs uppercase tracking-[0.15em] transition-colors duration-200"
             style="color: var(--color-secondary); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
-            onmouseover="this.style.color='var(--color-fg)'"
-            onmouseout="this.style.color='var(--color-secondary)'"
           >
             {label}
           </a>
