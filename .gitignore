@@ -36,6 +36,10 @@ pnpm-debug.log*
 AGENTS.md
 CLAUDE.md
 
+# opencode local config
+opencode.json
+opencode.jsonc
+
 # typescript
 *.tsbuildinfo
 
