@@ -17,7 +17,10 @@
     "onlyBuiltDependencies": [
       "esbuild",
       "sharp"
-    ]
+    ],
+    "overrides": {
+      "js-yaml@>=4.0.0": "4.2.0"
+    }
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
