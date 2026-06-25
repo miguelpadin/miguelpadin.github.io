@@ -25,22 +25,23 @@ const links = [
 ];
 ---
 
-<section id="contact" class="px-8 py-32">
+<section id="contact" class="px-8 py-32" aria-labelledby="contact-heading">
   <div class="max-w-5xl mx-auto">
 
     <div class="flex items-center gap-6 mb-20" data-reveal>
-      <span
+      <h2
+        id="contact-heading"
         class="text-xs uppercase tracking-[0.25em]"
         style="color: var(--color-accent); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
         data-split
       >
         {t.contact.label}
-      </span>
+      </h2>
       <div class="divider-line"></div>
     </div>
 
     <div data-reveal>
-      <h2
+      <h3
         class="mb-8 leading-none"
         style="
           font-family: var(--font-display);
@@ -52,7 +53,7 @@ const links = [
       >
         {t.contact.heading[0]}<br />
         <span style="color: var(--color-muted);">{t.contact.heading[1]}</span>
-      </h2>
+      </h3>
 
       <p class="text-base leading-loose mb-12 max-w-md" style="color: var(--color-secondary); font-weight: 300;">
         {t.contact.subtext}
@@ -64,10 +65,8 @@ const links = [
             href={href}
             target={href.startsWith('http') ? '_blank' : undefined}
             rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            class="inline-flex items-center gap-4 transition-colors duration-200 group"
+            class="contact-link inline-flex items-center gap-4 transition-colors duration-200 group"
             style="color: var(--color-fg);"
-            onmouseover="this.style.color='var(--color-accent)'"
-            onmouseout="this.style.color='var(--color-fg)'"
           >
             <span
               class="flex items-center justify-center shrink-0"

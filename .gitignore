@@ -1,5 +1,6 @@
 # build output
 dist/
+
 # generated types
 .astro/
 
@@ -12,19 +13,31 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
 # environment variables
 .env
+.env.local
+.env.*.local
 .env.production
 
 # macOS-specific files
 .DS_Store
+
+# editor folders
+.vscode/
+.idea/
 
 # jetbrains setting folder
 .idea/
 
 # agent/claude local config
 .agent/
+.atl/
 .CLAUDE
 AGENTS.md
 CLAUDE.md
+
+# typescript
+*.tsbuildinfo
+
+# pnpm
+pnpm-lock.yaml

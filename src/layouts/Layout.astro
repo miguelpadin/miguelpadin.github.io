@@ -1,7 +1,7 @@
 ---
 import { execSync } from 'node:child_process';
 import '../styles/global.css';
-import { useTranslations, type Lang } from '../i18n';
+import { useTranslations, type Lang, languages } from '../i18n';
 import CookieBanner from '../components/CookieBanner.astro';
 
 interface Props {
@@ -18,18 +18,25 @@ const {
 const description = Astro.props.description ?? useTranslations(lang).hero.description;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const siteBase = 'https://miguelpadin.github.io/miguelpadin';
+const siteUrl = String(Astro.site).replace(/\/$/, '');
 const commitHash = execSync('git rev-parse --short HEAD').toString().trim();
 const commitDate = execSync('git log -1 --format=%cd').toString().trim();
 const commitMsg = execSync('git log -1 --format=%s').toString().trim();
+
+const jobTitles: Record<string, string> = {
+  en: 'Software Engineer',
+  es: 'Ingeniero de Software',
+  gl: 'Enxeñeiro de Software',
+};
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Miguel Padín Domínguez',
-  jobTitle: lang === 'en' ? 'Software Engineer' : 'Ingeniero de Software',
-  url: siteBase + '/',
+  jobTitle: jobTitles[lang] ?? jobTitles.en,
+  url: siteUrl + '/',
   email: 'miguel.padin.dominguez@gmail.com',
+  image: siteUrl + '/og-image.svg',
   sameAs: [
     'https://linkedin.com/in/miguelpadin',
     'https://github.com/miguelpadin',
@@ -41,6 +48,24 @@ const jsonLd = {
   },
   knowsAbout: ['Vue.js', 'Nuxt', 'TypeScript', 'Python', 'Odoo', 'PostgreSQL', 'Node.js', 'DDD', 'Clean Architecture', 'TDD'],
 };
+
+// -- Dynamic hreflang --
+const rawPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const locales = Object.keys(languages) as Lang[];
+
+function hreflangUrl(targetLang: Lang): string {
+  let resultPath: string;
+  if (lang === 'en') {
+    const base = rawPath === '/' ? '' : rawPath;
+    resultPath = targetLang === 'en' ? base + '/' : '/' + targetLang + base + '/';
+  } else {
+    const prefix = '/' + lang;
+    const base = rawPath.startsWith(prefix) ? rawPath.slice(prefix.length) : rawPath;
+    resultPath = targetLang === 'en' ? (base || '/') : '/' + targetLang + (base || '') + '/';
+  }
+  if (resultPath !== '/') resultPath = resultPath.replace(/\/?$/, '/');
+  return siteUrl + resultPath;
+}
 ---
 
 <!doctype html>
@@ -53,7 +78,6 @@ const jsonLd = {
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="Miguel Padín Domínguez" />
-    <meta name="keywords" content="software engineer, vue, typescript, python, full-stack, odoo, remote, Las Palmas" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -62,17 +86,21 @@ const jsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Miguel Padín Domínguez" />
     <meta property="og:locale" content={lang === 'en' ? 'en_US' : lang === 'es' ? 'es_ES' : 'gl_ES'} />
+    <meta property="og:image" content={`${siteUrl}/og-image.svg`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}/og-image.svg`} />
 
     <!-- hreflang -->
-    <link rel="alternate" hreflang="en" href={`${siteBase}/`} />
-    <link rel="alternate" hreflang="es" href={`${siteBase}/es/`} />
-    <link rel="alternate" hreflang="gl" href={`${siteBase}/gl/`} />
-    <link rel="alternate" hreflang="x-default" href={`${siteBase}/`} />
+    {locales.map(l => (
+      <link rel="alternate" hreflang={l} href={hreflangUrl(l)} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={hreflangUrl('en')} />
 
     <link rel="canonical" href={canonicalURL} />
     <link rel="sitemap" href={`${import.meta.env.BASE_URL}sitemap.xml`} />
@@ -80,7 +108,8 @@ const jsonLd = {
     <link rel="manifest" href={`${import.meta.env.BASE_URL}manifest.webmanifest`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" /></noscript>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="MPD" />
     <meta name="theme-color" id="theme-color" content="#0C1525" />
