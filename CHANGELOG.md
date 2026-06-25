@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.3](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.5.2...v0.5.3) (2026-06-25)
+
+
+### Bug Fixes
+
+* override js-yaml to 4.2.0 (Snyk SNYK-JS-JSYAML-17342520) ([711cfc2](https://github.com/miguelpadin/miguelpadin.github.io/commit/711cfc23d570901beb5d19ff72ef459367071d33))
+
 ## [0.5.2](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.5.1...v0.5.2) (2026-06-25)
 
 
