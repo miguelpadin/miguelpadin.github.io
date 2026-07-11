@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.4](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.5.3...v0.5.4) (2026-07-11)
+
+
+### Bug Fixes
+
+* remove marquee strip, hero visual effects, and Warp from tooling ([#27](https://github.com/miguelpadin/miguelpadin.github.io/issues/27)) ([31a06c9](https://github.com/miguelpadin/miguelpadin.github.io/commit/31a06c938fb56dae9236c10b46dde599b900bf60))
+
 ## [0.5.3](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.5.2...v0.5.3) (2026-06-25)
 
 
