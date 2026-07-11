@@ -108,7 +108,6 @@ export const skillUrls: Record<string, string> = {
   'Windows':               'https://www.microsoft.com/windows',
   'macOS':                 'https://www.apple.com/macos/',
   'Bash':                  'https://www.gnu.org/software/bash/',
-  'Warp':                  'https://www.warp.dev',
   'Claude Code':           'https://claude.ai/code',
   'Codex':                 'https://openai.com/index/openai-codex/',
   'Cursor':                'https://cursor.com',
@@ -214,7 +213,7 @@ const ui = {
       groups: [
         { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'JavaScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Supabase', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
-        { label: 'Tooling & Process', items: ['GitHub Actions', 'GitHub Pages', 'Vercel', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'Sentry', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Scrum', 'npm', 'pnpm'] },
+        { label: 'Tooling & Process', items: ['GitHub Actions', 'GitHub Pages', 'Vercel', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'Sentry', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Scrum', 'npm', 'pnpm'] },
         { label: 'Architecture', items: ['Hexagonal Architecture', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS', 'Monorepo', 'API Gateway', 'SPA', 'SSR'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'AI', items: ['Antigravity', 'Claude Code', 'Codex', 'Cursor', 'DeepSeek', 'OpenCode', 'CodeRabbit', 'Ollama', 'LM Studio', 'Continue'] },
@@ -294,7 +293,7 @@ const ui = {
       groups: [
         { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'JavaScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Supabase', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
-        { label: 'Herramientas y proceso', items: ['GitHub Actions', 'GitHub Pages', 'Vercel', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'Sentry', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Scrum', 'npm', 'pnpm'] },
+        { label: 'Herramientas y proceso', items: ['GitHub Actions', 'GitHub Pages', 'Vercel', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'Sentry', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Scrum', 'npm', 'pnpm'] },
         { label: 'Arquitectura', items: ['Arquitectura Hexagonal', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'IA', items: ['Antigravity', 'Claude Code', 'Codex', 'Cursor', 'DeepSeek', 'OpenCode', 'CodeRabbit', 'Ollama', 'LM Studio', 'Continue'] },
@@ -374,7 +373,7 @@ const ui = {
       groups: [
         { label: 'Frontend', items: ['Vue', 'Nuxt', 'TypeScript', 'JavaScript', 'Pinia', 'Vuex', 'PrimeVue', 'Quasar', 'BootstrapVue', 'Tailwind', 'Bootstrap', 'Bulma', 'SASS', 'SCSS', 'Flexbox', 'CSS Grid', 'Vite', 'Accessibility', 'PWA'] },
         { label: 'Backend', items: ['Python', 'REST APIs', 'RESTful', 'HATEOAS', 'OpenAPI', 'Odoo', 'SQL', 'PostgreSQL', 'Supabase', 'Oracle', 'PL/SQL', 'Node.js', 'Java'] },
-        { label: 'Ferramentas e proceso', items: ['GitHub Actions', 'GitHub Pages', 'Vercel', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'Sentry', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Warp', 'Scrum', 'npm', 'pnpm'] },
+        { label: 'Ferramentas e proceso', items: ['GitHub Actions', 'GitHub Pages', 'Vercel', 'Git', 'CI/CD', 'Code Review', 'ESLint', 'Prettier', 'Husky', 'Sentry', 'SonarQube', 'Linux', 'Windows', 'macOS', 'Bash', 'Scrum', 'npm', 'pnpm'] },
         { label: 'Arquitectura', items: ['Arquitectura Hexagonal', 'DDD', 'Clean Architecture', 'SOLID', 'REST', 'MVC', 'Event-Driven', 'Microservices', 'CQRS'] },
         { label: 'Testing', items: ['Vitest', 'Jest', 'Playwright', 'Cypress', 'Vue Test Utils', 'Testing Library', 'pytest', 'TDD', 'BDD'] },
         { label: 'IA', items: ['Antigravity', 'Claude Code', 'Codex', 'Cursor', 'DeepSeek', 'OpenCode', 'CodeRabbit', 'Ollama', 'LM Studio', 'Continue'] },
