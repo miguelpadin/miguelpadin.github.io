@@ -273,6 +273,19 @@ canvas {
   text-transform: uppercase;
 }
 
+/* ── Screen-reader-only heading (name lives in header visually) ─ */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ── Small-viewport hardening (min 360px) ────────────────────── */
 @media (max-width: 400px) {
   html {
@@ -284,9 +297,6 @@ canvas {
   }
   .mono-label {
     letter-spacing: 0.08em;
-  }
-  .ghost-num {
-    font-size: 3rem !important;
   }
 }
 
@@ -379,22 +389,4 @@ canvas {
     transform: none;
     flex-wrap: nowrap;
   }
-}
-
-/* ── Ghost section numerals (01 / 02 / 03) ───────────────────── */
-.ghost-heading {
-  position: relative;
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-}
-.ghost-num {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-stretch: 110%;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--color-border);
-  user-select: none;
-  flex-shrink: 0;
 }

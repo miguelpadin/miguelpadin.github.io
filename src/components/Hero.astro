@@ -9,18 +9,15 @@ const { t } = Astro.props;
 
 <section id="hero-section" class="relative min-h-screen flex flex-col justify-center px-8 pt-16">
   <div class="max-w-5xl mx-auto w-full fade-in">
-
-    <!-- Single eyebrow (only one on the page) -->
-    <p
-      class="mono-label mb-8"
-      style="color: var(--color-accent);"
-    >
-      {t.hero.label}
-    </p>
-
-    <!-- Massive name, top-left aligned, full width -->
     <h1
       id="hero-name"
+      class="visually-hidden"
+    >
+      Miguel Padín Domínguez — {t.hero.label}
+    </h1>
+
+    <!-- Display role statement: the name lives in the header, the type does the talking -->
+    <p
       class="hero-enter leading-none mb-12"
       style="
         font-family: var(--font-display);
@@ -32,8 +29,8 @@ const { t } = Astro.props;
         text-transform: uppercase;
       "
     >
-      Miguel Padín Domínguez
-    </h1>
+      {t.hero.label}
+    </p>
 
     <!-- One thin hairline rule -->
     <div class="mb-12 w-full" style="height: 1px; background: var(--color-border);"></div>

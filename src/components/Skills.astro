@@ -33,21 +33,20 @@ function renderItems(items: readonly string[]) {
 <section id="skills" class="px-8 py-32" style="background: var(--color-surface);" aria-labelledby="skills-heading">
   <div class="max-w-5xl mx-auto">
 
-    <div class="ghost-heading mb-12" data-reveal>
-      <span class="ghost-num" aria-hidden="true" style="font-size: clamp(4.5rem, 7vw, 6rem);">02</span>
-      <h2
-        id="skills-heading"
-        style="
-          font-family: var(--font-display);
-          font-weight: var(--font-display-weight);
-          font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-          color: var(--color-fg);
-          letter-spacing: var(--font-display-tracking);
-        "
-      >
-        {t.skills.label}
-      </h2>
-    </div>
+    <h2
+      id="skills-heading"
+      class="mb-12"
+      style="
+        font-family: var(--font-display);
+        font-weight: var(--font-display-weight);
+        font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+        color: var(--color-fg);
+        letter-spacing: var(--font-display-tracking);
+      "
+      data-reveal
+    >
+      {t.skills.label}
+    </h2>
 
     <!-- Full-width marquee strip: every skill in one slow line. Single marquee on the page. -->
     <div
