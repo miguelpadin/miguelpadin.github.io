@@ -319,6 +319,22 @@ canvas {
   transform: translateX(0);
 }
 
+/* ── Hero icon links (logos, no text) ────────────────────────── */
+.hero-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.hero-icon-link:hover {
+  color: var(--color-fg);
+  border-color: var(--color-fg);
+}
+
 /* ── Accent underline grow (reusable) ────────────────────────── */
 .link-underline {
   position: relative;
