@@ -107,9 +107,9 @@ function hreflangUrl(targetLang: Lang): string {
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" /></noscript>
-    <meta name="theme-color" id="theme-color" content="#0C1525" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" /></noscript>
+    <meta name="theme-color" id="theme-color" content="#FAF9F6" />
     <title>{title}</title>
 
     <!-- Google tag (gtag.js) — consent denied by default until user accepts -->
@@ -126,64 +126,13 @@ function hreflangUrl(targetLang: Lang): string {
 
     <!-- JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
-
-    <script is:inline>
-      const t = localStorage.getItem('theme') || 'dark';
-      document.documentElement.dataset.theme = t;
-      const tc = document.getElementById('theme-color');
-      if (tc) tc.setAttribute('content', t === 'light' ? '#D6E4F7' : '#0C1525');
-    </script>
   </head>
-  <body class="min-h-screen">
-    <!-- Dot grid spotlight -->
-    <div id="grid-spotlight" style="
-      position: fixed; inset: 0; pointer-events: none; z-index: 2;
-      background-image: radial-gradient(circle, rgba(74,158,255,0.13) 1px, transparent 1px);
-      background-size: 38px 38px;
-      -webkit-mask-image: radial-gradient(circle 220px at var(--mx, -500px) var(--my, -500px), black 0%, transparent 100%);
-      mask-image: radial-gradient(circle 220px at var(--mx, -500px) var(--my, -500px), black 0%, transparent 100%);
-    "></div>
-
-    <!-- Scroll progress bar -->
-    <div id="scroll-bar" style="
-      position: fixed; top: 0; left: 0; z-index: 100000;
-      height: 2px; width: 0%;
-      background: var(--color-accent);
-      pointer-events: none;
-    "></div>
-
+  <body class="min-h-screen fade-in">
     <slot />
 
     <CookieBanner lang={lang} />
 
     <script>
-      const isTouch = window.matchMedia('(pointer: coarse)').matches;
-
-      // ── Split text reveal ─────────────────────────────────────────
-      document.querySelectorAll<HTMLElement>('[data-split]').forEach(el => {
-        const text = el.textContent || '';
-        el.innerHTML = [...text].map((char, i) =>
-          `<span class="split-char" style="transition-delay:${(i * 0.045).toFixed(3)}s">${char === ' ' ? '&nbsp;' : char}</span>`
-        ).join('');
-      });
-
-      const splitObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('is-split-visible');
-            splitObs.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.5 });
-      document.querySelectorAll('[data-split]').forEach(el => splitObs.observe(el));
-
-      // ── Dot grid spotlight ────────────────────────────────────────
-      const grid = document.getElementById('grid-spotlight')!;
-      window.addEventListener('mousemove', (e) => {
-        grid.style.setProperty('--mx', e.clientX + 'px');
-        grid.style.setProperty('--my', e.clientY + 'px');
-      }, { passive: true });
-
       // ── Scroll reveal ──────────────────────────────────────────────
       const observer = new IntersectionObserver(
         (entries) => {
@@ -197,13 +146,6 @@ function hreflangUrl(targetLang: Lang): string {
         { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
       );
       document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
-
-      // ── Scroll progress bar ────────────────────────────────────────
-      const scrollBar = document.getElementById('scroll-bar')!;
-      window.addEventListener('scroll', () => {
-        const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-        scrollBar.style.width = (pct * 100) + '%';
-      }, { passive: true });
 
       // ── Active nav on scroll ───────────────────────────────────────
       const sectionIds = ['experience', 'skills', 'contact'];
@@ -227,66 +169,6 @@ function hreflangUrl(targetLang: Lang): string {
         const el = document.getElementById(id);
         if (el) sectionObserver.observe(el);
       });
-
-      // ── Tab title visibility easter egg ───────────────────────────
-      const staticTitle = document.title;
-      const awayMsg: Record<string, string> = {
-        es: '👋 ¡Hasta pronto!',
-        gl: '👋 Ata logo!',
-        en: '👋 See you soon!',
-      };
-      document.addEventListener('visibilitychange', () => {
-        const lang = document.documentElement.lang || 'en';
-        document.title = document.hidden ? (awayMsg[lang] ?? awayMsg.en) : staticTitle;
-      });
-
-
-      // ── Cursor particle trail ─────────────────────────────────────
-      if (!isTouch) {
-        const trail = document.createElement('canvas');
-        trail.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:999990;';
-        document.body.appendChild(trail);
-        const tc = trail.getContext('2d')!;
-
-        function resizeTrail() {
-          trail.width  = window.innerWidth;
-          trail.height = window.innerHeight;
-        }
-        resizeTrail();
-        window.addEventListener('resize', resizeTrail, { passive: true });
-
-        type Particle = { x: number; y: number; life: number; size: number };
-        const particles: Particle[] = [];
-
-        document.addEventListener('mousemove', (e) => {
-          if (Math.random() > 0.4) return;
-          particles.push({ x: e.clientX, y: e.clientY, life: 1, size: Math.random() * 2.5 + 1 });
-        });
-
-        (function drawTrail() {
-          tc.clearRect(0, 0, trail.width, trail.height);
-          for (let i = particles.length - 1; i >= 0; i--) {
-            const p = particles[i];
-            p.life -= 0.045;
-            if (p.life <= 0) { particles.splice(i, 1); continue; }
-            tc.globalAlpha = p.life * 0.55;
-            tc.fillStyle = '#4A9EFF';
-            tc.beginPath();
-            tc.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
-            tc.fill();
-          }
-          tc.globalAlpha = 1;
-          requestAnimationFrame(drawTrail);
-        })();
-      }
-
-      // ── Update theme-color on theme change ────────────────────────
-      const themeColorMeta = document.getElementById('theme-color') as HTMLMetaElement | null;
-      new MutationObserver(() => {
-        const dark = document.documentElement.dataset.theme !== 'light';
-        if (themeColorMeta) themeColorMeta.content = dark ? '#0C1525' : '#D6E4F7';
-      }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-
     </script>
   </body>
 </html>

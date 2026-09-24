@@ -26,10 +26,10 @@ const legalUrl = `${prefix}legal/`;
 <footer class="px-8 py-8" style="border-top: 1px solid var(--color-border);">
   <div class="footer-inner max-w-5xl mx-auto">
     <div class="footer-name">
-      <span class="text-xs uppercase tracking-[0.15em]" style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);">
+      <span class="mono-label" style="color: var(--color-muted); text-transform: none; letter-spacing: 0.04em;">
         © {year} Miguel Padín Domínguez
       </span>
-      <span class="text-[10px] uppercase tracking-widest" style="color: var(--color-muted); font-family: var(--font-display); opacity: 0.72;">
+      <span class="mono-label" style="color: var(--color-muted); opacity: 0.72;">
         v.{version}
       </span>
     </div>
@@ -44,22 +44,22 @@ const legalUrl = `${prefix}legal/`;
     </a>
     <a
       href={privacyUrl}
-      class="footer-link footer-privacy text-xs uppercase tracking-[0.15em] transition-colors duration-200"
-      style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
+      class="footer-link text-xs transition-colors duration-200"
+      style="color: var(--color-muted); font-family: var(--font-mono); letter-spacing: 0.04em;"
     >
       {privacyLabel}
     </a>
     <a
       href={cookiesUrl}
-      class="footer-link footer-cookies text-xs uppercase tracking-[0.15em] transition-colors duration-200"
-      style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
+      class="footer-link text-xs transition-colors duration-200"
+      style="color: var(--color-muted); font-family: var(--font-mono); letter-spacing: 0.04em;"
     >
       {cookiesLabel}
     </a>
     <a
       href={legalUrl}
-      class="footer-link footer-legal text-xs uppercase tracking-[0.15em] transition-colors duration-200"
-      style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
+      class="footer-link text-xs transition-colors duration-200"
+      style="color: var(--color-muted); font-family: var(--font-mono); letter-spacing: 0.04em;"
     >
       {legalLabel}
     </a>
@@ -101,16 +101,10 @@ const legalUrl = `${prefix}legal/`;
       order: 2;
     }
 
-    .footer-privacy {
-      order: 3;
-    }
-
-    .footer-cookies {
-      order: 4;
-    }
-
+    .footer-privacy,
+    .footer-cookies,
     .footer-legal {
-      order: 5;
+      order: 3;
     }
   }
 </style>

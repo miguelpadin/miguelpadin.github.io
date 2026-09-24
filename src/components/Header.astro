@@ -11,8 +11,7 @@ const { lang, t } = Astro.props;
 
 <header
   id="site-header"
-  class="fixed top-0 inset-x-0 z-50 px-8 transition-all duration-300"
-  style="background: transparent;"
+  class="fixed top-0 inset-x-0 z-50 px-8"
 >
   <div class="max-w-5xl mx-auto flex items-center justify-between h-16">
     <a
@@ -22,7 +21,6 @@ const { lang, t } = Astro.props;
       <Logo size={28} />
       <span
         class="text-xs font-semibold hidden sm:block"
-        id="header-name"
         style="color: var(--color-secondary); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking); white-space: nowrap;"
       >
         Miguel Padín Domínguez
@@ -47,35 +45,15 @@ const { lang, t } = Astro.props;
         ))}
       </nav>
 
-      <!-- Theme toggle -->
-      <button
-        id="theme-toggle"
-        class="transition-colors duration-200"
-        style="color: var(--color-secondary); background: none; border: none; padding: 0.25rem; display: flex; align-items: center;"
-        aria-label="Toggle theme"
-      >
-        <!-- Sun (shown in dark mode) -->
-        <svg id="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-        </svg>
-        <!-- Moon (shown in light mode) -->
-        <svg id="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
-          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-        </svg>
-      </button>
-
       <!-- Language switcher -->
       <div class="flex items-center gap-1" style="border-left: 1px solid var(--color-border); padding-left: 1.5rem;">
         {(Object.keys(languages) as Lang[]).map((l) => (
           <a
             href={getLangUrl(l)}
-            class="text-[11px] px-1.5 py-0.5 transition-colors duration-200 rounded"
+            class="text-[11px] px-1.5 py-0.5 transition-colors duration-200"
             style={`
-              font-family: var(--font-display);
-              font-weight: var(--font-display-weight);
-              letter-spacing: var(--font-display-tracking);
+              font-family: var(--font-mono);
               color: ${l === lang ? 'var(--color-accent)' : 'var(--color-muted)'};
-              background: ${l === lang ? 'rgba(232,145,74,0.1)' : 'transparent'};
             `}
           >
             {languages[l]}
@@ -86,39 +64,24 @@ const { lang, t } = Astro.props;
   </div>
 </header>
 
+<style>
+  header#site-header {
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  header#site-header.is-scrolled {
+    background: rgba(250, 249, 246, 0.92);
+    border-bottom-color: var(--color-border);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+</style>
+
 <script>
-  const toggle   = document.getElementById('theme-toggle')!;
-  const iconSun  = document.getElementById('icon-sun')  as HTMLElement;
-  const iconMoon = document.getElementById('icon-moon') as HTMLElement;
-
-  function applyTheme(theme: string) {
-    document.documentElement.dataset.theme = theme;
-    localStorage.setItem('theme', theme);
-    iconSun.style.display  = theme === 'dark'  ? 'block' : 'none';
-    iconMoon.style.display = theme === 'light' ? 'block' : 'none';
-  }
-
-  applyTheme(localStorage.getItem('theme') || 'dark');
-
-  toggle.addEventListener('click', () => {
-    applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
-  });
-
+  // Minimal scrolled state: paper background + hairline border.
   const header = document.getElementById('site-header');
-  const headerName = document.getElementById('header-name') as HTMLElement | null;
-
-  function updateHeaderBg() {
-    if (window.scrollY > 60) {
-      header!.style.background = 'rgba(11,11,13,0.85)';
-      header!.style.backdropFilter = 'blur(12px)';
-      header!.style.borderBottom = '1px solid var(--color-border)';
-      if (headerName) headerName.style.color = '#ffffff';
-    } else {
-      header!.style.background = 'transparent';
-      header!.style.backdropFilter = 'none';
-      header!.style.borderBottom = 'none';
-      if (headerName) headerName.style.color = 'var(--color-secondary)';
-    }
-  }
-  window.addEventListener('scroll', updateHeaderBg, { passive: true });
+  const update = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+  update();
+  window.addEventListener('scroll', update, { passive: true });
 </script>

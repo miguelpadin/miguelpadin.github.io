@@ -6,85 +6,100 @@ interface Props {
   t: Translations;
 }
 const { t } = Astro.props;
+
+function renderItems(items: readonly string[]) {
+  return items.map((item, i) => {
+    const url = skillUrls[item];
+    const isLast = i === items.length - 1;
+    return url
+      ? {
+          link: true,
+          href: url,
+          item,
+          sep: isLast ? '' : ', ',
+        }
+      : {
+          link: false,
+          item,
+          sep: isLast ? '' : ', ',
+        };
+  });
+}
 ---
 
-<section id="skills" class="px-8 py-16" style="background: var(--color-surface);" aria-labelledby="skills-heading">
+<section id="skills" class="px-8 py-32" style="background: var(--color-surface);" aria-labelledby="skills-heading">
   <div class="max-w-5xl mx-auto">
 
-    <div class="flex items-center gap-6 mb-20" data-reveal>
-      <h2
-        id="skills-heading"
-        class="text-xs uppercase tracking-[0.25em]"
-        style="color: var(--color-accent); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
-        data-split
-      >
-        {t.skills.label}
-      </h2>
-      <div class="divider-line"></div>
-    </div>
+    <h2
+      id="skills-heading"
+      class="mb-20"
+      style="
+        font-family: var(--font-display);
+        font-weight: var(--font-display-weight);
+        font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+        color: var(--color-fg);
+        letter-spacing: var(--font-display-tracking);
+      "
+      data-reveal
+    >
+      {t.skills.label}
+    </h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-16">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-12">
       {t.skills.groups.map((group, i) => (
-        <div data-reveal data-reveal-delay={String(i % 3)}>
-          <p
-            class="text-xs uppercase tracking-[0.2em] mb-6"
-            style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
-          >
+        <div
+          data-reveal
+          data-reveal-delay={String(i % 3)}
+          style="border-top: 1px solid var(--color-border); padding-top: 1.25rem;"
+        >
+          <p class="mono-label mb-4" style="color: var(--color-muted);">
             {group.label}
           </p>
-          <div class="flex flex-wrap gap-2">
-            {group.items.map((item) => {
-              const url = skillUrls[item];
-              const pillClass = "skill-pill text-sm px-3 py-1.5 transition-colors duration-200";
-              const pillStyle = "color: var(--color-secondary); background: var(--color-bg); border: 1px solid var(--color-border); font-weight: 300;";
-              return url ? (
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class={pillClass}
-                  style={pillStyle}
-
-                >
-                  {item}
-                </a>
+          <p class="text-sm leading-loose" style="color: var(--color-secondary);">
+            {renderItems(group.items).map(({ link, href, item, sep }) =>
+              link ? (
+                <>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="skill-link transition-colors duration-200"
+                    style="color: var(--color-secondary);"
+                  >
+                    {item}
+                  </a>{sep}
+                </>
               ) : (
-                <span
-                  class={pillClass}
-                  style={pillStyle}
-
-                >
-                  {item}
-                </span>
-              );
-            })}
-          </div>
+                <span>{item}{sep}</span>
+              )
+            )}
+          </p>
         </div>
       ))}
     </div>
 
     <div
-      class="mt-20 pt-12 flex flex-wrap gap-10"
+      class="mt-20 pt-12 grid grid-cols-1 sm:grid-cols-3 gap-8"
       style="border-top: 1px solid var(--color-border);"
       data-reveal
     >
       <div>
-        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);">
+        <p class="mono-label mb-2" style="color: var(--color-muted);">
           {t.skills.spanish.label}
         </p>
-        <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{t.skills.spanish.level}</p>
+        <p class="text-sm" style="color: var(--color-secondary);">{t.skills.spanish.level}</p>
       </div>
       <div>
-        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);">
+        <p class="mono-label mb-2" style="color: var(--color-muted);">
           {t.skills.galician.label}
         </p>
-        <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{t.skills.galician.level}</p>
+        <p class="text-sm" style="color: var(--color-secondary);">{t.skills.galician.level}</p>
       </div>
       <div>
-        <p class="text-xs uppercase tracking-[0.2em] mb-2" style="color: var(--color-muted); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);">
+        <p class="mono-label mb-2" style="color: var(--color-muted);">
           {t.skills.english.label}
         </p>
-        <p class="text-sm" style="color: var(--color-secondary); font-weight: 300;">{t.skills.english.level}</p>
+        <p class="text-sm" style="color: var(--color-secondary);">{t.skills.english.level}</p>
       </div>
     </div>
 
