@@ -109,7 +109,7 @@ function hreflangUrl(targetLang: Lang): string {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" /></noscript>
-    <meta name="theme-color" id="theme-color" content="#FAF9F6" />
+    <meta name="theme-color" id="theme-color" content="#F6F3EE" />
     <title>{title}</title>
 
     <!-- Google tag (gtag.js) — consent denied by default until user accepts -->
@@ -154,14 +154,14 @@ function hreflangUrl(targetLang: Lang): string {
       );
 
       const resetNav = () => sectionIds.forEach(id => {
-        if (navLinks[id]) navLinks[id]!.style.color = 'var(--color-muted)';
+        if (navLinks[id]) navLinks[id]!.style.color = 'var(--color-hue2)';
       });
 
       const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           const link = navLinks[entry.target.id];
           if (!link) return;
-          link.style.color = entry.isIntersecting ? 'var(--color-accent)' : 'var(--color-muted)';
+          link.style.color = entry.isIntersecting ? 'var(--color-accent-text)' : 'var(--color-hue2)';
         });
       }, { threshold: 0.25 });
 

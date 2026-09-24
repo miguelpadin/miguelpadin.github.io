@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #FAF9F6;
-  --color-surface: #F3F1EC;
-  --color-border: #E3E0D8;
+  --color-bg: #F6F3EE;
+  --color-surface: #EFEAE2;
+  --color-border: #DAD3C8;
   --color-fg: #1A1917;
-  --color-muted: #6E6A63;
-  --color-secondary: #55514B;
-  --color-accent: #A3301F;
+  --color-muted: #6E675D;
+  --color-secondary: #55503F;
+  --color-accent: #E8542F;
+  --color-accent-text: #C03A14;
+  --color-hue2: #0F5C5A;
   --font-display: 'Archivo', system-ui, sans-serif;
   --font-display-weight: 700;
   --font-display-tracking: -0.02em;
@@ -17,13 +19,15 @@
 
 /* Fallback utilities for browsers that ignore Tailwind cascade layers. */
 :root {
-  --color-bg: #FAF9F6;
-  --color-surface: #F3F1EC;
-  --color-border: #E3E0D8;
+  --color-bg: #F6F3EE;
+  --color-surface: #EFEAE2;
+  --color-border: #DAD3C8;
   --color-fg: #1A1917;
-  --color-muted: #6E6A63;
-  --color-secondary: #55514B;
-  --color-accent: #A3301F;
+  --color-muted: #6E675D;
+  --color-secondary: #55503F;
+  --color-accent: #E8542F;
+  --color-accent-text: #C03A14;
+  --color-hue2: #0F5C5A;
   --font-display: 'Archivo', system-ui, sans-serif;
   --font-display-weight: 700;
   --font-display-tracking: -0.02em;
@@ -57,6 +61,11 @@
   ::selection {
     background: var(--color-accent);
     color: var(--color-bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
   }
 }
 
@@ -202,19 +211,19 @@ canvas {
 }
 .footer-link:hover,
 .footer-location:hover {
-  color: var(--color-accent) !important;
+  color: var(--color-accent-text) !important;
 }
 .contact-link:hover {
-  color: var(--color-accent) !important;
+  color: var(--color-accent-text) !important;
 }
 .back-link:hover {
-  color: var(--color-accent) !important;
+  color: var(--color-accent-text) !important;
 }
 .back-link-404:hover {
   opacity: 0.7 !important;
 }
 .skill-link:hover {
-  color: var(--color-accent) !important;
+  color: var(--color-accent-text) !important;
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -309,7 +318,7 @@ canvas {
   transition: color 0.2s ease;
 }
 .company-link:hover {
-  color: var(--color-accent);
+  color: var(--color-accent-text);
 }
 
 /* ── Contact row arrow on hover (CSS only) ───────────────────── */
@@ -330,7 +339,7 @@ canvas {
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-hue2);
   border-radius: 9999px;
   transition: color 0.2s ease, border-color 0.2s ease;
 }

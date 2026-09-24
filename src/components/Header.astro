@@ -57,7 +57,7 @@ const { lang, t } = Astro.props;
             class="text-[11px] px-1 py-0.5 transition-colors duration-200"
             style={`
               font-family: var(--font-mono);
-              color: ${l === lang ? 'var(--color-accent)' : 'var(--color-muted)'};
+              color: ${l === lang ? 'var(--color-accent-text)' : 'var(--color-muted)'};
             `}
           >
             {languages[l]}
@@ -75,7 +75,7 @@ const { lang, t } = Astro.props;
     transition: background-color 0.3s ease, border-color 0.3s ease;
   }
   header#site-header.is-scrolled {
-    background: rgba(250, 249, 246, 0.92);
+    background: rgba(246, 243, 238, 0.92);
     border-bottom-color: var(--color-border);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);

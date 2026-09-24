@@ -35,14 +35,14 @@ const { t } = Astro.props;
         >
           <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-4 lg:gap-16">
             <div>
-              <p class="mono-label mb-4" style="color: var(--color-muted);">
+              <p class="mono-label mb-4" style="color: var(--color-hue2);">
                 {job.period}
               </p>
               <p class="text-sm mb-1" style="color: var(--color-secondary);">
                 {job.location}
               </p>
               {job.current && (
-                <p class="mono-label" style="color: var(--color-accent);">
+                <p class="mono-label" style="color: var(--color-accent-text);">
                   {t.experience.current}
                 </p>
               )}
