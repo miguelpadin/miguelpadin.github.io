@@ -362,31 +362,4 @@ canvas {
   }
 }
 
-/* ── Skills marquee (the only marquee on the page) ───────────── */
-.marquee-strip {
-  position: relative;
-  contain: layout paint;
-}
-@media (prefers-reduced-motion: no-preference) {
-  @keyframes marqueeScroll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  .marquee-track {
-    animation: marqueeScroll 60s linear infinite;
-  }
-  .marquee-strip:hover .marquee-track {
-    animation-play-state: paused;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee-strip {
-    overflow: hidden;
-  }
-  .marquee-track,
-  .marquee-segment {
-    animation: none;
-    transform: none;
-    flex-wrap: nowrap;
-  }
-}
+
