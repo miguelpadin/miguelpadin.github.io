@@ -43,7 +43,7 @@
     background-color: var(--color-bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    cursor: default;
+    overflow-x: hidden;
   }
 
   * {
@@ -273,6 +273,23 @@ canvas {
   text-transform: uppercase;
 }
 
+/* ── Small-viewport hardening (min 360px) ────────────────────── */
+@media (max-width: 400px) {
+  html {
+    font-size: 15px;
+  }
+  .px-8 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .mono-label {
+    letter-spacing: 0.08em;
+  }
+  .ghost-num {
+    font-size: 3rem !important;
+  }
+}
+
 /* ── Company link hover (color shift only) ───────────────────── */
 .company-link {
   transition: color 0.2s ease;
@@ -336,6 +353,10 @@ canvas {
 }
 
 /* ── Skills marquee (the only marquee on the page) ───────────── */
+.marquee-strip {
+  position: relative;
+  contain: layout paint;
+}
 @media (prefers-reduced-motion: no-preference) {
   @keyframes marqueeScroll {
     from { transform: translateX(0); }
