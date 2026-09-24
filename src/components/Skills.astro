@@ -7,6 +7,9 @@ interface Props {
 }
 const { t } = Astro.props;
 
+// Flattened skill names for the marquee strip (order follows the groups).
+const allSkills = t.skills.groups.flatMap((group) => group.items);
+
 function renderItems(items: readonly string[]) {
   return items.map((item, i) => {
     const url = skillUrls[item];
@@ -30,20 +33,44 @@ function renderItems(items: readonly string[]) {
 <section id="skills" class="px-8 py-32" style="background: var(--color-surface);" aria-labelledby="skills-heading">
   <div class="max-w-5xl mx-auto">
 
-    <h2
-      id="skills-heading"
-      class="mb-20"
-      style="
-        font-family: var(--font-display);
-        font-weight: var(--font-display-weight);
-        font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-        color: var(--color-fg);
-        letter-spacing: var(--font-display-tracking);
-      "
-      data-reveal
+    <div class="ghost-heading mb-12" data-reveal>
+      <span class="ghost-num" aria-hidden="true" style="font-size: clamp(4.5rem, 7vw, 6rem);">02</span>
+      <h2
+        id="skills-heading"
+        style="
+          font-family: var(--font-display);
+          font-weight: var(--font-display-weight);
+          font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+          color: var(--color-fg);
+          letter-spacing: var(--font-display-tracking);
+        "
+      >
+        {t.skills.label}
+      </h2>
+    </div>
+
+    <!-- Full-width marquee strip: every skill in one slow line. Single marquee on the page. -->
+    <div
+      class="marquee-strip mt-20 mb-20"
+      style="border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); overflow: hidden;"
     >
-      {t.skills.label}
-    </h2>
+      <div class="marquee-track" style="display: flex; width: max-content;">
+        {[0, 1].map((copy) => (
+          <div
+            class="marquee-segment"
+            style="display: flex; align-items: center; white-space: nowrap; padding: 0.875rem 0; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--color-secondary);"
+            aria-hidden={copy === 1 ? 'true' : undefined}
+          >
+            {allSkills.map((skill, i) => (
+              <span style="display: inline-flex; align-items: center;">
+                <span style="padding: 0 1.125rem;">{skill}</span>
+                {i < allSkills.length - 1 && <span style="color: var(--color-muted);" aria-hidden="true">·</span>}
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-12">
       {t.skills.groups.map((group, i) => (

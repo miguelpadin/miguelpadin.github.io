@@ -25,28 +25,47 @@ const links = [
 <section id="contact" class="px-8 py-32" aria-labelledby="contact-heading">
   <div class="max-w-5xl mx-auto">
 
-    <h2
-      id="contact-heading"
-      class="mb-16 leading-none"
-      style="
-        font-family: var(--font-display);
-        font-weight: var(--font-display-weight);
-        font-size: clamp(2.25rem, 6vw, 4.5rem);
-        color: var(--color-fg);
-        letter-spacing: var(--font-display-tracking);
-      "
-      data-reveal
-    >
-      {t.contact.heading[0]}<br />
-      <span style="color: var(--color-muted);">{t.contact.heading[1]}</span>
-    </h2>
+    <div class="ghost-heading mb-16" data-reveal>
+      <span class="ghost-num" aria-hidden="true" style="font-size: clamp(4.5rem, 7vw, 6rem);">03</span>
+      <h2
+        id="contact-heading"
+        class="leading-none"
+        style="
+          font-family: var(--font-display);
+          font-weight: var(--font-display-weight);
+          font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+          color: var(--color-fg);
+          letter-spacing: var(--font-display-tracking);
+        "
+      >
+        {t.contact.heading[0]}<br />
+        <span style="color: var(--color-muted);">{t.contact.heading[1]}</span>
+      </h2>
+    </div>
 
     <p class="text-base leading-loose mb-16 max-w-md" style="color: var(--color-secondary);" data-reveal>
       {t.contact.subtext}
     </p>
 
+    <!-- Email as the dominant display element -->
+    <a
+      href="mailto:miguel.padin.dominguez@gmail.com"
+      class="link-underline inline-block mb-8 leading-none"
+      style="
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: clamp(1.25rem, 4vw, 2.5rem);
+        color: var(--color-fg);
+        letter-spacing: var(--font-display-tracking);
+        word-break: break-all;
+      "
+      data-reveal
+    >
+      miguel.padin.dominguez@gmail.com
+    </a>
+
     <div class="flex flex-col" data-reveal>
-      {links.map(({ label, href }) => (
+      {links.filter(({ label }) => label !== 'miguel.padin.dominguez@gmail.com').map(({ label, href }) => (
         <a
           href={href}
           target={href.startsWith('http') ? '_blank' : undefined}

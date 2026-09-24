@@ -10,20 +10,21 @@ const { t } = Astro.props;
 <section id="experience" class="px-8 py-32" aria-labelledby="experience-heading">
   <div class="max-w-5xl mx-auto">
 
-    <h2
-      id="experience-heading"
-      class="mb-20"
-      style="
-        font-family: var(--font-display);
-        font-weight: var(--font-display-weight);
-        font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-        color: var(--color-fg);
-        letter-spacing: var(--font-display-tracking);
-      "
-      data-reveal
-    >
-      {t.experience.label}
-    </h2>
+    <div class="ghost-heading mb-20" data-reveal>
+      <span class="ghost-num" aria-hidden="true" style="font-size: clamp(4.5rem, 7vw, 6rem);">01</span>
+      <h2
+        id="experience-heading"
+        style="
+          font-family: var(--font-display);
+          font-weight: var(--font-display-weight);
+          font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+          color: var(--color-fg);
+          letter-spacing: var(--font-display-tracking);
+        "
+      >
+        {t.experience.label}
+      </h2>
+    </div>
 
     <div class="space-y-0">
       {t.experience.jobs.map((job, i) => (
@@ -65,7 +66,7 @@ const { t } = Astro.props;
                     target="_blank"
                     rel="noopener noreferrer"
                     style="color: inherit; text-decoration: none;"
-                    class="company-link"
+                    class="company-link link-underline"
                   >
                     {job.company}
                   </a>

@@ -21,13 +21,15 @@ const { t } = Astro.props;
     <!-- Massive name, top-left aligned, full width -->
     <h1
       id="hero-name"
-      class="leading-none mb-12"
+      class="hero-enter leading-none mb-12"
       style="
         font-family: var(--font-display);
-        font-weight: var(--font-display-weight);
-        font-size: clamp(2.75rem, 10.5vw, 7.5rem);
+        font-weight: 900;
+        font-stretch: 125%;
+        font-size: clamp(3rem, 12vw, 9rem);
         color: var(--color-fg);
-        letter-spacing: var(--font-display-tracking);
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
       "
     >
       Miguel<br />Padín Domínguez
@@ -57,7 +59,7 @@ const { t } = Astro.props;
             href={href}
             target={href.startsWith('http') ? '_blank' : undefined}
             rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-            class="contact-link mono-label transition-colors duration-200"
+            class="contact-link mono-label link-underline transition-colors duration-200"
             style="color: var(--color-muted); text-transform: none; letter-spacing: 0.04em;"
           >
             {label}

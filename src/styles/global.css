@@ -291,3 +291,89 @@ canvas {
   opacity: 1;
   transform: translateX(0);
 }
+
+/* ── Accent underline grow (reusable) ────────────────────────── */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+}
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .link-underline::after {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* ── Hero entrance: one-time rise + fade (CSS only) ──────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-enter {
+    animation: heroRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes heroRise {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* ── Skills marquee (the only marquee on the page) ───────────── */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes marqueeScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    animation: marqueeScroll 60s linear infinite;
+  }
+  .marquee-strip:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-strip {
+    overflow: hidden;
+  }
+  .marquee-track,
+  .marquee-segment {
+    animation: none;
+    transform: none;
+    flex-wrap: nowrap;
+  }
+}
+
+/* ── Ghost section numerals (01 / 02 / 03) ───────────────────── */
+.ghost-heading {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+}
+.ghost-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-stretch: 110%;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--color-border);
+  user-select: none;
+  flex-shrink: 0;
+}
