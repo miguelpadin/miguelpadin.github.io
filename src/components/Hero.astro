@@ -44,7 +44,7 @@ const { t } = Astro.props;
         {t.hero.bio}
       </p>
 
-      <div class="flex items-start gap-5 flex-wrap lg:justify-end">
+      <div class="lg:row-start-1 lg:col-start-2 flex items-start gap-5 flex-wrap lg:justify-end" style="margin-top: 0.4375rem;">
         {[
           { label: 'LinkedIn', href: 'https://linkedin.com/in/miguelpadin', icon: 'linkedin' },
           { label: 'GitHub',   href: 'https://github.com/miguelpadin',   icon: 'github' },

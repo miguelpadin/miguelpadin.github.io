@@ -228,7 +228,11 @@ canvas {
 @media (min-width: 1024px) {
   .lg\:grid-cols-\[240px_1fr\] { grid-template-columns: 240px minmax(0, 1fr); }
   .lg\:grid-cols-\[280px_1fr\] { grid-template-columns: 280px minmax(0, 1fr); }
+  .lg\:grid-cols-\[1fr_auto\] { grid-template-columns: minmax(0, 1fr) auto; }
   .lg\:gap-16 { gap: 4rem; }
+  .lg\:row-start-1 { grid-row-start: 1; }
+  .lg\:col-start-2 { grid-column-start: 2; }
+  .lg\:justify-end { justify-content: flex-end; }
 }
 
 /* ── One-time page fade (motion budget: subtle, once) ────────── */
