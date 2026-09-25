@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.5.4...v0.6.0) (2026-09-25)
+
+
+### Features
+
+* redesign ([#30](https://github.com/miguelpadin/miguelpadin.github.io/issues/30)) ([56cd5f0](https://github.com/miguelpadin/miguelpadin.github.io/commit/56cd5f0b94d2f2fec6ea528de2957a8558a61f02))
+
+
+### Bug Fixes
+
+* **readme:** add trailing newline ([#32](https://github.com/miguelpadin/miguelpadin.github.io/issues/32)) ([17ad12c](https://github.com/miguelpadin/miguelpadin.github.io/commit/17ad12ccd9f3f9ef53798bb1fbfa9d62f222bba4))
+
 ## [0.5.4](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.5.3...v0.5.4) (2026-07-11)
 
 
