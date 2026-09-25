@@ -15,6 +15,10 @@ type IconDef =
 
 const DI = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons';
 
+/* Bento spans per group index: 4+2 / 3+3 / 2+4 = 18 = three 6-col rows */
+const spans = ['lg:col-span-4', 'lg:col-span-2', 'lg:col-span-3', 'lg:col-span-3', 'lg:col-span-2', 'lg:col-span-4'];
+const cellVariants = ['', '', '', '', 'cell-testing', 'cell-ai'];
+
 const icons: Record<string, IconDef> = {
   // Frontend
   'Vue':                  { type: 'si', slug: 'vuedotjs' },
@@ -110,7 +114,8 @@ const icons: Record<string, IconDef> = {
       style="
         font-family: var(--font-display);
         font-weight: var(--font-display-weight);
-        font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+        font-size: clamp(2.25rem, 5vw, 3.75rem);
+        line-height: 1.05;
         color: var(--color-fg);
         letter-spacing: var(--font-display-tracking);
       "
@@ -119,12 +124,12 @@ const icons: Record<string, IconDef> = {
       {t.skills.label}
     </h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-16 gap-y-12" style="margin-top: 5rem;">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6" style="margin-top: 5rem;">
       {t.skills.groups.map((group, i) => (
         <div
           data-reveal
           data-reveal-delay={String(i % 3)}
-          class="skill-group"
+          class:list={[spans[i], cellVariants[i] ? `skill-group ${cellVariants[i]}` : 'skill-group']}
         >
           <p class="mono-label mb-4" style="color: var(--color-hue2);">
             {group.label}
@@ -279,5 +284,41 @@ const icons: Record<string, IconDef> = {
     font-weight: var(--font-display-weight);
     color: var(--color-muted);
     letter-spacing: var(--font-display-tracking);
+  }
+
+  /* ── Bento cell variants (override .skill-group base from global.css) ── */
+
+  /* AI cell: accent-tinted surface */
+  .cell-ai {
+    border-top: none;
+    padding-top: 1.25rem;
+    background: rgba(232, 84, 47, 0.05);
+    border: 1px solid rgba(232, 84, 47, 0.25);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+
+  /* Testing cell: surface-inverted (dark) */
+  .cell-testing {
+    border-top: none;
+    padding-top: 1.25rem;
+    background: var(--color-fg);
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .cell-testing .mono-label {
+    color: var(--color-bg);
+  }
+  .cell-testing .icon-pill {
+    border: 1px solid rgba(246, 243, 238, 0.25);
+    background: transparent;
+  }
+  .cell-testing .icon-pill .skill-logo,
+  .cell-testing .skill-logo {
+    filter: invert(1);
+    opacity: 0.85;
+  }
+  .cell-testing .icon-fallback {
+    color: var(--color-bg);
   }
 </style>

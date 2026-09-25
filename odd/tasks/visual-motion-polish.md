@@ -56,3 +56,14 @@ Accepted changes: remove hero underline; break the uniform document flow. New in
 Accepted change: remove the hero marquee entirely. No replacement strip; hero keeps spotlight + parallax + stagger. Marquee was the only full-bleed element — hero returns to clean poster layout.
 
 - [x] R8: Remove .hero-marquee block from Hero.astro + all marquee CSS/keyframes/entrance from global.css; hero padding back to pb-16
+- [x] R9: Audit + fix skill icons against official sources (simple-icons slugs.md, devicon devicon.json). Fixes: Nuxt->si/nuxt, Oracle/PL-SQL->devicon/oracle, macOS->si/macos, SonarQube->sonarqubecloud, Codex/OpenAI->fallback (si dropped OpenAI), Vuex/BootstrapVue/ESM patching with Vue logo->fallback, CSS3->css slug, new items mapped (ESLint, Prettier, Husky?, Scrum?, npm, pnpm, Vercel, GitHub Pages, Supabase, DeepSeek, Cursor, OpenCode, CodeRabbit, Ollama, LM Studio, PWA, JS). All 51 referenced CDN slugs verified 200. Concept skills keep generic SVG (no official brand mark exists).
+- Commit evidence: 083f26a (revision 3: marquee removed + official logos).
+
+## Revision 4 — user feedback: "sigue pareciendo una web muy básica"
+Accepted changes: editorial-scale typography + bento rhythm + one deliberate theme inversion. Root cause: uniform document skeleton (same-width sections, small headings, flat background everywhere).
+
+- [x] R10: Section h2s to editorial scale clamp(2.25rem, 5vw, 3.75rem), tighter leading (applies to Experience, Skills, Contact)
+- [x] R11: Skills groups to asymmetric bento grid (6-col: spans 4/2, 3/3, 4/2) with varied cell treatments (AI cell accent-tinted, Testing cell surface-inverted)
+- [x] R12: Contact = full-bleed accent block, giant outline display heading, paper-tone rows/hovers
+- [x] R13: Hero name full-stop accent + subtle scroll cue
+- [x] R14: `pnpm build` passes

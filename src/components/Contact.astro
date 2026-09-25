@@ -22,7 +22,7 @@ const links = [
 ];
 ---
 
-<section id="contact" class="px-8 py-32" aria-labelledby="contact-heading">
+<section id="contact" class="px-8 py-32 relative" style="background: var(--color-accent);" aria-labelledby="contact-heading">
   <div class="max-w-5xl mx-auto">
 
     <h2
@@ -33,28 +33,28 @@ const links = [
         font-weight: var(--font-display-weight);
         font-size: clamp(2.5rem, 6vw, 5rem);
         line-height: 1.02;
-        color: var(--color-fg);
+        color: var(--color-bg);
         letter-spacing: var(--font-display-tracking);
       "
       data-reveal
     >
       {t.contact.heading[0]}<br />
-      <span style="color: transparent; -webkit-text-stroke: 1.5px var(--color-accent);">{t.contact.heading[1]}</span>
+      <span style="color: transparent; -webkit-text-stroke: 1.5px var(--color-bg);">{t.contact.heading[1]}</span>
     </h2>
 
-    <p class="text-base leading-loose mb-16 max-w-md" style="color: var(--color-secondary);" data-reveal>
+    <p class="text-base leading-loose mb-16 max-w-md" style="color: rgba(246, 243, 238, 0.85); font-weight: 500;" data-reveal>
       {t.contact.subtext}
     </p>
 
     <!-- Email as a normal row, same size as WhatsApp/Telegram -->
-    <div class="flex flex-col" data-reveal>
+    <div class="flex flex-col contact-block" data-reveal>
       {links.map(({ label, href }) => (
         <a
           href={href}
           target={href.startsWith('http') ? '_blank' : undefined}
           rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
           class="contact-link contact-row flex items-center gap-4 py-5 transition-colors duration-200"
-          style="border-top: 1px solid var(--color-border); color: var(--color-fg);"
+          style="border-top: 1px solid rgba(246, 243, 238, 0.3); color: var(--color-bg);"
         >
           <span
             class="font-medium"
@@ -78,7 +78,7 @@ const links = [
           </svg>
         </a>
       ))}
-      <div style="border-top: 1px solid var(--color-border);"></div>
+      <div style="border-top: 1px solid rgba(246, 243, 238, 0.3);"></div>
     </div>
 
   </div>

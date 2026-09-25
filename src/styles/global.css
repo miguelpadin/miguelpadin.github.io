@@ -513,10 +513,57 @@ body::after {
   margin-left: -1rem;
 }
 
+/* Inverted contact block (accent section): paper-tone hover fill.
+   Also neutralizes .contact-link:hover accent-text which would be
+   unreadable on the accent background. */
+.contact-block .contact-row:hover {
+  background: rgba(246, 243, 238, 0.12);
+}
+.contact-block .contact-link:hover {
+  color: var(--color-bg) !important;
+}
+
 /* ── Skills group hover accent ───────────────────────────────── */
 .skill-group {
   border-top: 1px solid var(--color-border);
   padding-top: 1.25rem;
+}
+
+/* ── Skills bento grid utilities (explicit fallbacks) ────────── */
+@media (min-width: 1024px) {
+  .lg\:grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .lg\:col-span-2 { grid-column: span 2 / span 2; }
+  .lg\:col-span-3 { grid-column: span 3 / span 3; }
+  .lg\:col-span-4 { grid-column: span 4 / span 4; }
+}
+.gap-6 { gap: 1.5rem; }
+
+/* ── Hero scroll cue (pure CSS, reduced-motion gated) ────────── */
+.scroll-cue {
+  margin-top: 5rem;
+  height: 48px;
+  width: 1px;
+  background: linear-gradient(var(--color-border), var(--color-fg));
+  overflow: hidden;
+  position: relative;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-cue::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-accent);
+    animation: cueDrop 2s ease-in-out infinite;
+  }
+  @keyframes cueDrop {
+    0% { transform: translateY(-100%); }
+    60%, 100% { transform: translateY(100%); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue::after {
+    content: none;
+  }
 }
 
 /* ── "Current" pulsing dot ───────────────────────────────────── */
