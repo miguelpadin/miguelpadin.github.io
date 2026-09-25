@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.6.3...v0.7.0) (2026-09-25)
+
+
+### Features
+
+* **hero,experience:** animated blob backdrop layers ([#40](https://github.com/miguelpadin/miguelpadin.github.io/issues/40)) ([785ad06](https://github.com/miguelpadin/miguelpadin.github.io/commit/785ad06c36d221837df925ba6ed050cbfb64ad19))
+
 ## [0.6.3](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.6.2...v0.6.3) (2026-09-25)
 
 
