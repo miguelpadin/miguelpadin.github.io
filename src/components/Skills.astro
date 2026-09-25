@@ -220,17 +220,21 @@ const icons: Record<string, IconDef> = {
 
 <script>
   // ── Spotlight rim glow on skill pills (R27) ───────────────────
-  if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll('.icon-pill').forEach((pill) => {
-      if (pill.dataset.spotlight) return;
-      pill.dataset.spotlight = '1';
-      pill.addEventListener('pointermove', (e) => {
-        const r = pill.getBoundingClientRect();
-        pill.style.setProperty('--px', `${(e as PointerEvent).clientX - r.left}px`);
-        pill.style.setProperty('--py', `${(e as PointerEvent).clientY - r.top}px`);
-      }, { passive: true });
-    });
-  }
+  // Wrapped in astro:page-load so bindings reapply after client-side
+  // navigation; dataset guard keeps re-runs idempotent.
+  document.addEventListener('astro:page-load', () => {
+    if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.icon-pill').forEach((pill) => {
+        if (pill.dataset.spotlight) return;
+        pill.dataset.spotlight = '1';
+        pill.addEventListener('pointermove', (e) => {
+          const r = pill.getBoundingClientRect();
+          pill.style.setProperty('--px', `${(e as PointerEvent).clientX - r.left}px`);
+          pill.style.setProperty('--py', `${(e as PointerEvent).clientY - r.top}px`);
+        }, { passive: true });
+      });
+    }
+  });
 </script>
 
 <style>

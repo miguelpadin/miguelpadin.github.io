@@ -691,4 +691,62 @@ body::after {
   will-change: transform;
 }
 
+/* ── Hero morphing blob (tone-on-tone, organic drift) ────────── */
+/* Sits above the ::before radial tint (both are absolute without a
+   stacking context) and below the content, which is raised via the
+   z-index:1 rule below. */
+.hero-blob {
+  position: absolute;
+  width: min(55vw, 640px);
+  height: min(55vw, 640px);
+  left: -8%;
+  top: 12%;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 35% 35%, rgba(15, 92, 90, 0.07), rgba(232, 84, 47, 0.05) 55%, transparent 72%);
+  filter: blur(2px);
+}
+#hero-section > div:last-child,
+#hero-section .max-w-5xl {
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 640px) {
+  .hero-blob {
+    width: min(80vw, 400px);
+    height: min(80vw, 400px);
+    left: -20%;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-blob {
+    animation: blobMorph 22s ease-in-out infinite;
+  }
+  @keyframes blobMorph {
+    0%, 100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; transform: translate(0, 0) rotate(0deg) scale(1); }
+    25%      { border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; transform: translate(4%, -3%) rotate(8deg) scale(1.05); }
+    50%      { border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%; transform: translate(-3%, 4%) rotate(-6deg) scale(0.96); }
+    75%      { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; transform: translate(3%, 3%) rotate(5deg) scale(1.02); }
+  }
+}
+
+/* ── Scroll-driven reveal (progressive enhancement over IO reveal) ──
+   Applied only to .skill-group, whose data-reveal attribute is removed
+   by JS when animation-timeline is supported, so the two systems never
+   fight over the same element. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .skill-group {
+      opacity: 1;
+      animation: revealView linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 30%;
+    }
+    @keyframes revealView {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: none; }
+    }
+  }
+}
+
 

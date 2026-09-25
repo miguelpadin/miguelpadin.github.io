@@ -97,3 +97,10 @@ Physics-and-input motion pass: response to cursor and scroll velocity (the front
 - [x] R28: `pnpm build` passes
 - Commit evidence: e0f7955 (revision 7: physics/input motion pass). Skew-host applied via JS (pages render their own main — writer deviation, correct).
 - [x] R29: Legal pages (legal/privacy/cookies x3 locales) widen from 680px to 1024px to match site grid. Commit 1dfd7d5.
+
+## Revision 8 — modern CSS effects (morphing, view transitions, scroll-driven)
+- [x] R30: Morphing blob in hero background (CSS border-radius morph + slow drift, behind content, reduced-motion static)
+- [x] R31: Scroll-driven animation for skill groups (CSS animation-timeline with JS fallback via existing reveal observer)
+- [x] R32: View Transitions API for cross-page nav (astro's built-in ClientRouter) with fallback
+- [x] R33: `pnpm build` passes
+- Commit evidence: a8c3175 (revision 8: blob + view() reveals + ClientRouter; scripts wrapped in astro:page-load).

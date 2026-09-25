@@ -85,40 +85,46 @@ const { lang, t } = Astro.props;
 
 <script>
   // Minimal scrolled state: paper background + hairline border.
-  const header = document.getElementById('site-header');
-  const update = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
-  update();
-  window.addEventListener('scroll', update, { passive: true });
+  // Rebound on astro:page-load so client-side navigations (ClientRouter)
+  // rebind to the freshly swapped header.
+  document.addEventListener('astro:page-load', () => {
+    const header = document.getElementById('site-header');
+    const update = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  });
 </script>
 
 <script>
   // ── Text scramble decode on nav hover ─────────────────────────
   // Label text is only swapped during the animation; the final frame
   // restores the original string exactly (SEO/screen readers safe).
-  document.querySelectorAll('.nav-scramble').forEach((link) => {
-    if (link.dataset.scrambleBound) return;
-    link.dataset.scrambleBound = '1';
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ<>/{}[]();=';
-    const original = (link as HTMLElement).dataset.text || link.textContent!.trim();
-    let frame = 0;
-    let raf: number | null = null;
-    const run = () => {
-      frame++;
-      const progress = frame / 3;
-      const done = Math.floor(progress);
-      const out = original.split('').map((ch, i) => {
-        if (i < done || ch === ' ') return ch;
-        return chars[Math.floor(Math.random() * chars.length)];
-      }).join('');
-      link.textContent = done >= original.length ? original : out;
-      if (done < original.length) raf = requestAnimationFrame(run);
-      else raf = null;
-    };
-    link.addEventListener('mouseenter', () => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      frame = 0;
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(run);
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll('.nav-scramble').forEach((link) => {
+      if (link.dataset.scrambleBound) return;
+      link.dataset.scrambleBound = '1';
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ<>/{}[]();=';
+      const original = (link as HTMLElement).dataset.text || link.textContent!.trim();
+      let frame = 0;
+      let raf: number | null = null;
+      const run = () => {
+        frame++;
+        const progress = frame / 3;
+        const done = Math.floor(progress);
+        const out = original.split('').map((ch, i) => {
+          if (i < done || ch === ' ') return ch;
+          return chars[Math.floor(Math.random() * chars.length)];
+        }).join('');
+        link.textContent = done >= original.length ? original : out;
+        if (done < original.length) raf = requestAnimationFrame(run);
+        else raf = null;
+      };
+      link.addEventListener('mouseenter', () => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        frame = 0;
+        if (raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(run);
+      });
     });
   });
 </script>
