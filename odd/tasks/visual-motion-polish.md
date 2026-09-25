@@ -77,3 +77,5 @@ User authorized the 3-part structural plan ("ok") and delegated the hero-visual 
 - [x] R17: NEW Projects section between Experience and Skills: 2 large cards with real project content from t.experience (Roomdoo PMS + manufacturing platform), screenshot placeholder slots with TODO comment, stack pills, links; section ID projects + nav link in i18n? NO — i18n read-only, so anchor exists without nav entry for now
 - [x] R18: Experience section dark inversion (bg var(--color-fg), paper text, hue2→accent-text labels, hairlines rgba paper, hover bar stays)
 - [x] R19: `pnpm build` passes
+- Commit evidence: 5dbdbb6 (revision 5: split hero + code mock, Projects section, dark Experience).
+- Pending from user: real product screenshots for the 2 project cards (placeholders flagged with TODO, 1200x750).
