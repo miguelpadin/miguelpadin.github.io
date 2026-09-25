@@ -78,4 +78,9 @@ User authorized the 3-part structural plan ("ok") and delegated the hero-visual 
 - [x] R18: Experience section dark inversion (bg var(--color-fg), paper text, hue2→accent-text labels, hairlines rgba paper, hover bar stays)
 - [x] R19: `pnpm build` passes
 - Commit evidence: 5dbdbb6 (revision 5: split hero + code mock, Projects section, dark Experience).
-- Pending from user: real product screenshots for the 2 project cards (placeholders flagged with TODO, 1200x750).
+
+## Revision 6 — user rejection: code mock + Selected Work removed
+User rejected the code-mock panel ("queda rara") and the Projects/Selected Work section (rejected twice, including pre-overhaul). Reverted both via git revert of 5dbdbb6+bba705b (conflicts in global.css and task doc resolved keeping HEAD). Kept from revision 5: dark Experience inversion.
+
+- [x] R21: Revert code-mock + Projects section. Commit c0a1046.
+- LESSON: user already disliked Selected Work before the overhaul ("no me gusta lo de selected work, te lo he dicho antes ya") — it was originally my R17 proposal. Do not defend rejected elements; ask what to add INSTEAD before building new structural sections.

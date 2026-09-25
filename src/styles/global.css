@@ -204,7 +204,6 @@ canvas {
 
 .space-y-0 > * + * { margin-top: 0; }
 .space-y-4 > * + * { margin-top: 1rem; }
-.space-y-16 > * + * { margin-top: 4rem; }
 
 /* ── Hover utilities (replacing inline onmouseover/out) ──────── */
 .nav-link:hover {

@@ -7,12 +7,7 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<section
-  id="experience"
-  class="px-8 py-32"
-  aria-labelledby="experience-heading"
-  style="background: var(--color-fg);"
->
+<section id="experience" class="px-8 py-32" aria-labelledby="experience-heading">
   <div class="max-w-5xl mx-auto">
 
     <h2
@@ -23,7 +18,7 @@ const { t } = Astro.props;
         font-weight: var(--font-display-weight);
         font-size: clamp(2.25rem, 5vw, 3.75rem);
         line-height: 1.05;
-        color: var(--color-bg);
+        color: var(--color-fg);
         letter-spacing: var(--font-display-tracking);
       "
       data-reveal
@@ -40,14 +35,14 @@ const { t } = Astro.props;
         >
           <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-4 lg:gap-16">
             <div class="lg:sticky lg:top-24 self-start">
-              <p class="mono-label mb-4" style="color: var(--color-accent);">
+              <p class="mono-label mb-4" style="color: var(--color-hue2);">
                 {job.period}
               </p>
-              <p class="text-sm mb-1" style="color: rgba(246, 243, 238, 0.7);">
+              <p class="text-sm mb-1" style="color: var(--color-secondary);">
                 {job.location}
               </p>
               {job.current && (
-                <p class="mono-label flex items-center gap-2" style="color: var(--color-accent);">
+                <p class="mono-label flex items-center gap-2" style="color: var(--color-accent-text);">
                   <span class="current-dot" aria-hidden="true"></span>{t.experience.current}
                 </p>
               )}
@@ -60,7 +55,7 @@ const { t } = Astro.props;
                   font-family: var(--font-display);
                   font-weight: var(--font-display-weight);
                   font-size: clamp(1.5rem, 2.5vw, 2rem);
-                  color: var(--color-bg);
+                  color: var(--color-fg);
                   letter-spacing: var(--font-display-tracking);
                 "
               >
@@ -76,13 +71,13 @@ const { t } = Astro.props;
                   </a>
                 ) : job.company}
               </h3>
-              <p class="text-sm mb-6" style="color: rgba(246, 243, 238, 0.7);">
+              <p class="text-sm mb-6" style="color: var(--color-secondary);">
                 {job.role}
               </p>
               <ul class="space-y-4">
                 {job.highlights.map((item) => (
                   <li>
-                    <p class="text-sm leading-relaxed" style="color: rgba(246, 243, 238, 0.7);">
+                    <p class="text-sm leading-relaxed" style="color: var(--color-secondary);">
                       {item}
                     </p>
                   </li>
