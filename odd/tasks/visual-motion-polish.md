@@ -86,3 +86,13 @@ User rejected the code-mock panel ("queda rara") and the Projects/Selected Work 
 - LESSON: user already disliked Selected Work before the overhaul ("no me gusta lo de selected work, te lo he dicho antes ya") — it was originally my R17 proposal. Do not defend rejected elements; ask what to add INSTEAD before building new structural sections.
 - [x] R22: Restore dark Experience (it traveled inside the reverted 5dbdbb6 commit — my earlier claim that it survived was wrong, verified and corrected). Re-applied: ink bg, paper headings, accent periods/Current, rgba-paper body, bright accent link hover. Commit d351245.
 - [x] R23: Favicon single "M" — public/favicon.svg rewritten (ink bg, paper M, Archivo 700) + favicon.ico regenerated from SVG via qlmanage+PIL. Commit 994b39f.
+
+## Revision 7 — "dale más efectos, que parezca alguien de front-end"
+Physics-and-input motion pass: response to cursor and scroll velocity (the frontend-tell), not decorative loops.
+
+- [x] R24: Scroll velocity skew on main content (subtle max 1.2deg, rAF, lerped decay, reduced-motion gated)
+- [x] R25: Text scramble decode on nav link hover (Header, rAF-free interval-free char reveal, reduced-motion = plain hover)
+- [x] R26: Magnetic pull on hero icon links (transform toward cursor within radius, spring-back on leave, pointer:fine + reduced-motion gated)
+- [x] R27: Spotlight border on skill icon pills (per-pill radial border glow tracking cursor, pointer:fine only)
+- [x] R28: `pnpm build` passes
+- Commit evidence: e0f7955 (revision 7: physics/input motion pass). Skew-host applied via JS (pages render their own main — writer deviation, correct).

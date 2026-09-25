@@ -217,6 +217,30 @@ function hreflangUrl(targetLang: Lang): string {
         }, { passive: true });
         updateParallax();
       }
+
+      // ── Scroll velocity skew (frontend-physics tell) ──────────────
+      // Pages render their own <main>; the class is applied here so the
+      // promotion to its own layer only happens when the effect is active.
+      const main = document.querySelector('main');
+      if (main && !noMotion.matches) {
+        main.classList.add('skew-host');
+        let currentSkew = 0;
+        let lastScrollY = window.scrollY;
+        const skewLoop = () => {
+          if (document.hidden) {
+            requestAnimationFrame(skewLoop);
+            return;
+          }
+          const y = window.scrollY;
+          const velocity = y - lastScrollY;
+          lastScrollY = y;
+          const target = Math.max(-1.2, Math.min(1.2, velocity * 0.08));
+          currentSkew += (target - currentSkew) * 0.12;
+          main.style.transform = currentSkew !== 0 ? `skewY(${currentSkew.toFixed(3)}deg)` : '';
+          requestAnimationFrame(skewLoop);
+        };
+        requestAnimationFrame(skewLoop);
+      }
     </script>
   </body>
 </html>

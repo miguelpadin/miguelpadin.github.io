@@ -684,4 +684,11 @@ body::after {
   .lg\:gap-12 { gap: 3rem; }
 }
 
+/* ── Scroll velocity skew host (R24) ─────────────────────────── */
+/* Promoted to its own compositor layer only when the skew loop is
+   active (class is added from JS under reduced-motion guard). */
+.skew-host {
+  will-change: transform;
+}
+
 

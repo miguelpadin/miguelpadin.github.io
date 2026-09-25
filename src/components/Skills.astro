@@ -218,9 +218,25 @@ const icons: Record<string, IconDef> = {
   </div>
 </section>
 
+<script>
+  // ── Spotlight rim glow on skill pills (R27) ───────────────────
+  if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.icon-pill').forEach((pill) => {
+      if (pill.dataset.spotlight) return;
+      pill.dataset.spotlight = '1';
+      pill.addEventListener('pointermove', (e) => {
+        const r = pill.getBoundingClientRect();
+        pill.style.setProperty('--px', `${(e as PointerEvent).clientX - r.left}px`);
+        pill.style.setProperty('--py', `${(e as PointerEvent).clientY - r.top}px`);
+      }, { passive: true });
+    });
+  }
+</script>
+
 <style>
   .icon-pill {
     position: relative;
+    overflow: visible;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -234,6 +250,27 @@ const icons: Record<string, IconDef> = {
     text-decoration: none;
   }
   a.icon-pill { cursor: pointer; }
+
+  /* Spotlight rim glow tracking the cursor (R27).
+     The opaque pill background hides the inner half of the radial; the
+     visible halo is the rim just outside the border edge. */
+  .icon-pill::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    background: radial-gradient(
+      90px circle at var(--px, 50%) var(--py, 50%),
+      rgba(232, 84, 47, 0.55),
+      transparent 70%
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+  .icon-pill:hover::before { opacity: 1; }
+  .icon-pill > * { position: relative; z-index: 1; }
 
   .icon-pill:hover {
     border-color: var(--color-accent);
