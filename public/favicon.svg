@@ -1,13 +1,13 @@
 <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" fill="none">
-  <rect width="40" height="40" rx="7" fill="#0B0B0D"/>
+  <rect width="40" height="40" rx="7" fill="#1A1917"/>
   <text
-    x="50%" y="50%"
+    x="50%" y="52%"
     text-anchor="middle"
     dominant-baseline="central"
-    font-family="Sora, system-ui, sans-serif"
-    font-weight="600"
-    font-size="15"
-    letter-spacing="0.01em"
-    fill="#EDE9E3"
-  >MP</text>
+    font-family="Archivo, system-ui, sans-serif"
+    font-weight="700"
+    font-size="19"
+    letter-spacing="0.02em"
+    fill="#F6F3EE"
+  >M</text>
 </svg>

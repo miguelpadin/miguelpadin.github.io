@@ -7,135 +7,91 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<section id="experience" class="px-8 py-32" aria-labelledby="experience-heading">
+<section
+  id="experience"
+  class="px-8 py-32"
+  aria-labelledby="experience-heading"
+  style="background: var(--color-fg);"
+>
   <div class="max-w-5xl mx-auto">
 
-    <div class="flex items-center gap-6 mb-20" data-reveal>
-      <h2
-        id="experience-heading"
-        class="text-xs uppercase tracking-[0.25em]"
-        style="color: var(--color-accent); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
-        data-split
-      >
-        {t.experience.label}
-      </h2>
-      <div class="divider-line"></div>
-    </div>
+    <h2
+      id="experience-heading"
+      class="mb-20"
+      style="
+        font-family: var(--font-display);
+        font-weight: var(--font-display-weight);
+        font-size: clamp(2.25rem, 5vw, 3.75rem);
+        line-height: 1.05;
+        color: var(--color-bg);
+        letter-spacing: var(--font-display-tracking);
+      "
+      data-reveal
+    >
+      {t.experience.label}
+    </h2>
 
     <div class="space-y-0">
       {t.experience.jobs.map((job, i) => (
         <div
-          class="job-entry group relative py-12"
-          style="border-top: 1px solid var(--color-border);"
+          class="job-entry py-12"
           data-reveal
           data-reveal-delay={String(i % 3)}
         >
-          <div
-            class="job-inner grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 lg:gap-16 pl-5 transition-all duration-300"
-            style="border-left: 2px solid transparent;"
-          >
-            <div>
-              <div class="flex items-start gap-3 mb-3">
-                <h3
-                  class="company-name"
-                  style="
-                    font-family: var(--font-display);
-                    font-weight: var(--font-display-weight);
-                    font-size: 1.1rem;
-                    color: var(--color-fg);
-                    letter-spacing: var(--font-display-tracking);
-                  "
-                >
-                  {job.url ? (
-                    <a
-                      href={job.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style="color: inherit; text-decoration: none;"
-                      class="company-link"
-                    >
-                      {job.company}
-                    </a>
-                  ) : job.company}
-                </h3>
-                {job.current && (
-                  <span
-                    class="mt-1 text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full"
-                    style="
-                      background: rgba(232,145,74,0.12);
-                      color: var(--color-accent);
-                      font-family: var(--font-display);
-                      font-weight: var(--font-display-weight);
-                      white-space: nowrap;
-                    "
-                  >
-                    {t.experience.current}
-                  </span>
-                )}
-              </div>
-              <p class="text-sm mb-4" style="color: var(--color-secondary); font-weight: 300;">
-                {job.role}
+          <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-4 lg:gap-16">
+            <div class="lg:sticky lg:top-24 self-start">
+              <p class="mono-label mb-4" style="color: var(--color-accent);">
+                {job.period}
               </p>
-              <p class="text-xs flex items-center gap-2" style="color: var(--color-muted); font-family: var(--font-display);">
-                <span class="uppercase tracking-widest">{job.period}</span>
-                <span style="color: var(--color-border);">·</span>
-                <span>{job.location}</span>
+              <p class="text-sm mb-1" style="color: rgba(246, 243, 238, 0.7);">
+                {job.location}
               </p>
+              {job.current && (
+                <p class="mono-label flex items-center gap-2" style="color: var(--color-accent);">
+                  <span class="current-dot" aria-hidden="true"></span>{t.experience.current}
+                </p>
+              )}
             </div>
 
-            <ul class="space-y-4">
-              {job.highlights.map((item) => (
-                <li class="flex gap-4">
-                  <span
-                    class="shrink-0 w-1 h-1 rounded-full"
-                    style="background: var(--color-accent); margin-top: 0.55rem;"
-                  ></span>
-                  <p class="text-sm leading-relaxed" style="color: var(--color-secondary); font-weight: 300;">
-                    {item}
-                  </p>
-                </li>
-              ))}
-            </ul>
+            <div>
+              <h3
+                class="mb-2"
+                style="
+                  font-family: var(--font-display);
+                  font-weight: var(--font-display-weight);
+                  font-size: clamp(1.5rem, 2.5vw, 2rem);
+                  color: var(--color-bg);
+                  letter-spacing: var(--font-display-tracking);
+                "
+              >
+                {job.url ? (
+                  <a
+                    href={job.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="color: inherit; text-decoration: none;"
+                    class="company-link link-underline"
+                  >
+                    {job.company}
+                  </a>
+                ) : job.company}
+              </h3>
+              <p class="text-sm mb-6" style="color: rgba(246, 243, 238, 0.7);">
+                {job.role}
+              </p>
+              <ul class="space-y-4">
+                {job.highlights.map((item) => (
+                  <li>
+                    <p class="text-sm leading-relaxed" style="color: rgba(246, 243, 238, 0.7);">
+                      {item}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       ))}
-      <div style="border-top: 1px solid var(--color-border);"></div>
     </div>
   </div>
 </section>
-
-<style>
-  .company-link:hover {
-    color: var(--color-accent) !important;
-    transition: color 0.2s ease;
-  }
-</style>
-
-<script>
-  const isTouch = window.matchMedia('(pointer: coarse)').matches;
-
-  document.querySelectorAll<HTMLElement>('.job-entry').forEach((entry) => {
-    const inner = entry.querySelector('.job-inner') as HTMLElement;
-
-    entry.addEventListener('mouseenter', () => {
-      if (inner) inner.style.borderLeftColor = 'var(--color-accent)';
-    });
-    entry.addEventListener('mouseleave', () => {
-      if (inner) inner.style.borderLeftColor = 'transparent';
-    });
-
-    if (!isTouch) {
-      entry.addEventListener('mousemove', (e) => {
-        const rect = entry.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width  - 0.5;
-        const y = (e.clientY - rect.top)  / rect.height - 0.5;
-        entry.style.transform = `perspective(900px) rotateX(${-y * 2}deg) rotateY(${x * 2}deg)`;
-        entry.style.transition = 'transform 0.1s linear';
-      });
-      entry.addEventListener('mouseleave', () => {
-        entry.style.transform = '';
-        entry.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-      });
-    }
-  });
-</script>

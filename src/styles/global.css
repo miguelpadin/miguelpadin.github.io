@@ -1,43 +1,38 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0C1525;
-  --color-surface: #0F1C2E;
-  --color-border: #1A3050;
-  --color-fg: #EDE9E3;
-  --color-muted: #ADA9A4;
-  --color-secondary: #9B9893;
-  --color-accent: #4A9EFF;
-  --font-display: 'Sora', system-ui, sans-serif;
-  --font-display-weight: 600;
-  --font-display-tracking: 0.01em;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+  --color-bg: #F6F3EE;
+  --color-surface: #EFEAE2;
+  --color-border: #DAD3C8;
+  --color-fg: #1A1917;
+  --color-muted: #6E675D;
+  --color-secondary: #55503F;
+  --color-accent: #E8542F;
+  --color-accent-text: #C03A14;
+  --color-hue2: #0F5C5A;
+  --font-display: 'Archivo', system-ui, sans-serif;
+  --font-display-weight: 700;
+  --font-display-tracking: -0.02em;
+  --font-body: 'Archivo', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
 /* Fallback utilities for browsers that ignore Tailwind cascade layers. */
 :root {
-  --color-bg: #0C1525;
-  --color-surface: #0F1C2E;
-  --color-border: #1A3050;
-  --color-fg: #EDE9E3;
-  --color-muted: #ADA9A4;
-  --color-secondary: #9B9893;
-  --color-accent: #4A9EFF;
-  --font-display: 'Sora', system-ui, sans-serif;
-  --font-display-weight: 600;
-  --font-display-tracking: 0.01em;
-  --font-body: 'DM Sans', system-ui, sans-serif;
-}
-
-/* ── Light theme ─────────────────────────────────────────────── */
-[data-theme="light"] {
-  --color-bg: #D6E4F7;
-  --color-surface: #C5D8F0;
-  --color-border: #A8C4E8;
+  --color-bg: #F6F3EE;
+  --color-surface: #EFEAE2;
+  --color-border: #DAD3C8;
   --color-fg: #1A1917;
-  --color-muted: #423E3B;
-  --color-secondary: #4A4642;
-  --color-accent: #2563EB;
+  --color-muted: #6E675D;
+  --color-secondary: #55503F;
+  --color-accent: #E8542F;
+  --color-accent-text: #C03A14;
+  --color-hue2: #0F5C5A;
+  --font-display: 'Archivo', system-ui, sans-serif;
+  --font-display-weight: 700;
+  --font-display-tracking: -0.02em;
+  --font-body: 'Archivo', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
 @layer base {
@@ -52,7 +47,7 @@
     background-color: var(--color-bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    cursor: default;
+    overflow-x: hidden;
   }
 
   * {
@@ -63,20 +58,14 @@
     cursor: pointer;
   }
 
-  /* Grain texture overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.035;
-    pointer-events: none;
-    z-index: 9999;
-  }
-
   ::selection {
     background: var(--color-accent);
     color: var(--color-bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
   }
 }
 
@@ -222,16 +211,21 @@ canvas {
 }
 .footer-link:hover,
 .footer-location:hover {
-  color: var(--color-accent) !important;
+  color: var(--color-accent-text) !important;
 }
 .contact-link:hover {
-  color: var(--color-accent) !important;
+  color: var(--color-accent-text) !important;
 }
 .back-link:hover {
-  color: var(--color-accent) !important;
+  color: var(--color-accent-text) !important;
 }
 .back-link-404:hover {
   opacity: 0.7 !important;
+}
+.skill-link:hover {
+  color: var(--color-accent-text) !important;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 @media (min-width: 640px) {
@@ -241,151 +235,469 @@ canvas {
 }
 
 @media (min-width: 1024px) {
+  .lg\:grid-cols-\[240px_1fr\] { grid-template-columns: 240px minmax(0, 1fr); }
   .lg\:grid-cols-\[280px_1fr\] { grid-template-columns: 280px minmax(0, 1fr); }
+  .lg\:grid-cols-\[1fr_auto\] { grid-template-columns: minmax(0, 1fr) auto; }
   .lg\:gap-16 { gap: 4rem; }
+  .lg\:row-start-1 { grid-row-start: 1; }
+  .lg\:col-start-2 { grid-column-start: 2; }
+  .lg\:justify-end { justify-content: flex-end; }
+  .lg\:sticky { position: sticky; }
+  .lg\:top-24 { top: 6rem; }
+  .self-start { align-self: start; }
 }
 
-/* ── Entrance animations ─────────────────────────────────────── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* ── One-time page fade (motion budget: subtle, once) ────────── */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.5s ease-out both;
+  }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+/* ── Scroll-triggered reveal (subtle) ────────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.6s ease-out,
+                transform 0.6s ease-out;
+  }
+  [data-reveal].is-visible { opacity: 1; transform: none; }
+  [data-reveal-delay='1'] { transition-delay: 0.08s; }
+  [data-reveal-delay='2'] { transition-delay: 0.16s; }
+  [data-reveal-delay='3'] { transition-delay: 0.24s; }
 }
 
-.animate-hero > * {
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── Editorial mono label ────────────────────────────────────── */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ── Screen-reader-only heading (name lives in header visually) ─ */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Small-viewport hardening (min 360px) ────────────────────── */
+@media (max-width: 400px) {
+  html {
+    font-size: 15px;
+  }
+  .px-8 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  .mono-label {
+    letter-spacing: 0.08em;
+  }
+}
+
+/* ── Company link hover (color shift only) ───────────────────── */
+.company-link {
+  transition: color 0.2s ease;
+}
+.company-link:hover {
+  color: var(--color-accent-text);
+}
+
+/* ── Contact row arrow on hover (CSS only) ───────────────────── */
+.contact-row .contact-arrow {
   opacity: 0;
-  animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: translateX(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
-.animate-hero > *:nth-child(1) { animation-delay: 0.1s; }
-.animate-hero > *:nth-child(2) { animation-delay: 0.2s; }
-.animate-hero > *:nth-child(3) { animation-delay: 0.35s; }
-.animate-hero > *:nth-child(4) { animation-delay: 0.5s; }
-.animate-hero > *:nth-child(5) { animation-delay: 0.65s; }
-
-/* ── Scroll-triggered reveal ─────────────────────────────────── */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-[data-reveal].is-visible { opacity: 1; transform: none; }
-[data-reveal-delay='1'] { transition-delay: 0.1s; }
-[data-reveal-delay='2'] { transition-delay: 0.2s; }
-[data-reveal-delay='3'] { transition-delay: 0.3s; }
-
-/* ── Hero name: never moves ──────────────────────────────────── */
-#hero-name, #para-0, #para-1, #para-2 {
-  transform: none !important;
-  transition: none !important;
+.contact-row:hover .contact-arrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
-/* ── Magnetic transition ─────────────────────────────────────── */
-.magnetic {
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+/* ── Hero icon links (logos, no text) ────────────────────────── */
+.hero-icon-link {
   display: inline-flex;
   align-items: center;
-  cursor: pointer;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--color-hue2);
+  border-radius: 9999px;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
-.magnetic.is-dragging {
-  transition: transform 0.08s linear;
-}
-.magnetic:hover {
-  color: var(--color-accent) !important;
-}
-
-
-/* ── Company name glow on hover ──────────────────────────────── */
-.company-name {
-  transition: text-shadow 0.3s ease;
-}
-.job-entry:hover .company-name {
-  text-shadow:
-    0 0 20px rgba(232,145,74,0.4),
-    0 0 40px rgba(232,145,74,0.15);
+.hero-icon-link:hover {
+  color: var(--color-fg);
+  border-color: var(--color-fg);
 }
 
-
-/* ── Pulsing available dot ───────────────────────────────────── */
-@keyframes pulse-ring {
-  0%   { transform: scale(0.8); opacity: 0.6; }
-  100% { transform: scale(2.4); opacity: 0; }
+/* ── Accent underline grow (reusable) ────────────────────────── */
+.link-underline {
+  position: relative;
+  text-decoration: none;
 }
-
-.pulse-dot {
-  display: inline-block;
-  width: 7px; height: 7px;
-  border-radius: 50%;
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
   background: var(--color-accent);
-  flex-shrink: 0;
-  position: relative;
+  transform: scaleX(0);
+  transform-origin: left;
 }
-.pulse-dot::after {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border-radius: 50%;
-  border: 1.5px solid var(--color-accent);
-  opacity: 0;
-  animation: pulse-ring 2.4s ease-out infinite;
+@media (prefers-reduced-motion: no-preference) {
+  .link-underline::after {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+.link-underline:hover::after,
+.link-underline:focus-visible::after {
+  transform: scaleX(1);
 }
 
-/* ── Section divider sweep ───────────────────────────────────── */
-.divider-line {
-  flex: 1;
-  height: 1px;
-  background: var(--color-border);
-  position: relative;
-  overflow: hidden;
+/* ── Hero entrance: staggered rise (replaces .hero-enter) ────── */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-stagger > * {
+    animation: heroItemRise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+  @keyframes heroItemRise {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Hairline rule grows from the left */
+  .hero-rule {
+    transform-origin: left;
+    animation: ruleGrow 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+  }
+  @keyframes ruleGrow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
 }
-[data-reveal].is-visible .divider-line::after {
+
+/* ── Reduced-motion fallback: show everything static ─────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-stagger > * {
+    animation: none;
+  }
+  .hero-rule {
+    animation: none;
+    transform: none;
+  }
+  .contact-row {
+    transition: none;
+  }
+  .current-dot {
+    animation: none;
+  }
+}
+
+/* ── Grain texture overlay (static, subtle) ──────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ── Scroll progress bar (driven by --scroll-progress from JS) ─ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(var(--scroll-progress, 0));
+  background: var(--color-accent);
+  z-index: 55;
+  pointer-events: none;
+}
+
+/* ── Hero radial accent tint (static) ────────────────────────── */
+#hero-section::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
-  animation: divider-sweep 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-@keyframes divider-sweep {
-  from { transform: translateX(-100%); }
-  to   { transform: translateX(200%); }
+  pointer-events: none;
+  background: radial-gradient(ellipse 60% 50% at 85% 15%, rgba(232, 84, 47, 0.06), transparent 70%);
 }
 
-/* ── Split text chars ────────────────────────────────────────── */
-.split-char {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(14px) rotate(4deg);
-  transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1),
-              transform 0.5s cubic-bezier(0.16,1,0.3,1);
-}
-[data-split].is-split-visible .split-char {
-  opacity: 1;
-  transform: none;
+/* Mouse spotlight (fine pointers only) */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  #hero-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 30%), rgba(26, 25, 23, 0.045), transparent 65%);
+    transition: opacity 0.3s ease;
+  }
 }
 
+/* ── Contact row hover (opacity shift only, safe on accent bg) ─ */
+.contact-row {
+  transition: opacity 0.2s ease;
+}
+.contact-row:hover {
+  opacity: 0.75;
+}
 
-/* ── Skill pill shimmer ──────────────────────────────────────── */
-.skill-pill {
-  position: relative;
+.contact-block .contact-link:hover {
+  color: var(--color-bg) !important;
+}
+
+/* ── Skills group hover accent ───────────────────────────────── */
+.skill-group {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.25rem;
+}
+
+/* ── Skills bento grid utilities (explicit fallbacks) ────────── */
+@media (min-width: 1024px) {
+  .lg\:grid-cols-6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .lg\:col-span-2 { grid-column: span 2 / span 2; }
+  .lg\:col-span-3 { grid-column: span 3 / span 3; }
+  .lg\:col-span-4 { grid-column: span 4 / span 4; }
+}
+.gap-6 { gap: 1.5rem; }
+
+/* ── "Current" pulsing dot ───────────────────────────────────── */
+.current-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: var(--color-accent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes pulseDot {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(232, 84, 47, 0.45); }
+    50% { box-shadow: 0 0 0 5px rgba(232, 84, 47, 0); }
+  }
+  .current-dot { animation: pulseDot 2s ease-in-out infinite; }
+}
+
+/* ── Hero code mock (asymmetric split visual) ────────────────── */
+.code-mock {
+  background: var(--color-fg);
+  border-radius: 12px;
+  padding: 0 0 1.1rem;
+  box-shadow: 0 24px 48px rgba(26, 25, 23, 0.18), 0 4px 12px rgba(26, 25, 23, 0.1);
+  transform: rotate(1.2deg);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.7;
   overflow: hidden;
 }
-.skill-pill::after {
-  content: '';
+.code-mock-bar { display: flex; align-items: center; gap: 0.45rem; padding: 0.8rem 1rem; border-bottom: 1px solid rgba(246, 243, 238, 0.08); }
+.code-dot { width: 10px; height: 10px; border-radius: 9999px; opacity: 0.85; }
+.code-dot-r { background: #E8542F; } .code-dot-y { background: #D9A441; } .code-dot-g { background: #3E9B6E; }
+.code-mock-tab { margin-left: 0.75rem; font-size: 0.6875rem; color: rgba(246, 243, 238, 0.55); letter-spacing: 0.04em; }
+.code-mock pre { margin: 1rem 1.25rem; }
+.code-line { display: block; color: rgba(246, 243, 238, 0.82); white-space: pre; }
+.code-kw { color: #E8542F; } .code-attr { color: #7FB5B3; } .code-str { color: #D9A441; }
+.code-num { color: #D9A441; } .code-var { color: #F6F3EE; } .code-com { color: rgba(246, 243, 238, 0.35); font-style: italic; }
+.code-caret { display: inline-block; width: 8px; height: 1.1em; background: var(--color-accent); vertical-align: text-bottom; margin-left: 2px; }
+@media (prefers-reduced-motion: no-preference) {
+  .code-line { opacity: 0; animation: codeType 0.4s steps(12) calc(var(--l) * 0.35s + 0.6s) both; }
+  @keyframes codeType { from { opacity: 0; } to { opacity: 1; } }
+  .code-caret { animation: caretBlink 1s steps(1) infinite; }
+  @keyframes caretBlink { 50% { opacity: 0; } }
+  .code-mock { animation: mockFloat 6s ease-in-out 2.5s infinite; }
+  @keyframes mockFloat { 0%, 100% { transform: rotate(1.2deg) translateY(0); } 50% { transform: rotate(1.2deg) translateY(-8px); } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .code-mock { transform: none; }
+  .code-line { opacity: 1; }
+  .code-caret { animation: none; }
+}
+@media (max-width: 640px) {
+  .code-mock { transform: rotate(0.6deg); }
+}
+
+/* ── Projects section (Selected Work cards) ──────────────────── */
+.project-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(26, 25, 23, 0.1);
+}
+.project-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.project-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 1024px) {
+  .project-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.project-media {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+.project-media-ph {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+.project-media-ph span {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  opacity: 0.6;
+}
+.project-info {
+  padding: 2rem 2.25rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.project-meta { color: var(--color-accent-text); }
+.project-info h3 {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight);
+  font-size: clamp(1.375rem, 2.25vw, 1.75rem);
+  color: var(--color-fg);
+  letter-spacing: var(--font-display-tracking);
+  transition: color 0.2s ease;
+}
+.project-card:hover .project-info h3 { color: var(--color-accent-text); }
+.project-desc {
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--color-secondary);
+  max-width: 42rem;
+}
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+.project-tags .tag {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 9999px;
+  padding: 0.3rem 0.7rem;
+}
+
+/* ── Experience dark inversion: link hover must be bright on ink ── */
+#experience .company-link:hover {
+  color: var(--color-accent);
+}
+
+/* ── Fallback utility (hero split grid, lg breakpoint) ───────── */
+@media (min-width: 1024px) {
+  .lg\:grid-cols-\[1\.1fr_0\.9fr\] { grid-template-columns: 1.1fr 0.9fr; }
+  .lg\:gap-12 { gap: 3rem; }
+}
+
+/* ── Hero morphing blob (tone-on-tone, organic drift) ────────── */
+/* Sits above the ::before radial tint (both are absolute without a
+   stacking context) and below the content, which is raised via the
+   z-index:1 rule below. */
+.hero-blob {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg, transparent 40%, rgba(232,145,74,0.15) 50%, transparent 60%);
-  transform: translateX(-100%);
-  transition: transform 0s;
+  width: min(55vw, 640px);
+  height: min(55vw, 640px);
+  left: -8%;
+  top: 12%;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 35% 35%, rgba(15, 92, 90, 0.07), rgba(232, 84, 47, 0.05) 55%, transparent 72%);
+  filter: blur(2px);
 }
-.skill-pill:hover::after {
-  transform: translateX(100%);
-  transition: transform 0.4s ease;
+#hero-section > div:last-child,
+#hero-section .max-w-5xl {
+  position: relative;
+  z-index: 1;
 }
-.skill-pill:hover {
-  border-color: var(--color-accent) !important;
-  color: var(--color-fg) !important;
+@media (max-width: 640px) {
+  .hero-blob {
+    width: min(80vw, 400px);
+    height: min(80vw, 400px);
+    left: -20%;
+  }
 }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-blob {
+    animation: blobMorph 22s ease-in-out infinite;
+  }
+  @keyframes blobMorph {
+    0%, 100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; transform: translate(0, 0) rotate(0deg) scale(1); }
+    25%      { border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; transform: translate(4%, -3%) rotate(8deg) scale(1.05); }
+    50%      { border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%; transform: translate(-3%, 4%) rotate(-6deg) scale(0.96); }
+    75%      { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; transform: translate(3%, 3%) rotate(5deg) scale(1.02); }
+  }
+}
+
+/* ── Scroll-driven reveal (progressive enhancement over IO reveal) ──
+   Applied only to .skill-group, whose data-reveal attribute is removed
+   by JS when animation-timeline is supported, so the two systems never
+   fight over the same element. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .skill-group {
+      opacity: 1;
+      animation: revealView linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 30%;
+    }
+    @keyframes revealView {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: none; }
+    }
+  }
+}
+
+
