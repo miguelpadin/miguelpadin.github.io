@@ -15,6 +15,10 @@ Personal portfolio — [miguelpadin.github.io](https://miguelpadin.github.io/)
 2. release-please opens a version-bump PR (`chore(main): release X.Y.Z`)
 3. Merging that PR publishes the GitHub Release, which triggers the Pages deploy
 
+> Releases are created with a PAT (`RELEASE_PLEASE_TOKEN`): releases created
+> with the built-in token do not emit the `release:published` event, so the
+> deploy would never fire.
+
 
 ## Dev
 
