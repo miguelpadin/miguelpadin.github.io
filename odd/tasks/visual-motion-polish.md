@@ -104,3 +104,8 @@ Physics-and-input motion pass: response to cursor and scroll velocity (the front
 - [x] R32: View Transitions API for cross-page nav (astro's built-in ClientRouter) with fallback
 - [x] R33: `pnpm build` passes
 - Commit evidence: a8c3175 (revision 8: blob + view() reveals + ClientRouter; scripts wrapped in astro:page-load).
+
+## Revision 9 — signature piece: variable font hover
+- [x] R34: Hero name variable-font weight/width ripple tracking cursor (Archivo variable axes, per-letter spans, rAF, pointer:fine + reduced-motion gated)
+- [x] R35: `pnpm build` passes
+- Commit evidence: 039c3e3 (revision 9: variable-font ripple; 13 letter spans render, single rAF loop, idempotent guard).

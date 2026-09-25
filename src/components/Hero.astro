@@ -19,8 +19,10 @@ const { t } = Astro.props;
       Miguel Padín Domínguez — {t.hero.label}
     </h1>
 
-    <!-- Display name statement: shortened to avoid duplicating the full header name -->
+    <!-- Display name statement: shortened to avoid duplicating the full header name.
+         Letters are split into spans so the variable-font weight can ripple per glyph. -->
     <p
+      id="hero-display-name"
       class="leading-none mb-12"
       data-parallax="0.12"
       style="--i: 0;
@@ -33,7 +35,7 @@ const { t } = Astro.props;
         text-transform: uppercase;
       "
     >
-      Miguel <span style="color: var(--color-accent);">Padín</span><span style="color: var(--color-accent);">.</span>
+      <span class="vn-letter" data-base="900">M</span><span class="vn-letter" data-base="900">i</span><span class="vn-letter" data-base="900">g</span><span class="vn-letter" data-base="900">u</span><span class="vn-letter" data-base="900">e</span><span class="vn-letter" data-base="900">l</span><span class="vn-letter" data-base="900"> </span><span class="vn-letter" data-base="900" style="color: var(--color-accent);">P</span><span class="vn-letter" data-base="900" style="color: var(--color-accent);">a</span><span class="vn-letter" data-base="900" style="color: var(--color-accent);">d</span><span class="vn-letter" data-base="900" style="color: var(--color-accent);">í</span><span class="vn-letter" data-base="900" style="color: var(--color-accent);">n</span><span class="vn-letter" data-base="900" style="color: var(--color-accent);">.</span>
     </p>
 
     <!-- One thin hairline rule -->
@@ -129,6 +131,58 @@ const { t } = Astro.props;
         document.addEventListener('pointermove', onMove, { passive: true });
         el.addEventListener('pointerleave', onLeave, { passive: true });
       });
+
+      // ── Variable-font ripple on the display name ─────────────────
+      // Archivo is a variable font (wght 100..900): each letter's weight
+      // bulges toward the cursor and relaxes with distance, via one
+      // shared rAF loop (no per-letter listeners).
+      const name = document.getElementById('hero-display-name');
+      if (name && !name.dataset.vnBound) {
+        name.dataset.vnBound = '1';
+        const letters = Array.from(name.querySelectorAll<HTMLElement>('.vn-letter'));
+        const WEIGHT_MIN = 500;
+        const WEIGHT_MAX = 900;
+        const RADIUS = 220;
+        let mouse: { x: number; y: number } | null = null;
+        let raf: number | null = null;
+        const weights = new Map<HTMLElement, number>();
+        letters.forEach((l) => weights.set(l, WEIGHT_MAX));
+
+        const tick = () => {
+          let active = false;
+          letters.forEach((l) => {
+            const r = l.getBoundingClientRect();
+            const cx = r.left + r.width / 2;
+            const cy = r.top + r.height / 2;
+            let target = WEIGHT_MAX;
+            if (mouse) {
+              const dist = Math.hypot(mouse.x - cx, mouse.y - cy);
+              if (dist < RADIUS) {
+                const falloff = 1 - dist / RADIUS;
+                target = WEIGHT_MIN + (WEIGHT_MAX - WEIGHT_MIN) * Math.pow(falloff, 1.6);
+              }
+            }
+            const current = weights.get(l) ?? WEIGHT_MAX;
+            const next = current + (target - current) * 0.18;
+            if (Math.abs(next - current) > 0.4) {
+              weights.set(l, next);
+              l.style.fontWeight = String(Math.round(next));
+              l.style.fontStretch = `${Math.round(75 + (next / WEIGHT_MAX) * 50)}%`;
+              active = true;
+            } else if (current !== WEIGHT_MAX && target === WEIGHT_MAX) {
+              weights.set(l, WEIGHT_MAX);
+              l.style.fontWeight = '';
+              l.style.fontStretch = '';
+            }
+          });
+          raf = active || mouse ? requestAnimationFrame(tick) : null;
+        };
+        document.addEventListener('pointermove', (e) => {
+          mouse = { x: e.clientX, y: e.clientY };
+          if (raf === null) raf = requestAnimationFrame(tick);
+        }, { passive: true });
+        document.addEventListener('pointerleave', () => { mouse = null; }, { passive: true });
+      }
     }
   });
 </script>
