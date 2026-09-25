@@ -84,3 +84,4 @@ User rejected the code-mock panel ("queda rara") and the Projects/Selected Work 
 
 - [x] R21: Revert code-mock + Projects section. Commit c0a1046.
 - LESSON: user already disliked Selected Work before the overhaul ("no me gusta lo de selected work, te lo he dicho antes ya") — it was originally my R17 proposal. Do not defend rejected elements; ask what to add INSTEAD before building new structural sections.
+- [x] R22: Restore dark Experience (it traveled inside the reverted 5dbdbb6 commit — my earlier claim that it survived was wrong, verified and corrected). Re-applied: ink bg, paper headings, accent periods/Current, rgba-paper body, bright accent link hover. Commit d351245.
