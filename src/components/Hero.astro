@@ -36,16 +36,17 @@ const { t } = Astro.props;
     <!-- One thin hairline rule -->
     <div class="mb-12 w-full hero-rule" style="--i: 1; height: 1px; background: var(--color-border);"></div>
 
-    <!-- Asymmetric two-column row: bio wider on the left, icon links right -->
-    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto]" style="--i: 2;">
-      <p
-        class="max-w-xl text-base leading-loose"
-        style="color: var(--color-secondary);"
-      >
-        {t.hero.bio}
-      </p>
+    <!-- Asymmetric split-screen: bio + icons left, code editor mock right -->
+    <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-12 items-start" style="--i: 2;">
+      <div>
+        <p
+          class="max-w-xl text-base leading-loose"
+          style="color: var(--color-secondary);"
+        >
+          {t.hero.bio}
+        </p>
 
-      <div class="lg:row-start-1 lg:col-start-2 flex items-start gap-5 flex-wrap lg:justify-end" style="--i: 3; margin-top: 0.4375rem;">
+        <div class="flex items-start gap-5 flex-wrap" style="margin-top: 1.75rem;">
         {[
           { label: 'LinkedIn', href: 'https://linkedin.com/in/miguelpadin', icon: 'linkedin' },
           { label: 'GitHub',   href: 'https://github.com/miguelpadin',   icon: 'github' },
@@ -89,6 +90,25 @@ const { t } = Astro.props;
             )}
           </a>
         ))}
+        </div>
+      </div>
+
+      <div class="code-mock-wrap" style="--i: 3;">
+        <div class="code-mock" aria-hidden="true">
+          <div class="code-mock-bar">
+            <span class="code-dot code-dot-r"></span>
+            <span class="code-dot code-dot-y"></span>
+            <span class="code-dot code-dot-g"></span>
+            <span class="code-mock-tab">Profile.vue</span>
+          </div>
+          <pre class="code-mock-body"><code><span class="code-line" style="--l: 0"><span class="code-kw">&lt;script</span> <span class="code-attr">setup</span> <span class="code-kw">lang=</span><span class="code-str">"ts"</span><span class="code-kw">&gt;</span></span>
+<span class="code-line" style="--l: 1"><span class="code-kw">const</span> <span class="code-var">stack</span> = [<span class="code-str">'Vue 3'</span>, <span class="code-str">'TypeScript'</span>, <span class="code-str">'Nuxt'</span>]</span>
+<span class="code-line" style="--l: 2"><span class="code-kw">const</span> <span class="code-var">focus</span> = <span class="code-str">'Clean Architecture'</span></span>
+<span class="code-line" style="--l: 3"><span class="code-kw">const</span> <span class="code-var">years</span> = <span class="code-num">10</span></span>
+<span class="code-line" style="--l: 4"></span>
+<span class="code-line" style="--l: 5"><span class="code-com">// building things that last</span></span>
+<span class="code-line" style="--l: 6"><span class="code-kw">&lt;/script&gt;</span><span class="code-caret"></span></span></code></pre>
+        </div>
       </div>
     </div>
   </div>

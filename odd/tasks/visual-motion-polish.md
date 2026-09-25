@@ -68,3 +68,12 @@ Accepted changes: editorial-scale typography + bento rhythm + one deliberate the
 - [x] R13: Hero name full-stop accent + subtle scroll cue
 - [x] R14: `pnpm build` passes
 - Commit evidence: 10177c4 (revision 4: editorial scale + bento + contact inversion). Engram mirror: still pending (session-ambiguity defect).
+- [x] R15: Remove hero scroll cue (user found it confusing) — div + all CSS/keyframes. Commit 6a41e6b.
+
+## Revision 5 — "sigue muy básica para alguien de front-end" → structural overhaul
+User authorized the 3-part structural plan ("ok") and delegated the hero-visual choice to me. Decision: mock de código con typing effect (entregable completo hoy, comunica el oficio; foto puede añadirse después sustituyendo el panel).
+
+- [x] R16: Hero split-screen asymmetric (~55/45 lg): left type as-is; right = code-editor mock panel (window chrome dots + filename tab + real Vue/TS snippet with CSS typing animation + blinking caret), floating shadow, slight rotate, reduced-motion = static full text
+- [x] R17: NEW Projects section between Experience and Skills: 2 large cards with real project content from t.experience (Roomdoo PMS + manufacturing platform), screenshot placeholder slots with TODO comment, stack pills, links; section ID projects + nav link in i18n? NO — i18n read-only, so anchor exists without nav entry for now
+- [x] R18: Experience section dark inversion (bg var(--color-fg), paper text, hue2→accent-text labels, hairlines rgba paper, hover bar stays)
+- [x] R19: `pnpm build` passes

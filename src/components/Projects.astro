@@ -1,0 +1,78 @@
+---
+// Selected Work section. Display copy is hardcoded in English by design:
+// this section is a new visual element and the i18n files are read-only.
+const projects = [
+  {
+    name: 'Roomdoo',
+    url: 'https://roomdoo.com',
+    domain: 'roomdoo.com',
+    meta: '2020 · Remote · PMS',
+    description:
+      'Hotel Property Management System. Frontend architecture, Odoo integrations, REST API with OpenAPI docs, testing infrastructure from zero to TDD.',
+    tags: ['Vue 3', 'TypeScript', 'Pinia', 'PrimeVue', 'Vitest'],
+  },
+  {
+    name: 'Manufacturing Monitoring Platform',
+    url: 'https://adoitait.solutions/',
+    domain: 'adoitait.solutions',
+    meta: '2016 · On-site · Adoita IT Solutions',
+    description:
+      'Real-time manufacturing monitoring platform with live floor data.',
+    tags: ['Node.js', 'Vue 2', 'Socket.io'],
+  },
+] as const;
+---
+
+<section id="projects" class="px-8 py-32" aria-labelledby="projects-heading">
+  <div class="max-w-5xl mx-auto">
+
+    <h2
+      id="projects-heading"
+      class="mb-20"
+      style="
+        font-family: var(--font-display);
+        font-weight: var(--font-display-weight);
+        font-size: clamp(2.25rem, 5vw, 3.75rem);
+        line-height: 1.05;
+        color: var(--color-fg);
+        letter-spacing: var(--font-display-tracking);
+      "
+      data-reveal
+    >
+      Selected Work
+    </h2>
+
+    <div class="space-y-16">
+      {projects.map((project) => (
+        <article class="project-card" data-reveal>
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="project-link"
+          >
+            <div class="project-inner">
+              <div class="project-media">
+                <!-- TODO: replace placeholder with real product screenshot 1200x750 -->
+                <div class="project-media-ph">
+                  <span>{project.domain}</span>
+                </div>
+              </div>
+              <div class="project-info">
+                <p class="mono-label project-meta">{project.meta}</p>
+                <h3>{project.name}</h3>
+                <p class="project-desc">{project.description}</p>
+                <div class="project-tags">
+                  {project.tags.map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
