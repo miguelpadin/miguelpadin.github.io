@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.6.0...v0.6.1) (2026-09-25)
+
+
+### Bug Fixes
+
+* **deploy:** trigger on release publish, not main merges or tags ([#33](https://github.com/miguelpadin/miguelpadin.github.io/issues/33)) ([ba9ef08](https://github.com/miguelpadin/miguelpadin.github.io/commit/ba9ef08285babc9b46ab7e125e5b7621bda8d8c6))
+
 ## [0.6.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.5.4...v0.6.0) (2026-09-25)
 
 
