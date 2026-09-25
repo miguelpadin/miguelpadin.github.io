@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.2](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.6.1...v0.6.2) (2026-09-25)
+
+
+### Bug Fixes
+
+* **readme:** document the actual release flow ([#35](https://github.com/miguelpadin/miguelpadin.github.io/issues/35)) ([a0b605c](https://github.com/miguelpadin/miguelpadin.github.io/commit/a0b605cd04cc2c5f1d9ff7a070f48abd32b216e5))
+
 ## [0.6.1](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.6.0...v0.6.1) (2026-09-25)
 
 
