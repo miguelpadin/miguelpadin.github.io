@@ -96,3 +96,4 @@ Physics-and-input motion pass: response to cursor and scroll velocity (the front
 - [x] R27: Spotlight border on skill icon pills (per-pill radial border glow tracking cursor, pointer:fine only)
 - [x] R28: `pnpm build` passes
 - Commit evidence: e0f7955 (revision 7: physics/input motion pass). Skew-host applied via JS (pages render their own main — writer deviation, correct).
+- [x] R29: Legal pages (legal/privacy/cookies x3 locales) widen from 680px to 1024px to match site grid. Commit 1dfd7d5.
