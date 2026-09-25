@@ -419,7 +419,6 @@ canvas {
     animation: none;
     transform: none;
   }
-  .job-entry,
   .contact-row {
     transition: none;
   }
@@ -475,50 +474,14 @@ body::after {
   }
 }
 
-/* ── Job entry hover bar ─────────────────────────────────────── */
-.job-entry {
-  position: relative;
-  transition: padding-left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.job-entry::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: var(--color-accent);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.job-entry:hover {
-  padding-left: 1.25rem;
-}
-.job-entry:hover::before {
-  transform: scaleY(1);
-}
-
-/* ── Contact row hover fill ──────────────────────────────────── */
+/* ── Contact row hover (opacity shift only, safe on accent bg) ─ */
 .contact-row {
-  position: relative;
-  transition: background-color 0.25s ease,
-              padding 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              margin 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.2s ease;
 }
 .contact-row:hover {
-  background: var(--color-surface);
-  padding-left: 1rem;
-  padding-right: 0.5rem;
-  margin-left: -1rem;
+  opacity: 0.75;
 }
 
-/* Inverted contact block (accent section): paper-tone hover fill.
-   Also neutralizes .contact-link:hover accent-text which would be
-   unreadable on the accent background. */
-.contact-block .contact-row:hover {
-  background: rgba(246, 243, 238, 0.12);
-}
 .contact-block .contact-link:hover {
   color: var(--color-bg) !important;
 }
@@ -682,13 +645,6 @@ body::after {
 @media (min-width: 1024px) {
   .lg\:grid-cols-\[1\.1fr_0\.9fr\] { grid-template-columns: 1.1fr 0.9fr; }
   .lg\:gap-12 { gap: 3rem; }
-}
-
-/* ── Scroll velocity skew host (R24) ─────────────────────────── */
-/* Promoted to its own compositor layer only when the skew loop is
-   active (class is added from JS under reduced-motion guard). */
-.skew-host {
-  will-change: transform;
 }
 
 /* ── Hero morphing blob (tone-on-tone, organic drift) ────────── */

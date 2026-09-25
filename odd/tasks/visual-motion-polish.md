@@ -109,3 +109,14 @@ Physics-and-input motion pass: response to cursor and scroll velocity (the front
 - [x] R34: Hero name variable-font weight/width ripple tracking cursor (Archivo variable axes, per-letter spans, rAF, pointer:fine + reduced-motion gated)
 - [x] R35: `pnpm build` passes
 - Commit evidence: 039c3e3 (revision 9: variable-font ripple; 13 letter spans render, single rAF loop, idempotent guard).
+
+## Revision 10 — user rejection: motion dial-down (nausea + hover scale)
+User rejects: (a) scroll skew on main (motion sickness), (b) variable-font ripple on name, (c) hover effects on experience/skills/contact sections. Motion philosophy going forward: effects must be triggered by user action, never ambient/auto; no body-scale hover effects; no whole-page transforms.
+
+- [x] R36: Remove scroll velocity skew entirely (Layout script + .skew-host CSS)
+- [x] R37: Remove variable-font name ripple (spans back to plain text, script removed)
+- [x] R38: Remove job-entry hover bar + padding shift (Experience)
+- [x] R39: Remove contact-row hover fill + shift (Contact keeps simple color change only)
+- [x] R40: Remove icon-pill hover lift/spotlight (Skills keeps tooltip + subtle border-color change)
+- [x] R41: `pnpm build` passes
+- Commit evidence: 42d3747 (revision 10: removal pass, -184 lines).

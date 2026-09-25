@@ -218,25 +218,6 @@ const icons: Record<string, IconDef> = {
   </div>
 </section>
 
-<script>
-  // ── Spotlight rim glow on skill pills (R27) ───────────────────
-  // Wrapped in astro:page-load so bindings reapply after client-side
-  // navigation; dataset guard keeps re-runs idempotent.
-  document.addEventListener('astro:page-load', () => {
-    if (window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.querySelectorAll('.icon-pill').forEach((pill) => {
-        if (pill.dataset.spotlight) return;
-        pill.dataset.spotlight = '1';
-        pill.addEventListener('pointermove', (e) => {
-          const r = pill.getBoundingClientRect();
-          pill.style.setProperty('--px', `${(e as PointerEvent).clientX - r.left}px`);
-          pill.style.setProperty('--py', `${(e as PointerEvent).clientY - r.top}px`);
-        }, { passive: true });
-      });
-    }
-  });
-</script>
-
 <style>
   .icon-pill {
     position: relative;
@@ -249,37 +230,15 @@ const icons: Record<string, IconDef> = {
     border: 1px solid var(--color-border);
     border-radius: 8px;
     background: var(--color-bg);
-    transition: border-color 0.2s, background 0.2s, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: border-color 0.2s, background 0.2s;
     cursor: default;
     text-decoration: none;
   }
   a.icon-pill { cursor: pointer; }
 
-  /* Spotlight rim glow tracking the cursor (R27).
-     The opaque pill background hides the inner half of the radial; the
-     visible halo is the rim just outside the border edge. */
-  .icon-pill::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-    background: radial-gradient(
-      90px circle at var(--px, 50%) var(--py, 50%),
-      rgba(232, 84, 47, 0.55),
-      transparent 70%
-    );
-    z-index: 0;
-    pointer-events: none;
-  }
-  .icon-pill:hover::before { opacity: 1; }
-  .icon-pill > * { position: relative; z-index: 1; }
-
   .icon-pill:hover {
     border-color: var(--color-accent);
     background: rgba(232, 84, 47, 0.05);
-    transform: translateY(-2px);
   }
 
   /* Tooltip */

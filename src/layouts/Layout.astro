@@ -136,40 +136,6 @@ function hreflangUrl(targetLang: Lang): string {
     <CookieBanner lang={lang} />
 
     <script>
-      // ── Module-level skew loop: exactly ONE rAF loop exists across
-      // navigations; it re-queries <main> each frame so the transform
-      // follows whatever page is currently mounted (ClientRouter swaps
-      // the DOM but module scripts run only once).
-      let skewLoopStarted = false;
-
-      function startSkewLoop(noMotion: MediaQueryList) {
-        if (skewLoopStarted || noMotion.matches) return;
-        skewLoopStarted = true;
-        const main = document.querySelector('main');
-        if (!main) return;
-        main.classList.add('skew-host');
-        let currentSkew = 0;
-        let lastScrollY = window.scrollY;
-        const skewLoop = () => {
-          const activeMain = document.querySelector('main');
-          if (document.hidden || !activeMain) {
-            requestAnimationFrame(skewLoop);
-            return;
-          }
-          if (!activeMain.classList.contains('skew-host')) {
-            activeMain.classList.add('skew-host');
-          }
-          const y = window.scrollY;
-          const velocity = y - lastScrollY;
-          lastScrollY = y;
-          const target = Math.max(-1.2, Math.min(1.2, velocity * 0.08));
-          currentSkew += (target - currentSkew) * 0.12;
-          activeMain.style.transform = currentSkew !== 0 ? `skewY(${currentSkew.toFixed(3)}deg)` : '';
-          requestAnimationFrame(skewLoop);
-        };
-        requestAnimationFrame(skewLoop);
-      }
-
       // ── View Transitions: astro:page-load fires on first load AND on
       // every client-side navigation. Each feature dedupes via dataset
       // guards or fresh listeners on the freshly swapped DOM.
@@ -263,10 +229,6 @@ function hreflangUrl(targetLang: Lang): string {
           }, { passive: true });
           updateParallax();
         }
-
-        // ── Scroll velocity skew (frontend-physics tell) ──────────────
-        // Pages render their own <main>; the single global loop handles it.
-        startSkewLoop(noMotion);
       });
     </script>
   </body>
