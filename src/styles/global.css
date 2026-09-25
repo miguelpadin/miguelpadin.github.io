@@ -341,11 +341,16 @@ canvas {
   height: 2.5rem;
   border: 1px solid var(--color-hue2);
   border-radius: 9999px;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.2s ease,
+              border-color 0.2s ease,
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s ease;
 }
 .hero-icon-link:hover {
   color: var(--color-fg);
   border-color: var(--color-fg);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 25, 23, 0.08);
 }
 
 /* ── Accent underline grow (reusable) ────────────────────────── */
@@ -374,21 +379,151 @@ canvas {
   transform: scaleX(1);
 }
 
-/* ── Hero entrance: one-time rise + fade (CSS only) ──────────── */
+/* ── Hero entrance: staggered rise (replaces .hero-enter) ────── */
 @media (prefers-reduced-motion: no-preference) {
-  .hero-enter {
-    animation: heroRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  .hero-stagger > * {
+    animation: heroItemRise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--i, 0) * 90ms);
   }
-  @keyframes heroRise {
+  @keyframes heroItemRise {
     from {
       opacity: 0;
-      transform: translateY(24px);
+      transform: translateY(28px);
     }
     to {
       opacity: 1;
       transform: none;
     }
   }
+
+  /* Accent underline draw under the hero surname */
+  .hero-underline path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: underlineDraw 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+  }
+  @keyframes underlineDraw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  /* Hairline rule grows from the left */
+  .hero-rule {
+    transform-origin: left;
+    animation: ruleGrow 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+  }
+  @keyframes ruleGrow {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+}
+
+/* Underline sits under the surname; hide where it would misalign */
+@media (max-width: 480px) {
+  .hero-underline {
+    display: none;
+  }
+}
+
+/* ── Reduced-motion fallback: show everything static ─────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-stagger > * {
+    animation: none;
+  }
+  .hero-underline path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+  .hero-rule {
+    animation: none;
+    transform: none;
+  }
+  .job-entry,
+  .contact-row {
+    transition: none;
+  }
+}
+
+/* ── Grain texture overlay (static, subtle) ──────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* ── Scroll progress bar (driven by --scroll-progress from JS) ─ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  transform-origin: 0 50%;
+  transform: scaleX(var(--scroll-progress, 0));
+  background: var(--color-accent);
+  z-index: 55;
+  pointer-events: none;
+}
+
+/* ── Hero radial accent tint (static) ────────────────────────── */
+#hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 60% 50% at 85% 15%, rgba(232, 84, 47, 0.06), transparent 70%);
+}
+
+/* ── Job entry hover bar ─────────────────────────────────────── */
+.job-entry {
+  position: relative;
+  transition: padding-left 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.job-entry::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.job-entry:hover {
+  padding-left: 1.25rem;
+}
+.job-entry:hover::before {
+  transform: scaleY(1);
+}
+
+/* ── Contact row hover fill ──────────────────────────────────── */
+.contact-row {
+  position: relative;
+  transition: background-color 0.25s ease,
+              padding 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              margin 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.contact-row:hover {
+  background: var(--color-surface);
+  padding-left: 1rem;
+  padding-right: 0.5rem;
+  margin-left: -1rem;
+}
+
+/* ── Skills group hover accent ───────────────────────────────── */
+.skill-group {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.25rem;
+  transition: border-color 0.3s ease;
+}
+.skill-group:hover {
+  border-color: var(--color-accent);
 }
 
 

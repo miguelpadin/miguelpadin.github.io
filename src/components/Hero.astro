@@ -8,7 +8,7 @@ const { t } = Astro.props;
 ---
 
 <section id="hero-section" class="relative min-h-screen flex flex-col justify-center px-8 pt-16">
-  <div class="max-w-5xl mx-auto w-full fade-in">
+  <div class="max-w-5xl mx-auto w-full hero-stagger">
     <h1
       id="hero-name"
       class="visually-hidden"
@@ -18,8 +18,8 @@ const { t } = Astro.props;
 
     <!-- Display name statement: shortened to avoid duplicating the full header name -->
     <p
-      class="hero-enter leading-none mb-12"
-      style="
+      class="leading-none mb-12"
+      style="--i: 0;
         font-family: var(--font-display);
         font-weight: 900;
         font-stretch: 125%;
@@ -32,11 +32,24 @@ const { t } = Astro.props;
       Miguel <span style="color: var(--color-accent);">Padín</span>
     </p>
 
+    <!-- Accent underline draw, visually under the surname -->
+    <svg
+      class="hero-underline"
+      width="220"
+      height="10"
+      viewBox="0 0 220 10"
+      fill="none"
+      aria-hidden="true"
+      style="display: block; margin: 0.5rem 0 0; margin-left: min(28vw, 340px);"
+    >
+      <path d="M2 7 C 60 2, 160 2, 218 6" stroke="var(--color-accent)" stroke-width="4" stroke-linecap="round" pathLength="1" style="opacity: 0.85;" />
+    </svg>
+
     <!-- One thin hairline rule -->
-    <div class="mb-12 w-full" style="height: 1px; background: var(--color-border);"></div>
+    <div class="mb-12 w-full hero-rule" style="--i: 1; height: 1px; background: var(--color-border);"></div>
 
     <!-- Asymmetric two-column row: bio wider on the left, icon links right -->
-    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto]">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto]" style="--i: 2;">
       <p
         class="max-w-xl text-base leading-loose"
         style="color: var(--color-secondary);"
@@ -44,7 +57,7 @@ const { t } = Astro.props;
         {t.hero.bio}
       </p>
 
-      <div class="lg:row-start-1 lg:col-start-2 flex items-start gap-5 flex-wrap lg:justify-end" style="margin-top: 0.4375rem;">
+      <div class="lg:row-start-1 lg:col-start-2 flex items-start gap-5 flex-wrap lg:justify-end" style="--i: 3; margin-top: 0.4375rem;">
         {[
           { label: 'LinkedIn', href: 'https://linkedin.com/in/miguelpadin', icon: 'linkedin' },
           { label: 'GitHub',   href: 'https://github.com/miguelpadin',   icon: 'github' },

@@ -128,11 +128,27 @@ function hreflangUrl(targetLang: Lang): string {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class="min-h-screen fade-in">
+    <div class="scroll-progress" aria-hidden="true"></div>
     <slot />
 
     <CookieBanner lang={lang} />
 
     <script>
+      // ── Scroll progress (rAF-throttled, no layout thrash) ──────────
+      const progressEl = document.querySelector('.scroll-progress');
+      let ticking = false;
+      const updateProgress = () => {
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - window.innerHeight;
+        const p = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+        progressEl?.style.setProperty('--scroll-progress', String(p));
+        ticking = false;
+      };
+      window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(updateProgress); ticking = true; }
+      }, { passive: true });
+      updateProgress();
+
       // ── Scroll reveal ──────────────────────────────────────────────
       const observer = new IntersectionObserver(
         (entries) => {
