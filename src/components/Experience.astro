@@ -9,11 +9,15 @@ const { t } = Astro.props;
 
 <section
   id="experience"
-  class="px-8 py-32"
+  class="px-8 py-32 relative overflow-clip"
   aria-labelledby="experience-heading"
   style="background: var(--color-fg);"
 >
-  <div class="max-w-5xl mx-auto">
+  <!-- Animated backdrop layers: slow drifting glow + grain, hidden from AT -->
+  <div class="xp-glow" aria-hidden="true"></div>
+  <div class="xp-glow xp-glow--b" aria-hidden="true"></div>
+  <div class="xp-grain" aria-hidden="true"></div>
+  <div class="max-w-5xl mx-auto relative" style="z-index: 1;">
 
     <h2
       id="experience-heading"

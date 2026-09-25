@@ -7,9 +7,10 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<section id="hero-section" class="relative min-h-screen flex flex-col justify-center px-8 pt-16 pb-16">
-  <!-- Tone-on-tone morphing blob: decorative backdrop, hidden from AT -->
+<section id="hero-section" class="relative min-h-screen flex flex-col justify-center px-8 pt-16 pb-16 overflow-clip">
+  <!-- Tone-on-tone morphing blobs: decorative backdrop, hidden from AT -->
   <div class="hero-blob" aria-hidden="true"></div>
+  <div class="hero-blob hero-blob--second" aria-hidden="true"></div>
 
   <div class="max-w-5xl mx-auto w-full hero-stagger">
     <h1
