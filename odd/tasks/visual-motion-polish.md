@@ -120,3 +120,9 @@ User rejects: (a) scroll skew on main (motion sickness), (b) variable-font rippl
 - [x] R40: Remove icon-pill hover lift/spotlight (Skills keeps tooltip + subtle border-color change)
 - [x] R41: `pnpm build` passes
 - Commit evidence: 42d3747 (revision 10: removal pass, -184 lines).
+
+## Revision 11 — user rejection: header scramble + magnetic icons
+- [x] R42: Remove nav scramble effect (Header links: plain hover color change only)
+- [x] R43: Remove magnetic pull on hero icon links (plain hover: border-color + color shift only)
+- [x] R44: `pnpm build` passes
+- Commit evidence: f713e9d (revision 11: -78 lines). Header nav + hero icons: plain color/border hover only.

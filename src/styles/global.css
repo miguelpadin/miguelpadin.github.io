@@ -344,16 +344,11 @@ canvas {
   height: 2.5rem;
   border: 1px solid var(--color-hue2);
   border-radius: 9999px;
-  transition: color 0.2s ease,
-              border-color 0.2s ease,
-              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.2s ease;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
 .hero-icon-link:hover {
   color: var(--color-fg);
   border-color: var(--color-fg);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(26, 25, 23, 0.08);
 }
 
 /* ── Accent underline grow (reusable) ────────────────────────── */

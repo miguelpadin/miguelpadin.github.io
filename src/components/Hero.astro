@@ -97,38 +97,3 @@ const { t } = Astro.props;
   </div>
 
 </section>
-
-<script>
-  // ── Magnetic pull on hero icon links ──────────────────────────
-  // Wrapped in astro:page-load so bindings reapply after client-side
-  // navigation; dataset guard keeps re-runs idempotent.
-  document.addEventListener('astro:page-load', () => {
-    const fine = window.matchMedia('(pointer: fine)').matches;
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (fine && !reduce) {
-      document.querySelectorAll('.hero-icon-link').forEach((el) => {
-        if (el.dataset.magnetic) return;
-        el.dataset.magnetic = '1';
-        const RADIUS = 70;
-        const PULL = 0.35;
-        const onMove = (e: PointerEvent) => {
-          const r = el.getBoundingClientRect();
-          const cx = r.left + r.width / 2;
-          const cy = r.top + r.height / 2;
-          const dx = e.clientX - cx;
-          const dy = e.clientY - cy;
-          const dist = Math.hypot(dx, dy);
-          if (dist < RADIUS) {
-            el.style.transform = `translate(${dx * PULL}px, ${dy * PULL}px)`;
-          } else {
-            el.style.transform = '';
-          }
-        };
-        const onLeave = () => { el.style.transform = ''; };
-        // listen on a shared parent once per link is fine for 5 links
-        document.addEventListener('pointermove', onMove, { passive: true });
-        el.addEventListener('pointerleave', onLeave, { passive: true });
-      });
-    }
-  });
-</script>

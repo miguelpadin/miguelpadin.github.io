@@ -41,8 +41,7 @@ const { lang, t } = Astro.props;
         ].map(({ label, href }) => (
           <a
             href={href}
-            class="nav-link nav-scramble text-xs uppercase tracking-[0.15em] transition-colors duration-200"
-            data-text={label}
+            class="nav-link text-xs uppercase tracking-[0.15em] transition-colors duration-200"
             style="color: var(--color-secondary); font-family: var(--font-display); font-weight: var(--font-display-weight); letter-spacing: var(--font-display-tracking);"
           >
             {label}
@@ -92,39 +91,5 @@ const { lang, t } = Astro.props;
     const update = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
     update();
     window.addEventListener('scroll', update, { passive: true });
-  });
-</script>
-
-<script>
-  // ── Text scramble decode on nav hover ─────────────────────────
-  // Label text is only swapped during the animation; the final frame
-  // restores the original string exactly (SEO/screen readers safe).
-  document.addEventListener('astro:page-load', () => {
-    document.querySelectorAll('.nav-scramble').forEach((link) => {
-      if (link.dataset.scrambleBound) return;
-      link.dataset.scrambleBound = '1';
-      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ<>/{}[]();=';
-      const original = (link as HTMLElement).dataset.text || link.textContent!.trim();
-      let frame = 0;
-      let raf: number | null = null;
-      const run = () => {
-        frame++;
-        const progress = frame / 3;
-        const done = Math.floor(progress);
-        const out = original.split('').map((ch, i) => {
-          if (i < done || ch === ' ') return ch;
-          return chars[Math.floor(Math.random() * chars.length)];
-        }).join('');
-        link.textContent = done >= original.length ? original : out;
-        if (done < original.length) raf = requestAnimationFrame(run);
-        else raf = null;
-      };
-      link.addEventListener('mouseenter', () => {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        frame = 0;
-        if (raf) cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(run);
-      });
-    });
   });
 </script>
