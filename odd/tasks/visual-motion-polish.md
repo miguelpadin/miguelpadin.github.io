@@ -67,3 +67,4 @@ Accepted changes: editorial-scale typography + bento rhythm + one deliberate the
 - [x] R12: Contact = full-bleed accent block, giant outline display heading, paper-tone rows/hovers
 - [x] R13: Hero name full-stop accent + subtle scroll cue
 - [x] R14: `pnpm build` passes
+- Commit evidence: 10177c4 (revision 4: editorial scale + bento + contact inversion). Engram mirror: still pending (session-ambiguity defect).
