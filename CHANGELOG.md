@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.3](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.6.2...v0.6.3) (2026-09-25)
+
+
+### Bug Fixes
+
+* **readme:** note why releases use a PAT ([#38](https://github.com/miguelpadin/miguelpadin.github.io/issues/38)) ([3b6ee27](https://github.com/miguelpadin/miguelpadin.github.io/commit/3b6ee27570f37ca241802b5140f476c05493bbf9))
+
 ## [0.6.2](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.6.1...v0.6.2) (2026-09-25)
 
 
