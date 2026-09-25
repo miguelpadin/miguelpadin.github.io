@@ -126,3 +126,4 @@ User rejects: (a) scroll skew on main (motion sickness), (b) variable-font rippl
 - [x] R43: Remove magnetic pull on hero icon links (plain hover: border-color + color shift only)
 - [x] R44: `pnpm build` passes
 - Commit evidence: f713e9d (revision 11: -78 lines). Header nav + hero icons: plain color/border hover only.
+- Delivered: branch redesign/cool-evolution pushed to origin (all commits through 7ccae3d).
