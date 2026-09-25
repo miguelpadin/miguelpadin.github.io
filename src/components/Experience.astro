@@ -29,12 +29,11 @@ const { t } = Astro.props;
       {t.experience.jobs.map((job, i) => (
         <div
           class="job-entry py-12"
-          style="border-top: 1px solid var(--color-border);"
           data-reveal
           data-reveal-delay={String(i % 3)}
         >
           <div class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-4 lg:gap-16">
-            <div>
+            <div class="lg:sticky lg:top-24 self-start">
               <p class="mono-label mb-4" style="color: var(--color-hue2);">
                 {job.period}
               </p>
@@ -42,8 +41,8 @@ const { t } = Astro.props;
                 {job.location}
               </p>
               {job.current && (
-                <p class="mono-label" style="color: var(--color-accent-text);">
-                  {t.experience.current}
+                <p class="mono-label flex items-center gap-2" style="color: var(--color-accent-text);">
+                  <span class="current-dot" aria-hidden="true"></span>{t.experience.current}
                 </p>
               )}
             </div>
@@ -54,7 +53,7 @@ const { t } = Astro.props;
                 style="
                   font-family: var(--font-display);
                   font-weight: var(--font-display-weight);
-                  font-size: 1.375rem;
+                  font-size: clamp(1.5rem, 2.5vw, 2rem);
                   color: var(--color-fg);
                   letter-spacing: var(--font-display-tracking);
                 "
@@ -87,7 +86,6 @@ const { t } = Astro.props;
           </div>
         </div>
       ))}
-      <div style="border-top: 1px solid var(--color-border);"></div>
     </div>
   </div>
 </section>

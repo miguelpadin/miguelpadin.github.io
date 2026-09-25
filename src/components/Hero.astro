@@ -7,7 +7,7 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<section id="hero-section" class="relative min-h-screen flex flex-col justify-center px-8 pt-16">
+<section id="hero-section" class="relative min-h-screen flex flex-col justify-center px-8 pt-16 pb-16">
   <div class="max-w-5xl mx-auto w-full hero-stagger">
     <h1
       id="hero-name"
@@ -19,6 +19,7 @@ const { t } = Astro.props;
     <!-- Display name statement: shortened to avoid duplicating the full header name -->
     <p
       class="leading-none mb-12"
+      data-parallax="0.12"
       style="--i: 0;
         font-family: var(--font-display);
         font-weight: 900;
@@ -31,19 +32,6 @@ const { t } = Astro.props;
     >
       Miguel <span style="color: var(--color-accent);">Padín</span>
     </p>
-
-    <!-- Accent underline draw, visually under the surname -->
-    <svg
-      class="hero-underline"
-      width="220"
-      height="10"
-      viewBox="0 0 220 10"
-      fill="none"
-      aria-hidden="true"
-      style="display: block; margin: 0.5rem 0 0; margin-left: min(28vw, 340px);"
-    >
-      <path d="M2 7 C 60 2, 160 2, 218 6" stroke="var(--color-accent)" stroke-width="4" stroke-linecap="round" pathLength="1" style="opacity: 0.85;" />
-    </svg>
 
     <!-- One thin hairline rule -->
     <div class="mb-12 w-full hero-rule" style="--i: 1; height: 1px; background: var(--color-border);"></div>

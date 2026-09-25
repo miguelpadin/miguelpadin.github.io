@@ -20,15 +20,39 @@ User request: "dale un poco más de vidilla al diseño, efectos, etc que no pare
 - Keep palette and section structure untouched; artifacts in English.
 
 ## Checklist
-- [ ] T1: global.css additions (grain, progress, keyframes, hovers, hero tint)
-- [ ] T2: Hero.astro stagger + underline + rule + icons
-- [ ] T3: Contact.astro hover fill rows
-- [ ] T4: Skills.astro group hover class
-- [ ] T5: Layout.astro progress bar + script
-- [ ] T6: `pnpm build` passes
+- [x] T1: global.css additions (grain, progress, keyframes, hovers, hero tint)
+- [x] T2: Hero.astro stagger + underline + rule + icons
+- [x] T3: Contact.astro hover fill rows (no edit needed — .contact-row class already present)
+- [x] T4: Skills.astro group hover class
+- [x] T5: Layout.astro progress bar + script
+- [x] T6: `pnpm build` passes — observed: "14 page(s) built in 1.01s", exit 0
 
 ## Acceptance
 - Build passes; reduced-motion users get a static page; no layout shift on mobile.
 
 ## Route
 Delegated direct (writer trigger: 2+ non-trivial files). TDD: not applicable (static markup/CSS, no test runner configured in project).
+
+## Progress
+- Writer agent (ses_f27f01510ffeu3VvMZth3BnQKT): completed. Files: global.css, Hero.astro, Skills.astro, Layout.astro. Contact.astro unchanged (already correct).
+- Verification: parent structural readback of all 4 files + `pnpm build` re-run (exit 0).
+- Engram mirror: PENDING — mem_save failed with session-ambiguity error (multiple active runtime sessions); local file is source of truth.
+- Commit evidence: 125a804 "feat(design): add motion polish — grain texture, scroll progress, hero stagger, hover micro-interactions".
+- RDD status: off (global) — no review ceremony; ordinary checks only.
+- Commit evidence: 125a804 (revision 1).
+
+## Revision 2 — user feedback: "still too PDF-CV, underline looks weird"
+Accepted changes: remove hero underline; break the uniform document flow. New intent: each section gets its own layout family, motion dial up (parallax, marquee, outline display type).
+
+- [x] R1: Remove .hero-underline SVG from Hero.astro + its CSS (keyframes, 480px hide, reduced-motion refs)
+- [x] R2: Hero — mouse spotlight (var-driven radial, pointer:fine only) + scroll parallax on the big name (data-parallax, rAF in Layout script, reduced-motion gated)
+- [x] R3: Hero bottom — full-bleed marquee strip of core skills (two duplicated groups, 40s linear, pause on hover, hairline top/bottom, static under reduced motion)
+- [x] R4: Skills — replace comma-text groups with icon-pill grid (borrow+extend SkillsLogos icons map into Skills.astro, tooltips, letter fallback), keep languages strip
+- [x] R5: Experience — drop per-entry hairlines, bigger display company type, sticky period column on lg, pulsing "Current" dot (reduced-motion: static)
+- [x] R6: Contact — giant display heading (clamp 2.5–5rem), second line accent outline (-webkit-text-stroke), keep rows
+- [x] R7: `pnpm build` passes
+
+## Revision 3 — user feedback: "no me gusta el carrusel"
+Accepted change: remove the hero marquee entirely. No replacement strip; hero keeps spotlight + parallax + stagger. Marquee was the only full-bleed element — hero returns to clean poster layout.
+
+- [x] R8: Remove .hero-marquee block from Hero.astro + all marquee CSS/keyframes/entrance from global.css; hero padding back to pb-16

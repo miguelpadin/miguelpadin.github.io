@@ -185,6 +185,38 @@ function hreflangUrl(targetLang: Lang): string {
         const el = document.getElementById(id);
         if (el) sectionObserver.observe(el);
       });
+
+      // ── Hero spotlight + name parallax (rAF-throttled) ─────────────
+      const hero = document.getElementById('hero-section');
+      const parallaxEls = hero ? hero.querySelectorAll('[data-parallax]') : [];
+      const finePointer = window.matchMedia('(pointer: fine)');
+      const noMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      if (hero && finePointer.matches && !noMotion.matches) {
+        hero.addEventListener('pointermove', (e) => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const r = hero.getBoundingClientRect();
+            hero.style.setProperty('--mx', `${e.clientX - r.left}px`);
+            hero.style.setProperty('--my', `${e.clientY - r.top}px`);
+            ticking = false;
+          });
+        }, { passive: true });
+      }
+      if (!noMotion.matches && parallaxEls.length) {
+        const updateParallax = () => {
+          const y = window.scrollY;
+          parallaxEls.forEach((el) => {
+            const speed = parseFloat(el.dataset.parallax || '0.12');
+            el.style.transform = `translateY(${y * speed * -1}px)`;
+          });
+          ticking = false;
+        };
+        window.addEventListener('scroll', () => {
+          if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; }
+        }, { passive: true });
+        updateParallax();
+      }
     </script>
   </body>
 </html>
