@@ -657,18 +657,16 @@ body::after {
   background: radial-gradient(circle at 35% 35%, rgba(15, 92, 90, 0.2), rgba(232, 84, 47, 0.14) 55%, transparent 72%);
   filter: blur(2px);
 }
-/* Third blob: faint teal wash anchored at the bottom of the hero,
-   filling the dead paper zone below the fold line. Slowest cycle. */
-.hero-blob--third {
-  width: min(70vw, 820px);
-  height: min(50vw, 560px);
-  left: 22%;
-  right: auto;
-  top: auto;
-  bottom: -28%;
-  background: radial-gradient(ellipse at 50% 60%, rgba(15, 92, 90, 0.11), rgba(232, 84, 47, 0.06) 55%, transparent 75%);
-  filter: blur(4px);
-}
+  .hero-blob--third {
+    width: min(70vw, 820px);
+    height: min(50vw, 560px);
+    left: 22%;
+    right: auto;
+    top: auto;
+    bottom: -28%;
+    background: radial-gradient(ellipse at 50% 60%, rgba(15, 92, 90, 0.11), rgba(232, 84, 47, 0.06) 55%, transparent 75%);
+    filter: blur(4px);
+  }
 /* Second blob: opposite side (right/bottom-center), vermillion-led,
    drifting on its own offbeat cycle so the two never sync. */
 .hero-blob--second {
@@ -681,6 +679,48 @@ body::after {
   background: radial-gradient(circle at 60% 60%, rgba(232, 84, 47, 0.17), rgba(15, 92, 90, 0.12) 55%, transparent 72%);
   filter: blur(3px);
 }
+/* Fourth blob: small vermillion bubble floating near the top center,
+   right behind the display name. Fastest cycle, high in the air. */
+.hero-blob--fourth {
+  width: min(26vw, 300px);
+  height: min(26vw, 300px);
+  left: 38%;
+  top: 4%;
+  background: radial-gradient(circle at 40% 40%, rgba(232, 84, 47, 0.16), rgba(15, 92, 90, 0.08) 55%, transparent 72%);
+  filter: blur(3px);
+}
+/* Fifth blob: small teal bubble drifting on the mid-left, balancing
+   the vermillion one. Offbeat cycle so they never sync. */
+.hero-blob--fifth {
+  width: min(22vw, 260px);
+  height: min(22vw, 260px);
+  left: 12%;
+  top: 46%;
+  background: radial-gradient(circle at 55% 45%, rgba(15, 92, 90, 0.15), rgba(232, 84, 47, 0.07) 55%, transparent 72%);
+  filter: blur(3px);
+}
+/* Sixth blob: medium teal bubble at the upper right, echoing the base
+   blob's territory from the other side. Languid cycle, low drift. */
+.hero-blob--sixth {
+  width: min(30vw, 340px);
+  height: min(30vw, 340px);
+  left: auto;
+  right: 18%;
+  top: 18%;
+  background: radial-gradient(circle at 45% 40%, rgba(15, 92, 90, 0.14), rgba(232, 84, 47, 0.07) 55%, transparent 72%);
+  filter: blur(4px);
+}
+/* Seventh blob: small vermillion bubble skimming the lower left,
+   balancing the dark backdrop. Mid cycle, wide horizontal drift. */
+.hero-blob--seventh {
+  width: min(18vw, 210px);
+  height: min(18vw, 210px);
+  left: 4%;
+  top: auto;
+  bottom: 6%;
+  background: radial-gradient(circle at 50% 50%, rgba(232, 84, 47, 0.18), rgba(15, 92, 90, 0.08) 55%, transparent 72%);
+  filter: blur(2px);
+}
 #hero-section > .max-w-5xl {
   position: relative;
   z-index: 1;
@@ -691,41 +731,85 @@ body::after {
     height: min(80vw, 400px);
     left: -20%;
   }
-  .hero-blob--second {
-    width: min(60vw, 320px);
-    height: min(60vw, 320px);
-    right: -14%;
-    bottom: -6%;
+  .hero-blob--seventh {
+    width: min(30vw, 220px);
+    height: min(30vw, 220px);
+    left: -8%;
+    bottom: 10%;
+  }
+  .hero-blob--sixth {
+    width: min(38vw, 300px);
+    height: min(38vw, 300px);
+    right: -4%;
+    top: 24%;
   }
 }
 @media (prefers-reduced-motion: no-preference) {
+/* Each blob runs two animations: the existing shape morph plus a
+   bubbleFade opacity cycle (0 -> 1 -> 0) on its own offbeat duration,
+   so bubbles drift into and out of existence at staggered times.
+   Shorthand delays: first time = duration, second = delay. */
   .hero-blob {
-    animation: blobMorph 22s ease-in-out infinite;
+    animation: blobMorph 13s ease-in-out infinite, bubbleFade 19s ease-in-out -12s infinite;
   }
   .hero-blob--second {
-    animation: blobMorphAlt 17s ease-in-out infinite;
-    animation-delay: -6s;
+    animation: blobMorphAlt 10s ease-in-out -4s infinite, bubbleFade 16s ease-in-out -5s infinite;
   }
   .hero-blob--third {
-    animation: blobMorphThird 29s ease-in-out infinite;
-    animation-delay: -11s;
+    animation: blobMorphThird 17s ease-in-out -7s infinite, bubbleFade 31s ease-in-out -19s infinite;
+  }
+  .hero-blob--fourth {
+    animation: blobMorphFourth 9s ease-in-out -3s infinite, bubbleFade 14s ease-in-out -9s infinite;
+  }
+  .hero-blob--fifth {
+    animation: blobMorphFifth 12s ease-in-out -5s infinite, bubbleFade 17s ease-in-out -2s infinite;
+  }
+  .hero-blob--sixth {
+    animation: blobMorphSixth 15s ease-in-out -9s infinite, bubbleFade 23s ease-in-out -14s infinite;
+  }
+  .hero-blob--seventh {
+    animation: blobMorphSeventh 8s ease-in-out -1s infinite, bubbleFade 13s ease-in-out -6s infinite;
+  }
+  @keyframes blobMorphSixth {
+    0%, 100% { border-radius: 50% 50% 55% 45% / 45% 55% 50% 50%; transform: translate(0, 0) rotate(0deg) scale(1); }
+    40%      { border-radius: 55% 45% 45% 55% / 55% 45% 55% 45%; transform: translate(-8%, 6%) rotate(-10deg) scale(1.08); }
+    75%      { border-radius: 40% 60% 50% 50% / 50% 40% 55% 50%; transform: translate(6%, -7%) rotate(8deg) scale(0.94); }
+  }
+  @keyframes blobMorphSeventh {
+    0%, 100% { border-radius: 55% 45% 50% 50% / 50% 45% 60% 40%; transform: translate(0, 0) rotate(0deg) scale(1); }
+    30%      { border-radius: 45% 55% 45% 55% / 55% 45% 45% 55%; transform: translate(14%, -5%) rotate(-14deg) scale(1.16); }
+    65%      { border-radius: 60% 40% 55% 45% / 45% 60% 50% 50%; transform: translate(-12%, -7%) rotate(10deg) scale(0.86); }
+  }
+  @keyframes bubbleFade {
+    0%, 100% { opacity: 0; }
+    50%      { opacity: 1; }
+  }
+  @keyframes blobMorphFourth {
+    0%, 100% { border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%; transform: translate(0, 0) rotate(0deg) scale(1); }
+    30%      { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; transform: translate(-10%, 8%) rotate(-16deg) scale(1.14); }
+    70%      { border-radius: 60% 40% 50% 50% / 40% 60% 50% 50%; transform: translate(8%, -9%) rotate(11deg) scale(0.88); }
+  }
+  @keyframes blobMorphFifth {
+    0%, 100% { border-radius: 45% 55% 50% 50% / 55% 45% 60% 40%; transform: translate(0, 0) rotate(0deg) scale(1); }
+    35%      { border-radius: 60% 40% 55% 45% / 45% 60% 40% 55%; transform: translate(11%, -6%) rotate(13deg) scale(1.12); }
+    70%      { border-radius: 50% 50% 40% 60% / 60% 40% 55% 45%; transform: translate(-9%, -8%) rotate(-12deg) scale(0.9); }
   }
   @keyframes blobMorph {
     0%, 100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; transform: translate(0, 0) rotate(0deg) scale(1); }
-    25%      { border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; transform: translate(4%, -3%) rotate(8deg) scale(1.05); }
-    50%      { border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%; transform: translate(-3%, 4%) rotate(-6deg) scale(0.96); }
-    75%      { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; transform: translate(3%, 3%) rotate(5deg) scale(1.02); }
+    25%      { border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; transform: translate(9%, -7%) rotate(14deg) scale(1.09); }
+    50%      { border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%; transform: translate(-7%, 9%) rotate(-11deg) scale(0.93); }
+    75%      { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; transform: translate(6%, 6%) rotate(9deg) scale(1.04); }
   }
   @keyframes blobMorphAlt {
     0%, 100% { border-radius: 45% 55% 60% 40% / 55% 45% 50% 60%; transform: translate(0, 0) rotate(0deg) scale(1); }
-    25%      { border-radius: 60% 40% 45% 55% / 45% 60% 40% 55%; transform: translate(-4%, 3%) rotate(-9deg) scale(1.07); }
-    50%      { border-radius: 40% 60% 55% 45% / 60% 40% 45% 60%; transform: translate(3%, -4%) rotate(7deg) scale(0.94); }
-    75%      { border-radius: 55% 45% 40% 60% / 40% 55% 60% 45%; transform: translate(-2%, 4%) rotate(-5deg) scale(1.03); }
+    25%      { border-radius: 60% 40% 45% 55% / 45% 60% 40% 55%; transform: translate(-9%, 7%) rotate(-15deg) scale(1.11); }
+    50%      { border-radius: 40% 60% 55% 45% / 60% 40% 45% 60%; transform: translate(7%, -9%) rotate(12deg) scale(0.9); }
+    75%      { border-radius: 55% 45% 40% 60% / 40% 55% 60% 45%; transform: translate(-4%, 9%) rotate(-8deg) scale(1.06); }
   }
   @keyframes blobMorphThird {
     0%, 100% { border-radius: 50% 50% 45% 55% / 55% 50% 50% 45%; transform: translate(0, 0) rotate(0deg) scale(1); }
-    33%      { border-radius: 55% 45% 50% 50% / 45% 55% 55% 45%; transform: translate(-3%, 2%) rotate(-4deg) scale(1.06); }
-    66%      { border-radius: 45% 55% 55% 45% / 50% 45% 55% 50%; transform: translate(3%, -2%) rotate(4deg) scale(0.95); }
+    33%      { border-radius: 55% 45% 50% 50% / 45% 55% 55% 45%; transform: translate(-6%, 4%) rotate(-8deg) scale(1.1); }
+    66%      { border-radius: 45% 55% 55% 45% / 50% 45% 55% 50%; transform: translate(6%, -4%) rotate(7deg) scale(0.92); }
   }
 }
 
