@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.7.0...v0.8.0) (2026-10-07)
+
+
+### Features
+
+* **hero:** expand bubble backdrop with two more blobs and staggered fade ([#42](https://github.com/miguelpadin/miguelpadin.github.io/issues/42)) ([e074742](https://github.com/miguelpadin/miguelpadin.github.io/commit/e07474252900ab9e4a11c045a98db1267e4a4586))
+
 ## [0.7.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.6.3...v0.7.0) (2026-09-25)
 
 
