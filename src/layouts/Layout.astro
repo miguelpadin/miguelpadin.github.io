@@ -3,6 +3,7 @@ import { execSync } from 'node:child_process';
 import '../styles/global.css';
 import { useTranslations, type Lang, languages } from '../i18n';
 import CookieBanner from '../components/CookieBanner.astro';
+import Hotjar from '../components/Hotjar.astro';
 import { ClientRouter } from 'astro:transitions';
 
 interface Props {
@@ -125,6 +126,9 @@ function hreflangUrl(targetLang: Lang): string {
       gtag('js', new Date());
       gtag('config', 'G-2R8M9VFJM9');
     </script>
+
+    <!-- Hotjar (Site ID 6791666, hjsv 6) — gated by cookie consent banner -->
+    <Hotjar />
 
     <!-- JSON-LD -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

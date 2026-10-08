@@ -94,7 +94,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             </table>
           </div>
 
-          <p style="margin: 0 0 1.25rem;">Las <strong style="color: var(--color-fg);">cookies analíticas</strong> solo se establecen si eliges «Aceptar todo». Son proporcionadas por Google Analytics 4 y ayudan a entender cómo los visitantes usan el sitio. No se recoge ningún dato de identificación personal.</p>
+          <p style="margin: 0 0 1.25rem;">Las <strong style="color: var(--color-fg);">cookies analíticas</strong> solo se establecen si eliges «Aceptar todo». Son proporcionadas por Google Analytics 4 y Hotjar y ayudan a entender cómo los visitantes usan el sitio. Google Analytics se carga con <code style="font-family: monospace; font-size: 0.875rem; color: var(--color-accent);">analytics_storage: denied</code> por defecto y solo cambia a <code style="font-family: monospace; font-size: 0.875rem; color: var(--color-accent);">granted</code> tras tu aceptación. Hotjar graba reproducciones de sesión (con los datos de formularios enmascarados antes de su envío) y mapas de calor de clics, movimiento y desplazamiento.</p>
 
           <div style="border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden;">
             <table style="width: 100%; border-collapse: collapse; font-size: 0.8125rem;">
@@ -108,13 +108,49 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
               <tbody>
                 <tr style="border-bottom: 1px solid var(--color-border);">
                   <td style="padding: 0.625rem 1rem; font-family: monospace; font-size: 0.8125rem; color: var(--color-accent);">_ga</td>
-                  <td style="padding: 0.625rem 1rem;">Distingue usuarios únicos</td>
-                  <td style="padding: 0.625rem 1rem;">2 años</td>
+                  <td style="padding: 0.625rem 1rem;">Distingue usuarios únicos (GA4)</td>
+                  <td style="padding: 0.625rem 1rem;">2 años (por defecto de Google)</td>
                 </tr>
                 <tr>
                   <td style="padding: 0.625rem 1rem; font-family: monospace; font-size: 0.8125rem; color: var(--color-accent);">_ga_*</td>
                   <td style="padding: 0.625rem 1rem;">Mantiene el estado de sesión de GA4</td>
-                  <td style="padding: 0.625rem 1rem;">2 años</td>
+                  <td style="padding: 0.625rem 1rem;">2 años (por defecto de Google)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p style="margin: 0 0 1.25rem;">Las <strong style="color: var(--color-fg);">cookies de Hotjar</strong> se establecen en tu navegador por Hotjar una vez que se ha cargado su fragmento. La lista de abajo refleja las cookies por defecto documentadas por Hotjar — consulta la <a href="https://help.hotjar.com/" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: none;">documentación de Hotjar</a> para obtener la lista vigente.</p>
+
+          <div style="border: 1px solid var(--color-border); border-radius: 6px; overflow: hidden;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.8125rem;">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--color-border);">
+                  <th style="padding: 0.625rem 1rem; text-align: left; font-family: var(--font-display); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-fg);">Nombre</th>
+                  <th style="padding: 0.625rem 1rem; text-align: left; font-family: var(--font-display); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-fg);">Finalidad</th>
+                  <th style="padding: 0.625rem 1rem; text-align: left; font-family: var(--font-display); font-size: 0.5625rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-fg);">Expiración</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--color-border);">
+                  <td style="padding: 0.625rem 1rem; font-family: monospace; font-size: 0.8125rem; color: var(--color-accent);">_hjSession_*</td>
+                  <td style="padding: 0.625rem 1rem;">Mantiene el ID de la sesión actual</td>
+                  <td style="padding: 0.625rem 1rem;">30 minutos (por defecto de Hotjar)</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.625rem 1rem; font-family: monospace; font-size: 0.8125rem; color: var(--color-accent);">_hjCookieTest</td>
+                  <td style="padding: 0.625rem 1rem;">Comprueba el soporte de cookies</td>
+                  <td style="padding: 0.625rem 1rem;">Sesión (por defecto de Hotjar)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--color-border);">
+                  <td style="padding: 0.625rem 1rem; font-family: monospace; font-size: 0.8125rem; color: var(--color-accent);">_hjSessionUser_*</td>
+                  <td style="padding: 0.625rem 1rem;">Persiste el ID de usuario recurrente</td>
+                  <td style="padding: 0.625rem 1rem;">1 año (por defecto de Hotjar)</td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.625rem 1rem; font-family: monospace; font-size: 0.8125rem; color: var(--color-accent);">_hjOptOut</td>
+                  <td style="padding: 0.625rem 1rem;">Registra una decisión de opt-out</td>
+                  <td style="padding: 0.625rem 1rem;">1 año (por defecto de Hotjar)</td>
                 </tr>
               </tbody>
             </table>
@@ -123,13 +159,15 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
         <section>
           <h2 style="font-family: var(--font-display); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg); margin: 0 0 0.75rem;">Gestión del consentimiento</h2>
-          <p style="margin: 0 0 0.75rem;">Puedes retirar tu consentimiento en cualquier momento. Para hacerlo, abre las herramientas de desarrollo de tu navegador, ve a <em>Aplicación → Almacenamiento local</em>, elimina la clave <code style="font-family: monospace; font-size: 0.875rem; color: var(--color-accent);">cookie-consent</code> y recarga la página; el banner volverá a aparecer.</p>
-          <p style="margin: 0;">Para solicitar la eliminación de los datos analíticos recopilados por Google, visita <a href="https://myaccount.google.com/data-and-privacy" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: none;">los controles de privacidad de Google</a>.</p>
+          <p style="margin: 0 0 0.75rem;">Puedes retirar tu consentimiento en cualquier momento. Para hacerlo, abre las herramientas de desarrollo de tu navegador, ve a <em>Aplicación → Almacenamiento local</em>, elimina la clave <code style="font-family: monospace; font-size: 0.875rem; color: var(--color-accent);">cookie-consent</code> y recarga la página; el banner volverá a aparecer. Tras esto, el fragmento de Hotjar no se vuelve a inyectar en visitas posteriores. Google Analytics sigue cargándose pero con <code style="font-family: monospace; font-size: 0.875rem; color: var(--color-accent);">analytics_storage: denied</code>, por lo que no deposita cookies analíticas ni lee identificadores de cookies previamente establecidas; es posible que se sigan enviando algunos pings sin cookies a Google hasta que la etiqueta se bloquee por completo (consulta la <a href="https://support.google.com/analytics/answer/9976101" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: none;">documentación del modo de consentimiento de Google</a>).</p>
+          <p style="margin: 0 0 0.75rem;">Si haces clic en <strong style="color: var(--color-fg);">Solo necesarias</strong> en el banner, se almacena una carga de denegación y se realiza una recarga completa de la página para que el fragmento de Hotjar (si ya estaba en ejecución) se detenga. Si tu navegador bloquea localStorage, la denegación se guarda en sessionStorage (o, como último recurso, en un marcador de URL de solo denegación) para que sobreviva a la recarga y evite que la siguiente carga lea un consentimiento antiguo. Solo un nuevo clic explícito en <strong style="color: var(--color-fg);">Aceptar todo</strong> borra la anulación.</p>
+          <p style="margin: 0;">Para solicitudes de derechos de los interesados (acceso, rectificación, supresión) sobre datos analíticos, contacta con el responsable del sitio en <a href="mailto:miguel.padin.dominguez@gmail.com" style="color: var(--color-accent); text-decoration: none;">miguel.padin.dominguez@gmail.com</a>. Consulta la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: none;">política de privacidad de Google</a> y la <a href="https://www.hotjar.com/legal/policies/privacy/" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: none;">política de privacidad de Hotjar</a> para conocer cómo trata tus datos cada proveedor.</p>
         </section>
 
         <section>
           <h2 style="font-family: var(--font-display); font-size: 0.625rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-fg); margin: 0 0 0.75rem;">Cookies de terceros</h2>
-          <p style="margin: 0;">Las cookies analíticas son establecidas por <a href="https://analytics.google.com/" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: none;">Google Analytics 4</a>, operado por Google Ireland Limited (Gordon House, Barrow Street, Dublín 4, Irlanda). Consulta la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: none;">política de privacidad de Google</a> para más detalles.</p>
+          <p style="margin: 0 0 0.75rem;">Las cookies analíticas son establecidas por <a href="https://analytics.google.com/" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: none;">Google Analytics 4</a>, operado por Google Ireland Limited. Consulta la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: none;">política de privacidad de Google</a> para más detalles.</p>
+          <p style="margin: 0;">Las cookies de Hotjar son establecidas por <a href="https://www.hotjar.com/" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: none;">Hotjar Limited</a>. Consulta la <a href="https://www.hotjar.com/legal/policies/privacy/" target="_blank" rel="noopener noreferrer" style="color: var(--color-accent); text-decoration: none;">política de privacidad de Hotjar</a> para más detalles, incluidas las regiones en las que Hotjar almacena los datos.</p>
         </section>
 
       </div>

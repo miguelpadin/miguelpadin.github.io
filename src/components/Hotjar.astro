@@ -1,0 +1,31 @@
+---
+// Loads the official Hotjar snippet (hjsv 6, Site ID 6791666) only after
+// current explicit consent has been recorded under the versioned
+// `cookie-consent` localStorage entry. Idempotent across repeat visits and
+// Astro view transitions; survives blocked browser storage without throwing.
+---
+<script>
+  import {
+    applyConsent,
+    applyConsentFromStorage,
+    subscribeConsentChange,
+    bindStorageSync,
+  } from '../scripts/hotjar-consent.mjs';
+
+  function sync() {
+    // applyConsentFromStorage re-reads the versioned payload on every
+    // astro:page-load and falls back to the document-lifetime in-memory
+    // decision if persistence was blocked on the same load.
+    applyConsentFromStorage();
+  }
+
+  // Re-evaluate on every view transition (first load + client-side nav).
+  // Module state is window-level, so the script is injected at most once
+  // per document lifetime even after DOM swaps.
+  document.addEventListener('astro:page-load', sync);
+  // React to a banner click without waiting for a full page load.
+  subscribeConsentChange((value) => applyConsent(value));
+  // Cross-tab consent sync: a grant in another tab loads Hotjar here; a
+  // denial reloads this tab so the snippet stops running.
+  bindStorageSync();
+</script>
