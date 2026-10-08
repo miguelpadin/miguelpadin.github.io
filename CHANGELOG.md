@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.8.0...v0.9.0) (2026-10-08)
+
+
+### Features
+
+* **analytics:** integrate Hotjar with renewed consent ([#44](https://github.com/miguelpadin/miguelpadin.github.io/issues/44)) ([3388bd4](https://github.com/miguelpadin/miguelpadin.github.io/commit/3388bd4f8e323905a4a8b76fd14269c0b2841e5b))
+
 ## [0.8.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.7.0...v0.8.0) (2026-10-07)
 
 
