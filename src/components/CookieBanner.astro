@@ -19,7 +19,7 @@ const copy = {
     necessaryDesc: 'Stores your cookie preference.',
     analytics: 'Analytics',
     analyticsBadge: 'Optional',
-    analyticsDesc: 'Google Analytics — anonymous usage data.',
+    analyticsDesc: 'Google Analytics and Hotjar (session recordings and heatmaps) — usage data used to improve this site.',
     cookies: 'Cookie policy',
     accept: 'Accept all',
     decline: 'Necessary only',
@@ -31,7 +31,7 @@ const copy = {
     necessaryDesc: 'Guarda tu preferencia de cookies.',
     analytics: 'Analíticas',
     analyticsBadge: 'Opcionales',
-    analyticsDesc: 'Google Analytics — datos de uso anónimos.',
+    analyticsDesc: 'Google Analytics y Hotjar (grabaciones de sesión y mapas de calor) — datos de uso para mejorar este sitio.',
     cookies: 'Política de cookies',
     accept: 'Aceptar todo',
     decline: 'Solo necesarias',
@@ -43,7 +43,7 @@ const copy = {
     necessaryDesc: 'Garda a túa preferencia de cookies.',
     analytics: 'Analíticas',
     analyticsBadge: 'Opcionais',
-    analyticsDesc: 'Google Analytics — datos de uso anónimos.',
+    analyticsDesc: 'Google Analytics e Hotjar (gravacións de sesión e mapas de calor) — datos de uso para mellorar este sitio.',
     cookies: 'Política de cookies',
     accept: 'Aceptar todo',
     decline: 'Só necesarias',
@@ -227,52 +227,85 @@ const c = copy[lang];
   .cb-accept:hover { opacity: 0.82 !important; }
 </style>
 
-<script is:inline>
-  (function () {
-    var banner = document.getElementById('cookie-banner');
-    if (!banner) return;
+<script>
+  import {
+    recordConsent,
+    readEffectiveConsent,
+  } from '../scripts/hotjar-consent.mjs';
 
-    var stored = localStorage.getItem('cookie-consent');
+  // Tracks the pending show-banner timer so a swap can cancel it before
+  // it fires against a detached element. Module-level so the value
+  // outlives a single `initBanner` call.
+  let pendingShow = 0;
 
-    function applyConsent(value) {
-      if (typeof gtag === 'function') {
-        gtag('consent', 'update', {
-          analytics_storage: value === 'granted' ? 'granted' : 'denied',
-        });
-      }
-    }
+  function findBannerElements() {
+    const banner = document.getElementById('cookie-banner');
+    const accept = document.getElementById('cookie-accept');
+    const decline = document.getElementById('cookie-decline');
+    if (!banner || !accept || !decline) return null;
+    return { banner, accept, decline };
+  }
 
-    function hideBanner() {
-      banner.style.transform = 'translateY(calc(100% + 2rem))';
-      banner.style.opacity = '0';
-      banner.style.pointerEvents = 'none';
-    }
+  function hideBanner(banner) {
+    if (pendingShow) { clearTimeout(pendingShow); pendingShow = 0; }
+    banner.style.transform = 'translateY(calc(100% + 2rem))';
+    banner.style.opacity = '0';
+    banner.style.pointerEvents = 'none';
+  }
 
-    function showBanner() {
+  function showBannerLater(banner) {
+    if (pendingShow) clearTimeout(pendingShow);
+    const show = () => {
       banner.style.transform = 'translateY(0)';
       banner.style.opacity = '1';
       banner.style.pointerEvents = 'auto';
-    }
+    };
+    pendingShow = setTimeout(show, 900);
+  }
 
-    if (stored === 'granted') {
-      applyConsent('granted');
+  function bindClickHandlers({ banner, accept, decline }) {
+    // Using `onclick =` is intentional: the element is brand new on
+    // every page load, so there is no prior handler to leak.
+    accept.onclick = () => {
+      recordConsent('granted');
+      hideBanner(banner);
+    };
+    decline.onclick = () => {
+      const persisted = recordConsent('denied');
+      hideBanner(banner);
+      // Safe full-reload boundary: only reload when the denial was
+      // persisted. If storage is blocked, do NOT reload — the next full
+      // page load will read no consent and stay denied, preventing a
+      // reload loop. Hotjar has no public opt-out API on `window.hj`,
+      // so a controlled reload is the only safe way to stop the snippet
+      // once it has started running on this page.
+      if (persisted) {
+        try { location.reload(); } catch { /* sandboxed env */ }
+      }
+    };
+  }
+
+  // Per-load init + per-navigation re-bind. The Astro ClientRouter
+  // replaces the document on every client-side nav, so the previously
+  // bound click handlers and pending show timer are gone. This runs
+  // once on the initial load (Astro fires `astro:page-load` for the
+  // first paint) and again on every subsequent client-side navigation.
+  function initBanner() {
+    const elements = findBannerElements();
+    if (!elements) return;
+    // Fresh read on every page load — never trust a cached value
+    // because another tab may have changed the versioned payload, and
+    // the effective reader (inMemory > hash > session > local) is what
+    // guarantees a same-tab denial is honored over a stale local grant.
+    const effective = readEffectiveConsent();
+    if (effective === 'granted' || effective === 'denied') {
+      hideBanner(elements.banner);
       return;
     }
-    if (stored === 'denied') {
-      return;
-    }
+    // Legacy raw string OR no consent — re-ask under the new shape.
+    showBannerLater(elements.banner);
+    bindClickHandlers(elements);
+  }
 
-    setTimeout(showBanner, 900);
-
-    document.getElementById('cookie-accept').addEventListener('click', function () {
-      localStorage.setItem('cookie-consent', 'granted');
-      applyConsent('granted');
-      hideBanner();
-    });
-
-    document.getElementById('cookie-decline').addEventListener('click', function () {
-      localStorage.setItem('cookie-consent', 'denied');
-      hideBanner();
-    });
-  })();
+  document.addEventListener('astro:page-load', initBanner);
 </script>
