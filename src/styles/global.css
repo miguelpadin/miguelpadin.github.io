@@ -656,6 +656,9 @@ body::after {
   pointer-events: none;
   background: radial-gradient(circle at 35% 35%, rgba(15, 92, 90, 0.2), rgba(232, 84, 47, 0.14) 55%, transparent 72%);
   filter: blur(2px);
+  /* Stable organic base shape matching blobMorph 0% frame, so geometry
+     exists even when the animation does not run (e.g. prefers-reduced-motion). */
+  border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
 }
   .hero-blob--third {
     width: min(70vw, 820px);
@@ -744,73 +747,75 @@ body::after {
     top: 24%;
   }
 }
-@media (prefers-reduced-motion: no-preference) {
-/* Each blob runs two animations: the existing shape morph plus a
+/* Hero bubble animation: runs unconditionally (intentional opt-out of
+   prefers-reduced-motion for ambient background bubbles only, per user
+   authorization). Geometry is pinned via base border-radius so the
+   blobs never collapse to squares when the keyframes are stripped.
+   Each blob runs two animations: the existing shape morph plus a
    bubbleFade opacity cycle (0 -> 1 -> 0) on its own offbeat duration,
    so bubbles drift into and out of existence at staggered times.
    Shorthand delays: first time = duration, second = delay. */
-  .hero-blob {
-    animation: blobMorph 13s ease-in-out infinite, bubbleFade 19s ease-in-out -12s infinite;
-  }
-  .hero-blob--second {
-    animation: blobMorphAlt 10s ease-in-out -4s infinite, bubbleFade 16s ease-in-out -5s infinite;
-  }
-  .hero-blob--third {
-    animation: blobMorphThird 17s ease-in-out -7s infinite, bubbleFade 31s ease-in-out -19s infinite;
-  }
-  .hero-blob--fourth {
-    animation: blobMorphFourth 9s ease-in-out -3s infinite, bubbleFade 14s ease-in-out -9s infinite;
-  }
-  .hero-blob--fifth {
-    animation: blobMorphFifth 12s ease-in-out -5s infinite, bubbleFade 17s ease-in-out -2s infinite;
-  }
-  .hero-blob--sixth {
-    animation: blobMorphSixth 15s ease-in-out -9s infinite, bubbleFade 23s ease-in-out -14s infinite;
-  }
-  .hero-blob--seventh {
-    animation: blobMorphSeventh 8s ease-in-out -1s infinite, bubbleFade 13s ease-in-out -6s infinite;
-  }
-  @keyframes blobMorphSixth {
-    0%, 100% { border-radius: 50% 50% 55% 45% / 45% 55% 50% 50%; transform: translate(0, 0) rotate(0deg) scale(1); }
-    40%      { border-radius: 55% 45% 45% 55% / 55% 45% 55% 45%; transform: translate(-8%, 6%) rotate(-10deg) scale(1.08); }
-    75%      { border-radius: 40% 60% 50% 50% / 50% 40% 55% 50%; transform: translate(6%, -7%) rotate(8deg) scale(0.94); }
-  }
-  @keyframes blobMorphSeventh {
-    0%, 100% { border-radius: 55% 45% 50% 50% / 50% 45% 60% 40%; transform: translate(0, 0) rotate(0deg) scale(1); }
-    30%      { border-radius: 45% 55% 45% 55% / 55% 45% 45% 55%; transform: translate(14%, -5%) rotate(-14deg) scale(1.16); }
-    65%      { border-radius: 60% 40% 55% 45% / 45% 60% 50% 50%; transform: translate(-12%, -7%) rotate(10deg) scale(0.86); }
-  }
-  @keyframes bubbleFade {
-    0%, 100% { opacity: 0; }
-    50%      { opacity: 1; }
-  }
-  @keyframes blobMorphFourth {
-    0%, 100% { border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%; transform: translate(0, 0) rotate(0deg) scale(1); }
-    30%      { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; transform: translate(-10%, 8%) rotate(-16deg) scale(1.14); }
-    70%      { border-radius: 60% 40% 50% 50% / 40% 60% 50% 50%; transform: translate(8%, -9%) rotate(11deg) scale(0.88); }
-  }
-  @keyframes blobMorphFifth {
-    0%, 100% { border-radius: 45% 55% 50% 50% / 55% 45% 60% 40%; transform: translate(0, 0) rotate(0deg) scale(1); }
-    35%      { border-radius: 60% 40% 55% 45% / 45% 60% 40% 55%; transform: translate(11%, -6%) rotate(13deg) scale(1.12); }
-    70%      { border-radius: 50% 50% 40% 60% / 60% 40% 55% 45%; transform: translate(-9%, -8%) rotate(-12deg) scale(0.9); }
-  }
-  @keyframes blobMorph {
-    0%, 100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; transform: translate(0, 0) rotate(0deg) scale(1); }
-    25%      { border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; transform: translate(9%, -7%) rotate(14deg) scale(1.09); }
-    50%      { border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%; transform: translate(-7%, 9%) rotate(-11deg) scale(0.93); }
-    75%      { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; transform: translate(6%, 6%) rotate(9deg) scale(1.04); }
-  }
-  @keyframes blobMorphAlt {
-    0%, 100% { border-radius: 45% 55% 60% 40% / 55% 45% 50% 60%; transform: translate(0, 0) rotate(0deg) scale(1); }
-    25%      { border-radius: 60% 40% 45% 55% / 45% 60% 40% 55%; transform: translate(-9%, 7%) rotate(-15deg) scale(1.11); }
-    50%      { border-radius: 40% 60% 55% 45% / 60% 40% 45% 60%; transform: translate(7%, -9%) rotate(12deg) scale(0.9); }
-    75%      { border-radius: 55% 45% 40% 60% / 40% 55% 60% 45%; transform: translate(-4%, 9%) rotate(-8deg) scale(1.06); }
-  }
-  @keyframes blobMorphThird {
-    0%, 100% { border-radius: 50% 50% 45% 55% / 55% 50% 50% 45%; transform: translate(0, 0) rotate(0deg) scale(1); }
-    33%      { border-radius: 55% 45% 50% 50% / 45% 55% 55% 45%; transform: translate(-6%, 4%) rotate(-8deg) scale(1.1); }
-    66%      { border-radius: 45% 55% 55% 45% / 50% 45% 55% 50%; transform: translate(6%, -4%) rotate(7deg) scale(0.92); }
-  }
+.hero-blob {
+  animation: blobMorph 13s ease-in-out infinite, bubbleFade 19s ease-in-out -12s infinite;
+}
+.hero-blob--second {
+  animation: blobMorphAlt 10s ease-in-out -4s infinite, bubbleFade 16s ease-in-out -5s infinite;
+}
+.hero-blob--third {
+  animation: blobMorphThird 17s ease-in-out -7s infinite, bubbleFade 31s ease-in-out -19s infinite;
+}
+.hero-blob--fourth {
+  animation: blobMorphFourth 9s ease-in-out -3s infinite, bubbleFade 14s ease-in-out -9s infinite;
+}
+.hero-blob--fifth {
+  animation: blobMorphFifth 12s ease-in-out -5s infinite, bubbleFade 17s ease-in-out -2s infinite;
+}
+.hero-blob--sixth {
+  animation: blobMorphSixth 15s ease-in-out -9s infinite, bubbleFade 23s ease-in-out -14s infinite;
+}
+.hero-blob--seventh {
+  animation: blobMorphSeventh 8s ease-in-out -1s infinite, bubbleFade 13s ease-in-out -6s infinite;
+}
+@keyframes blobMorphSixth {
+  0%, 100% { border-radius: 50% 50% 55% 45% / 45% 55% 50% 50%; transform: translate(0, 0) rotate(0deg) scale(1); }
+  40%      { border-radius: 55% 45% 45% 55% / 55% 45% 55% 45%; transform: translate(-8%, 6%) rotate(-10deg) scale(1.08); }
+  75%      { border-radius: 40% 60% 50% 50% / 50% 40% 55% 50%; transform: translate(6%, -7%) rotate(8deg) scale(0.94); }
+}
+@keyframes blobMorphSeventh {
+  0%, 100% { border-radius: 55% 45% 50% 50% / 50% 45% 60% 40%; transform: translate(0, 0) rotate(0deg) scale(1); }
+  30%      { border-radius: 45% 55% 45% 55% / 55% 45% 45% 55%; transform: translate(14%, -5%) rotate(-14deg) scale(1.16); }
+  65%      { border-radius: 60% 40% 55% 45% / 45% 60% 50% 50%; transform: translate(-12%, -7%) rotate(10deg) scale(0.86); }
+}
+@keyframes bubbleFade {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
+}
+@keyframes blobMorphFourth {
+  0%, 100% { border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%; transform: translate(0, 0) rotate(0deg) scale(1); }
+  30%      { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; transform: translate(-10%, 8%) rotate(-16deg) scale(1.14); }
+  70%      { border-radius: 60% 40% 50% 50% / 40% 60% 50% 50%; transform: translate(8%, -9%) rotate(11deg) scale(0.88); }
+}
+@keyframes blobMorphFifth {
+  0%, 100% { border-radius: 45% 55% 50% 50% / 55% 45% 60% 40%; transform: translate(0, 0) rotate(0deg) scale(1); }
+  35%      { border-radius: 60% 40% 55% 45% / 45% 60% 40% 55%; transform: translate(11%, -6%) rotate(13deg) scale(1.12); }
+  70%      { border-radius: 50% 50% 40% 60% / 60% 40% 55% 45%; transform: translate(-9%, -8%) rotate(-12deg) scale(0.9); }
+}
+@keyframes blobMorph {
+  0%, 100% { border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%; transform: translate(0, 0) rotate(0deg) scale(1); }
+  25%      { border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; transform: translate(9%, -7%) rotate(14deg) scale(1.09); }
+  50%      { border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%; transform: translate(-7%, 9%) rotate(-11deg) scale(0.93); }
+  75%      { border-radius: 40% 60% 45% 55% / 60% 40% 55% 45%; transform: translate(6%, 6%) rotate(9deg) scale(1.04); }
+}
+@keyframes blobMorphAlt {
+  0%, 100% { border-radius: 45% 55% 60% 40% / 55% 45% 50% 60%; transform: translate(0, 0) rotate(0deg) scale(1); }
+  25%      { border-radius: 60% 40% 45% 55% / 45% 60% 40% 55%; transform: translate(-9%, 7%) rotate(-15deg) scale(1.11); }
+  50%      { border-radius: 40% 60% 55% 45% / 60% 40% 45% 60%; transform: translate(7%, -9%) rotate(12deg) scale(0.9); }
+  75%      { border-radius: 55% 45% 40% 60% / 40% 55% 60% 45%; transform: translate(-4%, 9%) rotate(-8deg) scale(1.06); }
+}
+@keyframes blobMorphThird {
+  0%, 100% { border-radius: 50% 50% 45% 55% / 55% 50% 50% 45%; transform: translate(0, 0) rotate(0deg) scale(1); }
+  33%      { border-radius: 55% 45% 50% 50% / 45% 55% 55% 45%; transform: translate(-6%, 4%) rotate(-8deg) scale(1.1); }
+  66%      { border-radius: 45% 55% 55% 45% / 50% 45% 55% 50%; transform: translate(6%, -4%) rotate(7deg) scale(0.92); }
 }
 
 /* ── Experience dark backdrop: two slow "breathing" glows + grain ──
