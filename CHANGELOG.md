@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.1](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.9.0...v0.9.1) (2026-10-09)
+
+
+### Bug Fixes
+
+* mobile visual polish ([#46](https://github.com/miguelpadin/miguelpadin.github.io/issues/46)) ([eab4d81](https://github.com/miguelpadin/miguelpadin.github.io/commit/eab4d8146837143c91f147a60e688d78bfde1cae))
+
 ## [0.9.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.8.0...v0.9.0) (2026-10-08)
 
 
