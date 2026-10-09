@@ -25,44 +25,48 @@ const legalUrl = `${prefix}legal/`;
 
 <footer class="px-8 py-8" style="border-top: 1px solid var(--color-border);">
   <div class="footer-inner max-w-5xl mx-auto">
-    <div class="footer-name">
-      <span class="mono-label" style="color: var(--color-muted); text-transform: none; letter-spacing: 0.04em;">
-        © {year} Miguel Padín Domínguez
-      </span>
-      <span class="mono-label" style="color: var(--color-muted); opacity: 0.72;">
-        v.{version}
-      </span>
+    <div class="footer-legal-group">
+      <a
+        href={privacyUrl}
+        class="footer-link text-xs transition-colors duration-200"
+        style="color: var(--color-muted); font-family: var(--font-mono); letter-spacing: 0.04em;"
+      >
+        {privacyLabel}
+      </a>
+      <a
+        href={cookiesUrl}
+        class="footer-link text-xs transition-colors duration-200"
+        style="color: var(--color-muted); font-family: var(--font-mono); letter-spacing: 0.04em;"
+      >
+        {cookiesLabel}
+      </a>
+      <a
+        href={legalUrl}
+        class="footer-link text-xs transition-colors duration-200"
+        style="color: var(--color-muted); font-family: var(--font-mono); letter-spacing: 0.04em;"
+      >
+        {legalLabel}
+      </a>
     </div>
-    <a
-      href="https://maps.google.com/?q=Las+Palmas+de+Gran+Canaria"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="footer-location text-xs transition-colors duration-200"
-      style="color: var(--color-muted);"
-    >
-      {t.footer}
-    </a>
-    <a
-      href={privacyUrl}
-      class="footer-link text-xs transition-colors duration-200"
-      style="color: var(--color-muted); font-family: var(--font-mono); letter-spacing: 0.04em;"
-    >
-      {privacyLabel}
-    </a>
-    <a
-      href={cookiesUrl}
-      class="footer-link text-xs transition-colors duration-200"
-      style="color: var(--color-muted); font-family: var(--font-mono); letter-spacing: 0.04em;"
-    >
-      {cookiesLabel}
-    </a>
-    <a
-      href={legalUrl}
-      class="footer-link text-xs transition-colors duration-200"
-      style="color: var(--color-muted); font-family: var(--font-mono); letter-spacing: 0.04em;"
-    >
-      {legalLabel}
-    </a>
+    <div class="footer-identity">
+      <div class="footer-name">
+        <span class="footer-copyright mono-label" style="color: var(--color-muted); text-transform: none; letter-spacing: 0.04em;">
+          © {year} Miguel Padín Domínguez
+        </span>
+        <span class="footer-version mono-label" style="color: var(--color-muted); opacity: 0.72;">
+          v.{version}
+        </span>
+      </div>
+      <a
+        href="https://maps.google.com/?q=Las+Palmas+de+Gran+Canaria"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="footer-location text-xs transition-colors duration-200"
+        style="color: var(--color-muted);"
+      >
+        {t.footer}
+      </a>
+    </div>
   </div>
 </footer>
 
@@ -72,6 +76,14 @@ const legalUrl = `${prefix}legal/`;
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem 1.25rem;
+  }
+
+  .footer-legal-group {
+    display: contents;
+  }
+
+  .footer-identity {
+    display: contents;
   }
 
   .footer-name {
@@ -90,21 +102,114 @@ const legalUrl = `${prefix}legal/`;
     order: 3;
   }
 
+  /* Tablet: true 2-column x 3-row grid. Left column = copyright, location, version. Right column = privacy, cookies, legal. */
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .footer-inner {
+      align-items: center;
+      column-gap: 1.25rem;
+      display: grid;
+      grid-auto-rows: auto;
+      grid-template-columns: 1fr 1fr;
+      justify-items: start;
+      row-gap: 0.5rem;
+      text-align: left;
+    }
+
+    .footer-legal-group,
+    .footer-identity,
+    .footer-name {
+      display: contents;
+    }
+
+    .footer-copyright {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .footer-location {
+      grid-column: 1;
+      grid-row: 2;
+      margin-left: 0;
+    }
+
+    .footer-version {
+      grid-column: 1;
+      grid-row: 3;
+    }
+
+    .footer-link:nth-of-type(1) {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .footer-link:nth-of-type(2) {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .footer-link:nth-of-type(3) {
+      grid-column: 2;
+      grid-row: 3;
+    }
+
+    .footer-link {
+      justify-self: end;
+      text-align: right;
+    }
+  }
+
+  /* Mobile: copyright, location, policy/legal links, then version. */
   @media (max-width: 639px) {
     .footer-inner {
+      align-items: center;
+      display: flex;
       flex-direction: column;
       gap: 0.85rem;
+      text-align: center;
+    }
+
+    .footer-link {
+      order: 2;
+    }
+
+    .footer-legal-group,
+    .footer-identity,
+    .footer-name {
+      display: contents;
+    }
+
+    .footer-copyright {
+      order: 0;
+    }
+
+    .footer-version {
+      order: 3;
+    }
+
+    .footer-location {
+      margin-left: 0;
+      order: 1;
+    }
+  }
+
+  /* Desktop: copyright+version block at left edge, location at right edge, 3 legal links centered in remaining space. */
+  @media (min-width: 1024px) {
+    .footer-name {
+      order: 0;
+    }
+
+    .footer-legal-group {
+      align-items: center;
+      display: flex;
+      flex: 1;
+      gap: 1.25rem;
+      justify-content: center;
+      order: 1;
     }
 
     .footer-location {
       margin-left: 0;
       order: 2;
-    }
-
-    .footer-privacy,
-    .footer-cookies,
-    .footer-legal {
-      order: 3;
     }
   }
 </style>
