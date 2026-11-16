@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.9.2...v0.10.0) (2026-11-16)
+
+
+### Features
+
+* **skills:** improve readability and architecture icons ([#50](https://github.com/miguelpadin/miguelpadin.github.io/issues/50)) ([a20b087](https://github.com/miguelpadin/miguelpadin.github.io/commit/a20b087e6b348c290c0f1d8c0b5588bae1bff992))
+
 ## [0.9.2](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.9.1...v0.9.2) (2026-11-16)
 
 
