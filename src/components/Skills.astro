@@ -15,10 +15,7 @@ type IconDef =
 
 const DI = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons';
 
-/* Bento spans per group index: 4+2 / 3+3 / 2+4 = 18 = three 6-col rows */
-const spans = ['lg:col-span-4', 'lg:col-span-2', 'lg:col-span-3', 'lg:col-span-3', 'lg:col-span-2', 'lg:col-span-4'];
-const cellVariants = ['', '', '', '', '', ''];
-
+// Concept SVGs adapted from Lucide; license: public/licenses/lucide.txt.
 const icons: Record<string, IconDef> = {
   // Frontend
   'Vue':                  { type: 'si', slug: 'vuedotjs' },
@@ -26,7 +23,7 @@ const icons: Record<string, IconDef> = {
   'TypeScript':           { type: 'si', slug: 'typescript' },
   'JavaScript':           { type: 'si', slug: 'javascript' },
   'Pinia':                { type: 'si', slug: 'pinia' },
-  'Vuex':                 { type: 'fallback' },
+  'Vuex':                 { type: 'si', slug: 'vuedotjs' },
   'PrimeVue':             { type: 'si', slug: 'primevue' },
   'Quasar':               { type: 'si', slug: 'quasar' },
   'BootstrapVue':         { type: 'fallback' },
@@ -42,16 +39,16 @@ const icons: Record<string, IconDef> = {
   'CSS Grid':             { type: 'si', slug: 'css' },
   // Backend
   'Python':               { type: 'si', slug: 'python' },
-  'REST APIs':            { type: 'fallback' },
+  'REST APIs':            { type: 'svg', stroke: true, d: 'M17 16h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1ZM3 16h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1ZM10 2h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1ZM5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3M12 12V8' },
   'RESTful':              { type: 'fallback' },
   'HATEOAS':              { type: 'fallback' },
   'OpenAPI':              { type: 'si', slug: 'openapiinitiative' },
   'Odoo':                 { type: 'si', slug: 'odoo' },
-  'SQL':                  { type: 'si', slug: 'sqlite' },
+  'SQL':                  { type: 'svg', stroke: true, d: 'M21 5a9 3 0 1 1-18 0a9 3 0 1 1 18 0M3 5v14a9 3 0 0 0 18 0V5M3 12a9 3 0 0 0 18 0' },
   'PostgreSQL':           { type: 'si', slug: 'postgresql' },
   'Supabase':             { type: 'si', slug: 'supabase' },
-  'Oracle':               { type: 'devicon', name: 'oracle' },
-  'PL/SQL':               { type: 'devicon', name: 'oracle' },
+  'Oracle':               { type: 'svg', stroke: true, d: 'M7.5 5.5h9a6.5 6.5 0 0 1 0 13h-9a6.5 6.5 0 0 1 0-13Z' },
+  'PL/SQL':               { type: 'svg', stroke: true, d: 'M7.5 5.5h9a6.5 6.5 0 0 1 0 13h-9a6.5 6.5 0 0 1 0-13Z' },
   'Node.js':              { type: 'si', slug: 'nodedotjs' },
   'Java':                 { type: 'devicon', name: 'java' },
   // Testing
@@ -62,7 +59,7 @@ const icons: Record<string, IconDef> = {
   'Vue Test Utils':       { type: 'si', slug: 'vuedotjs' },
   'Testing Library':      { type: 'si', slug: 'testinglibrary' },
   'pytest':               { type: 'si', slug: 'pytest' },
-  'TDD':                  { type: 'fallback' },
+  'TDD':                  { type: 'svg', stroke: true, d: 'M3 12a9 9 0 1 0 2.64-6.36L3 8M3 3v5h5M9 12l2 2 4-4' },
   'BDD':                  { type: 'si', slug: 'cucumber' },
   // Tooling & Process
   'GitHub Actions':       { type: 'si', slug: 'githubactions' },
@@ -78,23 +75,29 @@ const icons: Record<string, IconDef> = {
   'SonarQube':            { type: 'si', slug: 'sonarqubecloud' },
   'Linux':                { type: 'si', slug: 'linux' },
   'Windows':              { type: 'devicon', name: 'windows11' },
-  'macOS':                { type: 'si', slug: 'macos' },
+  'macOS':                { type: 'si', slug: 'apple' },
   'Bash':                 { type: 'si', slug: 'gnubash' },
   'Scrum':                { type: 'fallback' },
   'npm':                  { type: 'si', slug: 'npm' },
   'pnpm':                 { type: 'si', slug: 'pnpm' },
   // AI
-  'Antigravity':          { type: 'fallback' },
+  // Official Antigravity silhouette, scaled from https://antigravity.google/favicon.svg.
+  'Antigravity':          { type: 'svg', d: 'M19.221257 20.0775C20.221264 20.8275 21.721286 20.327507 20.346257 18.9525C16.221257 14.952493 17.09625 3.9525 11.971264 3.9525C6.846257 3.9525 7.72125 14.952493 3.59625 18.9525C2.096252 20.4525 3.721243 20.8275 4.72125 20.0775C8.596264 17.4525 8.346257 12.827507 11.971264 12.827507C15.59625 12.827507 15.346264 17.4525 19.221257 20.0775Z' },
   'Claude Code':          { type: 'si', slug: 'claude' },
-  'Codex':                { type: 'fallback' },
+  // LobeHub Codex icon; license: public/licenses/lobehub.txt.
+  'Codex':                { type: 'svg', d: 'M8.086.457a6.105 6.105 0 013.046-.415c1.333.153 2.521.72 3.564 1.7a.117.117 0 00.107.029c1.408-.346 2.762-.224 4.061.366l.063.03.154.076c1.357.703 2.33 1.77 2.918 3.198.278.679.418 1.388.421 2.126a5.655 5.655 0 01-.18 1.631.167.167 0 00.04.155 5.982 5.982 0 011.578 2.891c.385 1.901-.01 3.615-1.183 5.14l-.182.22a6.063 6.063 0 01-2.934 1.851.162.162 0 00-.108.102c-.255.736-.511 1.364-.987 1.992-1.199 1.582-2.962 2.462-4.948 2.451-1.583-.008-2.986-.587-4.21-1.736a.145.145 0 00-.14-.032c-.518.167-1.04.191-1.604.185a5.924 5.924 0 01-2.595-.622 6.058 6.058 0 01-2.146-1.781c-.203-.269-.404-.522-.551-.821a7.74 7.74 0 01-.495-1.283 6.11 6.11 0 01-.017-3.064.166.166 0 00.008-.074.115.115 0 00-.037-.064 5.958 5.958 0 01-1.38-2.202 5.196 5.196 0 01-.333-1.589 6.915 6.915 0 01.188-2.132c.45-1.484 1.309-2.648 2.577-3.493.282-.188.55-.334.802-.438.286-.12.573-.22.861-.304a.129.129 0 00.087-.087A6.016 6.016 0 015.635 2.31C6.315 1.464 7.132.846 8.086.457zm-.804 7.85a.848.848 0 00-1.473.842l1.694 2.965-1.688 2.848a.849.849 0 001.46.864l1.94-3.272a.849.849 0 00.007-.854l-1.94-3.393zm5.446 6.24a.849.849 0 000 1.695h4.848a.849.849 0 000-1.696h-4.848z' },
   'Cursor':               { type: 'si', slug: 'cursor' },
   'DeepSeek':             { type: 'si', slug: 'deepseek' },
   'OpenCode':             { type: 'si', slug: 'opencode' },
-  'CodeRabbit':           { type: 'si', slug: 'coderabbit' },
   'Ollama':               { type: 'si', slug: 'ollama' },
   'LM Studio':            { type: 'si', slug: 'lmstudio' },
-  'Continue':             { type: 'fallback' },
   // Architecture (concepts - no official brand logos exist)
+  'API Gateway':          { type: 'svg', stroke: true, d: 'M10.586 5.414l-5.172 5.172M18.586 13.414l-5.172 5.172M6 12h12M14 20a2 2 0 1 1-4 0 2 2 0 1 1 4 0M14 4a2 2 0 1 1-4 0 2 2 0 1 1 4 0M22 12a2 2 0 1 1-4 0 2 2 0 1 1 4 0M6 12a2 2 0 1 1-4 0 2 2 0 1 1 4 0' },
+  'SPA':                  { type: 'svg', stroke: true, d: 'M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2ZM10 4v4M2 8h20M6 4v4' },
+  'SSR':                  { type: 'svg', stroke: true, d: 'M10.852 14.772l-.383.923M13.148 14.772a3 3 0 1 0-2.296-5.544l-.383-.923M13.148 9.228l.383-.923M13.53 15.696l-.382-.924a3 3 0 1 1-2.296-5.544M14.772 10.852l.923-.383M14.772 13.148l.923.383M4.5 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-.5M4.5 14H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-.5M6 18h.01' },
+  'CQRS':                 { type: 'svg', stroke: true, d: 'M16 3h5v5M8 3H3v5M12 22v-8.3a4 4 0 0 0-1.172-2.872L3 3m12 6 6-6' },
+  'Event-Driven':         { type: 'svg', stroke: true, d: 'M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2m3.43 2 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06M12 6l3.13 5.73C15.66 12.7 16.9 13 18 13a4 4 0 0 1 0 8' },
+  'Microservices':        { type: 'svg', stroke: true, d: 'M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2M15 2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1Z' },
   'Hexagonal Architecture':  { type: 'svg', stroke: true, d: 'M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z' },
   'Arquitectura Hexagonal':  { type: 'svg', stroke: true, d: 'M12 2l8.66 5v10L12 22l-8.66-5V7L12 2z' },
   'DDD':                  { type: 'svg', stroke: true, d: 'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z' },
@@ -124,12 +127,12 @@ const icons: Record<string, IconDef> = {
       {t.skills.label}
     </h2>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6" style="margin-top: 5rem;">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" style="margin-top: 5rem;">
       {t.skills.groups.map((group, i) => (
         <div
           data-reveal
           data-reveal-delay={String(i % 3)}
-          class:list={[spans[i], cellVariants[i] ? `skill-group ${cellVariants[i]}` : 'skill-group']}
+          class="skill-group"
         >
           <p class="mono-label mb-4" style="color: var(--color-hue2);">
             {group.label}
@@ -275,6 +278,12 @@ const icons: Record<string, IconDef> = {
   }
   .icon-pill:hover .skill-logo {
     opacity: 0.9;
+  }
+
+  .icon-pill[data-name="PostgreSQL"] .skill-logo {
+    width: 24px;
+    height: 24px;
+    opacity: 1;
   }
 
   /* Fallback text for skills without icon */
