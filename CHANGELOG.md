@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.2](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.9.1...v0.9.2) (2026-11-16)
+
+
+### Bug Fixes
+
+* **skills:** refine layout, icons, and skill lists ([#48](https://github.com/miguelpadin/miguelpadin.github.io/issues/48)) ([09053ac](https://github.com/miguelpadin/miguelpadin.github.io/commit/09053ac1ee78e2cff46b18aecbe3d611e21bf8ba))
+
 ## [0.9.1](https://github.com/miguelpadin/miguelpadin.github.io/compare/v0.9.0...v0.9.1) (2026-10-09)
 
 
